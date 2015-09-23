@@ -37,8 +37,7 @@
 
 		protected BaseRepository(IDbContext dbContext)
 		{
-			ArgumentGuard.ThrowOnNull(dbContext, "dbContext");
-
+			ArgumentGuard.ThrowOnNull(dbContext, nameof(dbContext));
 			this.dbContext = dbContext;
 		}
 
@@ -78,9 +77,9 @@
 
 		public IQueryable<T> GetRange<TValue>(Expression<Func<T, TValue>> keySelector, int offset, int count)
 		{
-			ArgumentGuard.ThrowOnNull(keySelector, "keySelector");
-			ArgumentGuard.ThrowOnOutOfRange(offset, "offset", x => x >= 0);
-			ArgumentGuard.ThrowOnOutOfRange(count, "count", x => x > 0);
+			ArgumentGuard.ThrowOnNull(keySelector, nameof(keySelector));
+			ArgumentGuard.ThrowOnOutOfRange(offset, nameof(offset), x => x >= 0);
+			ArgumentGuard.ThrowOnOutOfRange(count, nameof(count), x => x > 0);
 
 			return DataSet.OrderBy(keySelector).Skip(offset).Take(count);
 		}
@@ -88,31 +87,30 @@
 		public IQueryable<T> Filter(Expression<Func<T, bool>> filter)
 		{
 			ArgumentGuard.ThrowOnNull(filter, "filter");
-
 			return DataSet.Where(filter);
 		}
 
 		public IQueryable<T> Filter<TValue>(Expression<Func<T, bool>> filter, Expression<Func<T, TValue>> keySelector,
 			int offset, int count)
 		{
-			ArgumentGuard.ThrowOnNull(filter, "filter");
-			ArgumentGuard.ThrowOnNull(keySelector, "keySelector");
-			ArgumentGuard.ThrowOnOutOfRange(offset, "offset", x => x >= 0);
-			ArgumentGuard.ThrowOnOutOfRange(count, "count", x => x > 0);
+			ArgumentGuard.ThrowOnNull(filter, nameof(filter));
+			ArgumentGuard.ThrowOnNull(keySelector, nameof(keySelector));
+			ArgumentGuard.ThrowOnOutOfRange(offset, nameof(offset), x => x >= 0);
+			ArgumentGuard.ThrowOnOutOfRange(count, nameof(count), x => x > 0);
 
 			return DataSet.Where(filter).OrderBy(keySelector).Skip(offset).Take(count);
 		}
 
 		public T FilterSingle(Expression<Func<T, bool>> filter)
 		{
-			ArgumentGuard.ThrowOnNull(filter, "filter");
+			ArgumentGuard.ThrowOnNull(filter, nameof(filter));
 
 			return DataSet.SingleOrDefault(filter);
 		}
 
 		public T FilterFirst(Expression<Func<T, bool>> filter)
 		{
-			ArgumentGuard.ThrowOnNull(filter, "filter");
+			ArgumentGuard.ThrowOnNull(filter, nameof(filter));
 
 			return DataSet.FirstOrDefault(filter);
 		}
@@ -151,7 +149,7 @@
 
 		public T Add(T item)
 		{
-			ArgumentGuard.ThrowOnNull(item, "item");
+			ArgumentGuard.ThrowOnNull(item, nameof(item));
 
 			OnAdding(item);
 
@@ -165,7 +163,7 @@
 
 		public T Update(T item)
 		{
-			ArgumentGuard.ThrowOnNull(item, "item");
+			ArgumentGuard.ThrowOnNull(item, nameof(item));
 
 			OnUpdating(item);
 
@@ -184,7 +182,7 @@
 
 		public void Remove(T item)
 		{
-			ArgumentGuard.ThrowOnNull(item, "item");
+			ArgumentGuard.ThrowOnNull(item, nameof(item));
 
 			OnRemoving(item);
 
@@ -214,7 +212,7 @@
 
 		public void SetIncludedPathes(params string[] pathes)
 		{
-			includedPathes = new Holder<int, string[]>(0, pathes != null ? pathes.ToArray() : null);
+			includedPathes = new Holder<int, string[]>(0, pathes?.ToArray());
 		}
 
 		public void SaveChanges()
@@ -257,10 +255,10 @@
 
 		protected virtual IQueryable<T> ApplyIncludedPathes(IQueryable<T> source)
 		{
-			var includedPathes = this.includedPathes;
-			if (includedPathes != null && Interlocked.CompareExchange(ref includedPathes.item1, 1, 0) == 0)
+			var pathes = includedPathes;
+			if (pathes != null && Interlocked.CompareExchange(ref pathes.item1, 1, 0) == 0)
 			{
-				source = includedPathes.item2.Aggregate(source, (current, path) => current.Include(path));
+				source = pathes.item2.Aggregate(source, (current, path) => current.Include(path));
 			}
 			return source;
 		}

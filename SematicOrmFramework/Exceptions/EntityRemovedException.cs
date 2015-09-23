@@ -1,6 +1,6 @@
 ﻿namespace SematicOrmFramework.Exceptions
 {
-    public class EntityRemovedException : EntityNotFoundException
-    {
-    }
+	public class EntityRemovedException : EntityNotFoundException
+	{
+	}
 }
