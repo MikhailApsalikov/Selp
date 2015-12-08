@@ -1,6 +1,6 @@
 ﻿namespace Selp.Kernel.BaseClasses
 {
-	public class SelpSemanticService
+	public abstract class SelpSemanticService
 	{
 	}
 }

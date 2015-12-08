@@ -1,6 +1,6 @@
 ﻿namespace Selp.Kernel.BaseClasses
 {
-	public class SelpController
+	public abstract class SelpController
 	{
 	}
 }
