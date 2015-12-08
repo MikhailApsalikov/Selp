@@ -40,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kernel\BaseClasses\SelpController.cs" />
+    <Compile Include="Kernel\BaseClasses\SelpRepository.cs" />
+    <Compile Include="Kernel\BaseClasses\SelpSemanticService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Kernel\" />
+    <Folder Include="Common\" />
+    <Folder Include="Config\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Kernel\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
