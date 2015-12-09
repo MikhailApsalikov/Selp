@@ -20,7 +20,6 @@
 		T Update(T item);
 		void Remove(T item);
 		void RemoveById(TKey key);
-		void SetIncludedPathes(params string[] pathes);
 
 
 		Task<IQueryable<T>> GetAllAsync();
@@ -35,6 +34,5 @@
 		Task<T> UpdateAsync(T item);
 		Task RemoveAsync(T item);
 		Task RemoveByIdAsync(TKey key);
-		Task SetIncludedPathesAsync(params string[] pathes);
 	}
 }

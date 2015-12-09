@@ -5,9 +5,6 @@
 
 	internal class FakeRepository : SelpRepository<FakeEntity, int, FakeDbContext>
 	{
-		protected override IDbSet<FakeEntity> GetDbSet()
-		{
-			return DbContext.FakeObjectDbSet;
-		}
+		protected override IDbSet<FakeEntity> DbSet => DbContext.FakeObjectDbSet;
 	}
 }

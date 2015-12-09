@@ -4,18 +4,17 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using System.Threading;
 	using System.Threading.Tasks;
-	using Common.Exceptions;
+	using Common.Helpers;
 	using Config;
-	using Enums;
 	using Interfaces;
 
-	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey> where T : class where TRepository: SelpDbContext, new()
+	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey> where T : class
+		where TRepository : SelpDbContext, new()
 	{
 		private readonly bool isReuseRepository = SelpConfiguration.IsReuseRepositoriesByDefault;
 		private TRepository dbContext;
-
-		protected TRepository DbContext => isReuseRepository ? dbContext : new TRepository();
 
 		protected SelpRepository()
 		{
@@ -26,7 +25,7 @@
 		}
 
 		protected SelpRepository(bool isReuseRepository)
-			:this()
+			: this()
 		{
 			this.isReuseRepository = isReuseRepository;
 		}
@@ -34,131 +33,149 @@
 		protected SelpRepository(TRepository dbContext)
 		{
 			isReuseRepository = true;
-            this.dbContext = dbContext;
+			this.dbContext = dbContext;
 		}
 
-		protected abstract IDbSet<T> GetDbSet();
+		protected TRepository DbContext => isReuseRepository ? dbContext : new TRepository();
 
-		public T Add(T item)
+		public virtual T Add(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<T> AddAsync(T item)
+		public virtual async Task<T> AddAsync(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<T> Filter(Expression<Func<T, bool>> filter)
+		public virtual IQueryable<T> Filter(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<T> Filter<TValue>(Expression<Func<T, bool>> filter, Expression<Func<T, TValue>> keySelector,
+		public virtual IQueryable<T> Filter<TValue>(Expression<Func<T, bool>> filter, Expression<Func<T, TValue>> keySelector,
 			int offset, int count)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<IQueryable<T>> FilterAsync(Expression<Func<T, bool>> filter)
+		public virtual async Task<IQueryable<T>> FilterAsync(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<IQueryable<T>> FilterAsync<TValue>(Expression<Func<T, bool>> filter, Expression<Func<T, TValue>> keySelector,
+		public virtual async Task<IQueryable<T>> FilterAsync<TValue>(Expression<Func<T, bool>> filter,
+			Expression<Func<T, TValue>> keySelector,
 			int offset, int count)
 		{
 			throw new NotImplementedException();
 		}
 
-		public T FilterFirst(Expression<Func<T, bool>> filter)
+		public virtual T FilterFirst(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<T> FilterFirstAsync(Expression<Func<T, bool>> filter)
+		public virtual async Task<T> FilterFirstAsync(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public T FilterSingle(Expression<Func<T, bool>> filter)
+		public virtual T FilterSingle(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<T> FilterSingleAsync(Expression<Func<T, bool>> filter)
+		public virtual async Task<T> FilterSingleAsync(Expression<Func<T, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<T> GetAll()
+		public virtual IQueryable<T> GetAll()
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<IQueryable<T>> GetAllAsync()
+		public virtual async Task<IQueryable<T>> GetAllAsync()
 		{
 			throw new NotImplementedException();
 		}
 
-		public T GetById(TKey key)
+		public virtual T GetById(TKey key)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<T> GetByIdAsync(TKey key)
+		public virtual async Task<T> GetByIdAsync(TKey key)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<T> GetRange<TValue>(Expression<Func<T, TValue>> keySelector, int offset, int count)
+		public virtual IQueryable<T> GetRange<TValue>(Expression<Func<T, TValue>> keySelector, int offset, int count)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<IQueryable<T>> GetRangeAsync<TValue>(Expression<Func<T, TValue>> keySelector, int offset, int count)
+		public virtual async Task<IQueryable<T>> GetRangeAsync<TValue>(Expression<Func<T, TValue>> keySelector, int offset,
+			int count)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Remove(T item)
+		public virtual void Remove(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task RemoveAsync(T item)
+		public virtual async Task RemoveAsync(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void RemoveById(TKey key)
+		public virtual void RemoveById(TKey key)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task RemoveByIdAsync(TKey key)
+		public virtual async Task RemoveByIdAsync(TKey key)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void SetIncludedPathes(params string[] pathes)
+		public virtual T Update(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task SetIncludedPathesAsync(params string[] pathes)
+		public virtual async Task<T> UpdateAsync(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public T Update(T item)
+		protected abstract IDbSet<T> DbSet { get; }
+
+		protected virtual void OnAdding(T item)
 		{
-			throw new NotImplementedException();
 		}
 
-		public async Task<T> UpdateAsync(T item)
+		protected virtual void OnAdded(T item)
 		{
-			throw new NotImplementedException();
+		}
+
+		protected virtual void OnUpdateing(T item)
+		{
+		}
+
+		protected virtual void OnUpdated(T item)
+		{
+		}
+
+		protected virtual void OnRemoving(T item)
+		{
+		}
+
+		protected virtual void OnRemoved(T item)
+		{
 		}
 
 		#region IDisposable Support
@@ -180,7 +197,7 @@
 				disposedValue = true;
 			}
 		}
-		
+
 		public void Dispose()
 		{
 			Dispose(true);
