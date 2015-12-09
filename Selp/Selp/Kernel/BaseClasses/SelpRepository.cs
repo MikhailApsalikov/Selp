@@ -1,6 +1,7 @@
 ﻿namespace Selp.Kernel.BaseClasses
 {
 	using System;
+	using System.Data.Entity;
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Threading.Tasks;
@@ -9,36 +10,34 @@
 	using Enums;
 	using Interfaces;
 
-	public abstract class SelpRepository<T, TKey> : ISelpRepository<T, TKey> where T : class
+	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey> where T : class where TRepository: SelpDbContext, new()
 	{
-		private SelpDbContext dbContext;
+		private readonly bool isReuseRepository = SelpConfiguration.IsReuseRepositoriesByDefault;
+		private TRepository dbContext;
+
+		protected TRepository DbContext => isReuseRepository ? dbContext : new TRepository();
 
 		protected SelpRepository()
 		{
-			switch (SelpConfiguration.DbContextUsage)
+			if (isReuseRepository)
 			{
-				case DbContextUsages.FromConstructor:
-				{
-					throw new SelpConfigurationException("DbContextUsage",
-						"You cannot use constructor without dbContext parameter using DbContextUsages.FromConstructor option");
-				}
-				case DbContextUsages.OnePerRepository:
-				{
-					dbContext = new SelpDbContext();
-					break;
-				}
+				dbContext = new TRepository();
 			}
 		}
 
-		protected SelpRepository(SelpDbContext dbContext)
+		protected SelpRepository(bool isReuseRepository)
+			:this()
 		{
-			if (SelpConfiguration.DbContextUsage != DbContextUsages.FromConstructor)
-			{
-				throw new SelpConfigurationException("DbContextUsage",
-					"You can use constructor with dbContext parameter using only DbContextUsages.FromConstructor option");
-			}
-			this.dbContext = dbContext;
+			this.isReuseRepository = isReuseRepository;
 		}
+
+		protected SelpRepository(TRepository dbContext)
+		{
+			isReuseRepository = true;
+            this.dbContext = dbContext;
+		}
+
+		protected abstract IDbSet<T> GetDbSet();
 
 		public T Add(T item)
 		{

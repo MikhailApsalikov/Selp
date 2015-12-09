@@ -15,8 +15,8 @@
 		public static bool UseVirtualDelete => false;
 
 		/// <summary>
-		/// Way to create dbContext
+		/// If enabled it won't create repositories when each method called
 		/// </summary>
-		public static DbContextUsages DbContextUsage => DbContextUsages.OnePerCall;
+		public static bool IsReuseRepositoriesByDefault => false;
 	}
 }
