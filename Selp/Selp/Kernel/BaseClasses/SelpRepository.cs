@@ -4,9 +4,7 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using System.Linq.Expressions;
-	using System.Threading;
 	using System.Threading.Tasks;
-	using Common.Helpers;
 	using Config;
 	using Interfaces;
 
@@ -37,6 +35,8 @@
 		}
 
 		protected TRepository DbContext => isReuseRepository ? dbContext : new TRepository();
+
+		protected abstract IDbSet<T> DbSet { get; }
 
 		public virtual T Add(T item)
 		{
@@ -151,8 +151,6 @@
 		{
 			throw new NotImplementedException();
 		}
-
-		protected abstract IDbSet<T> DbSet { get; }
 
 		protected virtual void OnAdding(T item)
 		{

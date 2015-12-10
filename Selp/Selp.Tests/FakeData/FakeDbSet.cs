@@ -52,7 +52,7 @@
 			return Activator.CreateInstance<TDerivedEntity>();
 		}
 
-		public ObservableCollection<T> Local { get; }
+		public ObservableCollection<T> Local { get; set; }
 
 		Type IQueryable.ElementType
 		{
