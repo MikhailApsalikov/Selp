@@ -438,8 +438,8 @@
 			using (var dbContext = new FakeDbContext())
 			{
 				var repository = new FakeRepository(dbContext);
-				repository.CreateFakeEntityList();
-				await repository.RemoveAsync(3);
+				var fakeEntities = repository.CreateFakeEntityList();
+				await repository.RemoveAsync(fakeEntities.First());
 				Assert.AreEqual(6, repository.GetAll().Count());
 			}
 		}
@@ -448,8 +448,8 @@
 		public void RemoveNewDbContextTest()
 		{
 			var repository = new FakeRepository();
-			repository.CreateFakeEntityList();
-			repository.Remove(3);
+			var fakeEntities = repository.CreateFakeEntityList();
+			repository.Remove(fakeEntities.First());
 			Assert.AreEqual(6, repository.GetAll().Count());
 		}
 
@@ -457,8 +457,8 @@
 		public async Task RemoveNewDbContextAsyncTest()
 		{
 			var repository = new FakeRepository();
-			repository.CreateFakeEntityList();
-			await repository.RemoveAsync(3);
+			var fakeEntities = repository.CreateFakeEntityList();
+			await repository.RemoveAsync(fakeEntities.First());
 			Assert.AreEqual(6, repository.GetAll().Count());
 		}
 
@@ -467,7 +467,6 @@
 
 		T FilterFirst(Expression<Func<T, bool>> filter);
 		T FilterSingle(Expression<Func<T, bool>> filter);
-		void Remove(T item);
 		*/
 	}
 }
