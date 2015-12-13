@@ -71,7 +71,6 @@
     <Compile Include="Common\Exceptions\SelpConfigurationException.cs" />
     <Compile Include="Common\Exceptions\SelpException.cs" />
     <Compile Include="Common\Extensions\DbEntityValidationExceptionExtensions.cs" />
-    <Compile Include="Common\Extensions\DbSetExtension.cs" />
     <Compile Include="Common\Extensions\EnumExtensions.cs" />
     <Compile Include="Common\Helpers\ArgumentGuard.cs" />
     <Compile Include="Config\SelpConfiguration.cs" />

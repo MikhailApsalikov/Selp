@@ -13,10 +13,5 @@
 		/// If enabled it uses isDelete flag on entities instead of delete them.
 		/// </summary>
 		public static bool UseVirtualDelete => false;
-
-		/// <summary>
-		/// If enabled it won't create repositories when each method called
-		/// </summary>
-		public static bool IsReuseRepositoriesByDefault => false;
 	}
 }

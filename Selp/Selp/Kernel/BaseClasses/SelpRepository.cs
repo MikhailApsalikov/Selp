@@ -9,39 +9,29 @@
 	using Common.Helpers;
 	using Config;
 	using Interfaces;
+	using Selp.Common.Extensions;
 
-	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey> where T : class
-		where TRepository : SelpDbContext, new()
+	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey>
+		where T : class, ISelpEntity<TKey>
+		where TRepository : SelpDbContext
 	{
-		private readonly bool isReuseRepository = SelpConfiguration.IsReuseRepositoriesByDefault;
-		protected TRepository DbContext { get; private set; }
-
 		protected SelpRepository()
 		{
-			if (isReuseRepository)
-			{
-				DbContext = new TRepository();
-			}
-		}
-
-		protected SelpRepository(bool isReuseRepository)
-			: this()
-		{
-			this.isReuseRepository = isReuseRepository;
+			DbContext = CreateContext();
 		}
 
 		protected SelpRepository(TRepository dbContext)
 		{
-			isReuseRepository = true;
-			this.DbContext = dbContext;
+			DbContext = dbContext;
 		}
 
-		protected abstract IDbSet<T> DbSet { get; }
+		protected TRepository DbContext { get; private set; }
+
+		protected abstract DbSet<T> DbSet { get; }
 
 		public virtual T Add(T item)
 		{
 			ArgumentGuard.ThrowOnNull(item, "item");
-			RecreateDbContextIfRequired();
 			Console.WriteLine();
 			OnAdding(item);
 			item = DbSet.Add(item);
@@ -53,7 +43,6 @@
 		public virtual async Task<T> AddAsync(T item)
 		{
 			ArgumentGuard.ThrowOnNull(item, "item");
-			RecreateDbContextIfRequired();
 			OnAdding(item);
 			item = DbSet.Add(item);
 			await DbContext.SaveChangesAsync();
@@ -116,12 +105,14 @@
 
 		public virtual T GetById(TKey key)
 		{
-			throw new NotImplementedException();
+			var item = DbSet.Find(key);
+			return item;
 		}
 
 		public virtual async Task<T> GetByIdAsync(TKey key)
 		{
-			throw new NotImplementedException();
+			var item = await DbSet.FindAsync(key);
+			return item;
 		}
 
 		public virtual IQueryable<T> GetRange<TValue>(Expression<Func<T, TValue>> keySelector, int offset, int count)
@@ -157,13 +148,59 @@
 
 		public virtual T Update(T item)
 		{
-			throw new NotImplementedException();
+			ArgumentGuard.ThrowOnNull(item, "item");
+			OnUpdateing(item);
+
+			try
+			{
+				DbContext.Update(item);
+				DbContext.SaveChanges();
+			}
+			catch (InvalidOperationException)
+			{
+				var itemInContext = GetById(item.Id);
+				if (itemInContext == null)
+				{
+					throw new EntityNotFoundException("Entity not found");
+				}
+
+				DbContext.Update(itemInContext);
+				DbContext.SaveChanges();
+			}
+
+			OnUpdated(item);
+			return item;
 		}
 
 		public virtual async Task<T> UpdateAsync(T item)
 		{
-			throw new NotImplementedException();
+			ArgumentGuard.ThrowOnNull(item, "item");
+			OnUpdateing(item);
+
+			try
+			{
+				DbContext.Update(item);
+				await DbContext.SaveChangesAsync();
+			}
+			catch (InvalidOperationException)
+			{
+				var itemInContext = await GetByIdAsync(item.Id);
+				if (itemInContext == null)
+				{
+					throw new EntityNotFoundException("Entity not found");
+				}
+
+				DbContext.Update(itemInContext);
+				await DbContext.SaveChangesAsync();
+			}
+
+			OnUpdated(item);
+			return item;
 		}
+
+		protected abstract TRepository CreateContext();
+
+		#region events
 
 		protected virtual void OnAdding(T item)
 		{
@@ -189,18 +226,7 @@
 		{
 		}
 
-		private void RecreateDbContextIfRequired()
-		{
-			if (!isReuseRepository)
-			{
-				DbContext = RecreateContext();
-			}
-		}
-
-		protected virtual TRepository RecreateContext()
-		{
-			throw new RepositoryException("If you are not using isReuseRepository property. You need to override and implement RecreateContext method!");
-		}
+		#endregion
 
 		#region IDisposable Support
 
