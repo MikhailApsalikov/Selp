@@ -18,10 +18,11 @@
 
 		protected override IDbSet<FakeEntity> DbSet => DbContext.FakeObjectDbSet;
 
-		internal void CreateFakeEntityList()
+		internal IEnumerable<FakeEntity> CreateFakeEntityList()
 		{
 			var fakeDbSet = DbSet as FakeDbSet<FakeEntity>;
 			if (fakeDbSet != null)
+			{
 				fakeDbSet.Local = new ObservableCollection<FakeEntity>(new List<FakeEntity>
 				{
 					new FakeEntity
@@ -60,6 +61,9 @@
 						Name = "Name10"
 					}
 				});
+				return fakeDbSet.Local;
+			}
+			return null;
 		}
 	}
 }

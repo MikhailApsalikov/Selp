@@ -262,16 +262,212 @@
 			Assert.AreEqual(3, all.Count);
 		}
 
-		/*
-		IQueryable<T> Filter(Expression<Func<T, bool>> filter);
+		[TestMethod]
+		public void FilterTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				Assert.AreEqual(3, repository.Filter(e => e.Id < 4).Count());
+			}
+		}
 
+		[TestMethod]
+		public async Task FilterAsyncTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				Assert.AreEqual(3, (await repository.FilterAsync(e => e.Id < 4)).Count());
+			}
+		}
+
+		[TestMethod]
+		public void FilterNewDbContextTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			Assert.AreEqual(3, repository.Filter(e => e.Id < 4).Count());
+		}
+
+		[TestMethod]
+		public async Task FilterNewDbContextAsyncTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			Assert.AreEqual(3, (await repository.FilterAsync(e => e.Id < 4)).Count());
+		}
+
+		[TestMethod]
+		public void GetByIdTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				Assert.AreEqual("Name3", repository.GetById(3).Name);
+			}
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(EntityNotFoundException))]
+		public void GetByIdIncorrectIdTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				repository.GetById(-1);
+			}
+		}
+
+		[TestMethod]
+		public async Task GetByIdAsyncTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				Assert.AreEqual("Name3", (await repository.GetByIdAsync(3)).Name);
+			}
+		}
+
+		[TestMethod]
+		public void GetByIdNewDbContextTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			Assert.AreEqual("Name3", repository.GetById(3).Name);
+		}
+
+		[TestMethod]
+		public async Task GetByIdNewDbContextAsyncTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			Assert.AreEqual("Name3", (await repository.GetByIdAsync(3)).Name);
+		}
+
+		[TestMethod]
+		public void RemoveByIdTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				repository.RemoveById(3);
+                Assert.AreEqual(6, repository.GetAll().Count());
+			}
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(EntityNotFoundException))]
+		public void RemoveByIdIncorrectIdTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				repository.RemoveById(-1);
+			}
+		}
+
+		[TestMethod]
+		public async Task RemoveByIdAsyncTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				await repository.RemoveByIdAsync(3);
+				Assert.AreEqual(6, repository.GetAll().Count());
+			}
+		}
+
+		[TestMethod]
+		public void RemoveByIdNewDbContextTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			repository.RemoveById(3);
+			Assert.AreEqual(6, repository.GetAll().Count());
+		}
+
+		[TestMethod]
+		public async Task RemoveByIdNewDbContextAsyncTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			await repository.RemoveByIdAsync(3);
+			Assert.AreEqual(6, repository.GetAll().Count());
+		}
+
+		[TestMethod]
+		public void RemoveTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				var fakeEntities = repository.CreateFakeEntityList();
+				repository.Remove(fakeEntities.First());
+				Assert.AreEqual(6, repository.GetAll().Count());
+			}
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(EntityNotFoundException))]
+		public void RemoveIncorrectIdTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				repository.Remove(new FakeEntity()
+				{
+					Id = 72, 
+					Name = "ANONIMOUS"
+				});
+			}
+		}
+
+		[TestMethod]
+		public async Task RemoveAsyncTest()
+		{
+			using (var dbContext = new FakeDbContext())
+			{
+				var repository = new FakeRepository(dbContext);
+				repository.CreateFakeEntityList();
+				await repository.RemoveAsync(3);
+				Assert.AreEqual(6, repository.GetAll().Count());
+			}
+		}
+
+		[TestMethod]
+		public void RemoveNewDbContextTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			repository.Remove(3);
+			Assert.AreEqual(6, repository.GetAll().Count());
+		}
+
+		[TestMethod]
+		public async Task RemoveNewDbContextAsyncTest()
+		{
+			var repository = new FakeRepository();
+			repository.CreateFakeEntityList();
+			await repository.RemoveAsync(3);
+			Assert.AreEqual(6, repository.GetAll().Count());
+		}
+
+		/*
 		IQueryable<T> Filter<TValue>(Expression<Func<T, bool>> filter, Expression<Func<T, TValue>> keySelector, int offset, int count);
 
-		T GetById(TKey key);
 		T FilterFirst(Expression<Func<T, bool>> filter);
 		T FilterSingle(Expression<Func<T, bool>> filter);
 		void Remove(T item);
-		void RemoveById(TKey key);
 		*/
 	}
 }
