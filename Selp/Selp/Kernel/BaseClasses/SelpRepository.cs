@@ -5,6 +5,8 @@
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Threading.Tasks;
+	using Common.Exceptions;
+	using Common.Helpers;
 	using Config;
 	using Interfaces;
 
@@ -12,13 +14,13 @@
 		where TRepository : SelpDbContext, new()
 	{
 		private readonly bool isReuseRepository = SelpConfiguration.IsReuseRepositoriesByDefault;
-		private TRepository dbContext;
+		protected TRepository DbContext { get; private set; }
 
 		protected SelpRepository()
 		{
 			if (isReuseRepository)
 			{
-				dbContext = new TRepository();
+				DbContext = new TRepository();
 			}
 		}
 
@@ -31,21 +33,32 @@
 		protected SelpRepository(TRepository dbContext)
 		{
 			isReuseRepository = true;
-			this.dbContext = dbContext;
+			this.DbContext = dbContext;
 		}
-
-		protected TRepository DbContext => isReuseRepository ? dbContext : new TRepository();
 
 		protected abstract IDbSet<T> DbSet { get; }
 
 		public virtual T Add(T item)
 		{
-			throw new NotImplementedException();
+			ArgumentGuard.ThrowOnNull(item, "item");
+			RecreateDbContextIfRequired();
+			Console.WriteLine();
+			OnAdding(item);
+			item = DbSet.Add(item);
+			DbContext.SaveChanges();
+			OnAdded(item);
+			return item;
 		}
 
 		public virtual async Task<T> AddAsync(T item)
 		{
-			throw new NotImplementedException();
+			ArgumentGuard.ThrowOnNull(item, "item");
+			RecreateDbContextIfRequired();
+			OnAdding(item);
+			item = DbSet.Add(item);
+			await DbContext.SaveChangesAsync();
+			OnAdded(item);
+			return item;
 		}
 
 		public virtual IQueryable<T> Filter(Expression<Func<T, bool>> filter)
@@ -176,6 +189,19 @@
 		{
 		}
 
+		private void RecreateDbContextIfRequired()
+		{
+			if (!isReuseRepository)
+			{
+				DbContext = RecreateContext();
+			}
+		}
+
+		protected virtual TRepository RecreateContext()
+		{
+			throw new RepositoryException("If you are not using isReuseRepository property. You need to override and implement RecreateContext method!");
+		}
+
 		#region IDisposable Support
 
 		private bool disposedValue; // To detect redundant calls
@@ -186,10 +212,10 @@
 			{
 				if (disposing)
 				{
-					dbContext.Dispose();
+					DbContext.Dispose();
 				}
 
-				dbContext = null;
+				DbContext = null;
 
 				// TODO: set Expressions to null
 				disposedValue = true;

@@ -12,7 +12,7 @@
 		{
 		}
 
-		public FakeRepository() : base(true)
+		public FakeRepository() : base(false)
 		{
 		}
 
@@ -64,6 +64,11 @@
 				return fakeDbSet.Local;
 			}
 			return null;
+		}
+
+		protected override FakeDbContext RecreateContext()
+		{
+			return new FakeDbContext();
 		}
 	}
 }

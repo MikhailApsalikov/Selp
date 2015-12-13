@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Common\Exceptions\RepositoryException.cs" />
     <Compile Include="Common\Exceptions\SelpConfigurationException.cs" />
     <Compile Include="Common\Exceptions\SelpException.cs" />
     <Compile Include="Common\Extensions\DbEntityValidationExceptionExtensions.cs" />
