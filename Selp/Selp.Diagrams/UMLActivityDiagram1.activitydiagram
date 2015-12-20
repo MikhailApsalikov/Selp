@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="f1fb7088-0d8e-4ea7-a3ac-c1f727f83081" name="Activity1" linkedPackageId="3a06b8fc-8f9b-4f1d-9de8-2ca4129ab115" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="c473430a-5edb-42c9-bad1-96626321ae74">
+      <profileInstance Id="5f1688f9-dacb-4645-b499-6a57c515dfe4" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="0ec0d005-48ca-43bd-86fa-b3794c973d92">
+      <profileInstance Id="36dfea70-ed2b-43ec-bb1e-6286517ac984" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="f34be1a3-ab65-4b92-90e9-0985f0633e22" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="9cbe6036-c2f3-4c3e-acc6-914fd8234267" />
+        <nodes>
+          <opaqueAction Id="13e0fe3f-1f9b-40f5-9b05-79f498a83be7" name="Определить тип сущности" isLeaf="false">
+            <elementDefinition Id="e8bd804d-c9d9-4ab4-a370-08c1f9ba213e" />
+            <flowNodeTargets>
+              <controlFlow Id="2a57e304-f1ee-4b07-8ecd-0702317a4bcd" isLeaf="false">
+                <opaqueActionMoniker Id="4d637c28-0373-4484-ad6a-57ffe535072a" LastKnownName="Определить использовалась ли сущность ранее" />
+                <elementDefinition Id="8cb45da3-52a0-46f2-8efd-0b69ab10b6d1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode Id="df4a8547-f27d-4406-8287-75456b071818" name="Initial1" isLeaf="false">
+            <elementDefinition Id="2660604f-598f-4276-bf00-8be54a9b4dd2" />
+            <flowNodeTargets>
+              <controlFlow Id="942e1a63-7414-42d0-8610-efefcb1a37dc" isLeaf="false">
+                <opaqueActionMoniker Id="13e0fe3f-1f9b-40f5-9b05-79f498a83be7" LastKnownName="Определить тип сущности" />
+                <elementDefinition Id="550b80e0-d17a-4d6a-9af5-cc3d1de8d109" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <activityFinalNode Id="e34769cf-baf5-46c7-bfc8-c3a1aff5bfea" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="e29380c5-63aa-4aea-9a46-ee5951f8dde4" />
+          </activityFinalNode>
+          <decisionNode Id="26ac57b8-c0aa-451c-a1ef-db3f3470d460" name="Decision1" isLeaf="false">
+            <elementDefinition Id="af30bb98-10c4-4ddb-8ff7-0d8f08d4ded0" />
+            <flowNodeTargets>
+              <controlFlow Id="e37cc516-7c0d-4af2-a881-061ac29644c7" guard="Да" isLeaf="false">
+                <opaqueActionMoniker Id="d2c8b592-42fb-495b-9417-bd2f947ddc79" LastKnownName="Найти функцию конвертации сущности" />
+                <elementDefinition Id="3b4c9382-513a-4b2e-9b2e-2c4b8d1767b0" />
+              </controlFlow>
+              <controlFlow Id="920c779f-1423-451f-904d-c09d11a681d0" guard="Нет" isLeaf="false">
+                <opaqueActionMoniker Id="2e247b0e-8f26-4704-827b-fd1bf8f10c49" LastKnownName="Найти описание класса в CLR при помощи рефлексии" />
+                <elementDefinition Id="2d01867b-5c43-40a8-8830-9d2f88865c94" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="4d637c28-0373-4484-ad6a-57ffe535072a" name="Определить использовалась ли сущность ранее" isLeaf="false">
+            <elementDefinition Id="980e2aaf-8d25-4ec4-878a-7b6378e71ef9" />
+            <flowNodeTargets>
+              <controlFlow Id="2fd76197-d193-4434-96e3-cdd8c30c740f" isLeaf="false">
+                <decisionNodeMoniker Id="26ac57b8-c0aa-451c-a1ef-db3f3470d460" LastKnownName="Decision1" />
+                <elementDefinition Id="e2630a0d-8a42-474b-a9f3-e23ff4b20dcf" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="d2c8b592-42fb-495b-9417-bd2f947ddc79" name="Найти функцию конвертации сущности" isLeaf="false">
+            <elementDefinition Id="07763032-39ea-425a-82aa-d19455a2c053" />
+            <flowNodeTargets>
+              <controlFlow Id="c6d8855e-9dd1-4f23-ac15-176fb208009a" isLeaf="false">
+                <mergeNodeMoniker Id="a3bfbefb-efea-41c3-b604-a22f6ed7efb9" LastKnownName="Merge2" />
+                <elementDefinition Id="6e3b135e-77e3-4edf-bdf4-60d18b53eba8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2e247b0e-8f26-4704-827b-fd1bf8f10c49" name="Найти описание класса в CLR при помощи рефлексии" isLeaf="false">
+            <elementDefinition Id="5d973f32-8e56-4b59-a485-dd0c9bfeef5c" />
+            <flowNodeTargets>
+              <controlFlow Id="4d1aae04-f90d-47d6-bff0-12675b071bdf" isLeaf="false">
+                <opaqueActionMoniker Id="e572112c-8a90-4c06-801f-f3ade8260452" LastKnownName="Собрать список значимых полей" />
+                <elementDefinition Id="cb8ea210-7ec0-41a0-a28f-7c3c74014a54" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e572112c-8a90-4c06-801f-f3ade8260452" name="Собрать список значимых полей" isLeaf="false">
+            <elementDefinition Id="e021a720-d083-4adf-9597-cb0c2efaed79" />
+            <flowNodeTargets>
+              <controlFlow Id="e4746add-8174-45df-a9e7-172bf3c7f50a" isLeaf="false">
+                <opaqueActionMoniker Id="8d5d18fa-3cc3-4342-83e1-b9f3ec0da8dd" LastKnownName="Считать конфигурацию" />
+                <elementDefinition Id="8cc9d961-cce7-44a9-9684-4a4ed304ee6d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8d5d18fa-3cc3-4342-83e1-b9f3ec0da8dd" name="Считать конфигурацию" isLeaf="false">
+            <elementDefinition Id="8563ae07-a21e-4662-9384-4c60da2c6fa2" />
+            <flowNodeTargets>
+              <controlFlow Id="ccc3f5c7-0fbb-4fa2-be71-a2788d1b1052" isLeaf="false">
+                <opaqueActionMoniker Id="8e3dcac6-1f34-4005-9da6-cf038d75d9d4" LastKnownName="Определить как нужно генерировать предикат" />
+                <elementDefinition Id="0aa2ff4a-4b45-48c2-ac9b-8fccfab07af3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8e3dcac6-1f34-4005-9da6-cf038d75d9d4" name="Определить как нужно генерировать предикат" isLeaf="false">
+            <elementDefinition Id="9be1b071-d667-4bdd-84d8-7bf7deb8d0b5" />
+            <flowNodeTargets>
+              <controlFlow Id="3a85befc-63ff-478d-bd8f-3df2b4c877a2" isLeaf="false">
+                <decisionNodeMoniker Id="a1e3ab43-edb5-4d93-b0c3-5375d38c13df" LastKnownName="Decision2" />
+                <elementDefinition Id="7fd1e248-2512-48be-a2a2-8d0fc3db3b7a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="a1e3ab43-edb5-4d93-b0c3-5375d38c13df" name="Decision2" isLeaf="false">
+            <elementDefinition Id="ee7f18cf-8d9c-4f53-ad51-9e4b573faa19" />
+            <flowNodeTargets>
+              <controlFlow Id="d8af8533-7bc7-48c1-81de-c73b7705df5f" guard="Генерировать" isLeaf="false">
+                <opaqueActionMoniker Id="28c60ada-08c9-434c-9f19-2a640659b144" LastKnownName="Сгенерировать предикаты для каждого из значимых полей" />
+                <elementDefinition Id="fbb0138b-2a01-483e-b8d6-9af92fc18d92" />
+              </controlFlow>
+              <controlFlow Id="a283dca0-fe1a-4423-9fac-df1f46913ee2" guard="Из аттрибута" isLeaf="false">
+                <opaqueActionMoniker Id="1939570f-f594-4941-b7f8-c534d13d69ab" LastKnownName="Считать аттрибуты всех значимых полей" />
+                <elementDefinition Id="3bcb578b-6812-46bd-9ce5-9d98379f96a3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="28c60ada-08c9-434c-9f19-2a640659b144" name="Сгенерировать предикаты для каждого из значимых полей" isLeaf="false">
+            <elementDefinition Id="6ec70196-bf17-46b4-8e74-9c5a315ecfce" />
+            <flowNodeTargets>
+              <controlFlow Id="a8df1aba-1028-46f7-8568-dae72031ac63" isLeaf="false">
+                <mergeNodeMoniker Id="b6bf42f1-42fa-42ec-9edd-b549cbb51ad4" LastKnownName="Merge1" />
+                <elementDefinition Id="5c309592-1651-430b-94fa-23f6b99751eb" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="1939570f-f594-4941-b7f8-c534d13d69ab" name="Считать аттрибуты всех значимых полей" isLeaf="false">
+            <elementDefinition Id="602a90a4-8071-49c5-9d7e-20b00b2a9d4e" />
+            <flowNodeTargets>
+              <controlFlow Id="c28c6e6e-3559-4855-a10d-9db10727e2a5" isLeaf="false">
+                <opaqueActionMoniker Id="0518c2ed-66ba-4f5d-9246-c08be725347a" LastKnownName="Сопоставить аттрибуты полям" />
+                <elementDefinition Id="e88b0282-8b1b-4881-b164-b37479d57d40" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="0518c2ed-66ba-4f5d-9246-c08be725347a" name="Сопоставить аттрибуты полям" isLeaf="false">
+            <elementDefinition Id="208bf754-a5cf-4c92-9d50-f9506718acfe" />
+            <flowNodeTargets>
+              <controlFlow Id="3e8600fb-38ed-46bc-9e4d-e488938a50ba" isLeaf="false">
+                <mergeNodeMoniker Id="b6bf42f1-42fa-42ec-9edd-b549cbb51ad4" LastKnownName="Merge1" />
+                <elementDefinition Id="6de65543-efb3-4280-9ad9-53d1d29eeba5" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="13d07db3-3b86-4271-b1b8-077ec0305363" name="Для каждого поля из списка сгенерировать Expression, создающий триплет для него" isLeaf="false">
+            <elementDefinition Id="8aebe982-c47b-4bbe-a740-6c423bb26bb6" />
+          </opaqueAction>
+          <mergeNode Id="b6bf42f1-42fa-42ec-9edd-b549cbb51ad4" name="Merge1" isLeaf="false">
+            <elementDefinition Id="9c3fe64b-7a3f-45a2-8154-a7bc1dc6b690" />
+            <flowNodeTargets>
+              <controlFlow Id="6b928ac4-1ed0-47bf-8c59-71ac38be4c90" isLeaf="false">
+                <opaqueActionMoniker Id="13d07db3-3b86-4271-b1b8-077ec0305363" LastKnownName="Для каждого поля из списка сгенерировать Expression, создающий триплет для него" />
+                <elementDefinition Id="676c7390-61eb-49e4-92ae-a86a0f86027f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction Id="2261a79b-1bee-4d7f-99fb-4ccb1c8df493" name="Собрать общий Expression из всех ранее созданных" isLeaf="false">
+            <elementDefinition Id="e7031ae5-2523-4d0d-a698-48928abc8ee5" />
+          </opaqueAction>
+          <opaqueAction Id="30ae210e-ea33-4257-aa81-34630035b121" name="Скомпилировать Expression в функцию" isLeaf="false">
+            <elementDefinition Id="d81eb128-6a41-4e40-aaae-84b10474d92e" />
+            <flowNodeTargets>
+              <controlFlow Id="1f9aab4e-0e4f-4949-b4cd-4d656b221798" isLeaf="false">
+                <mergeNodeMoniker Id="a3bfbefb-efea-41c3-b604-a22f6ed7efb9" LastKnownName="Merge2" />
+                <elementDefinition Id="184c51d4-555d-43e0-a03b-f1564926f76e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode Id="a3bfbefb-efea-41c3-b604-a22f6ed7efb9" name="Merge2" isLeaf="false">
+            <elementDefinition Id="3e3b811a-3e3e-47a4-91e2-b2351a208c34" />
+            <flowNodeTargets>
+              <controlFlow Id="237f5481-e583-4c12-b2c4-8d3443179ee7" isLeaf="false">
+                <opaqueActionMoniker Id="888b3d19-7c9d-46d6-a480-c653cd4b2460" LastKnownName="Выполнить функцию и вернуть результат" />
+                <elementDefinition Id="b9937a9a-6ad7-4522-9077-09f04af1fcac" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction Id="888b3d19-7c9d-46d6-a480-c653cd4b2460" name="Выполнить функцию и вернуть результат" isLeaf="false">
+            <elementDefinition Id="7a73f447-41e2-4ea9-8829-2584164630ff" />
+            <flowNodeTargets>
+              <controlFlow Id="912699e2-1c21-4407-a7e8-f72414ee5cb6" isLeaf="false">
+                <activityFinalNodeMoniker Id="e34769cf-baf5-46c7-bfc8-c3a1aff5bfea" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="b94fae6f-a93e-4048-ba23-3781bb14e5d6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="3a06b8fc-8f9b-4f1d-9de8-2ca4129ab115" name="Selp.Diagrams">
+    <elementDefinition Id="226421d9-4998-4131-af1e-f6d940f735a2" />
+  </package>
+</activityRootModel>

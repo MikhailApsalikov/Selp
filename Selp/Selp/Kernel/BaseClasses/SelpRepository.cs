@@ -7,25 +7,22 @@
 	using System.Threading.Tasks;
 	using Common.Exceptions;
 	using Common.Helpers;
-	using Config;
 	using Interfaces;
-	using Selp.Common.Extensions;
 
-	public abstract class SelpRepository<T, TKey, TRepository> : ISelpRepository<T, TKey>
+	public abstract class SelpRepository<T, TKey> : ISelpRepository<T, TKey>
 		where T : class, ISelpEntity<TKey>
-		where TRepository : SelpDbContext
 	{
 		protected SelpRepository()
 		{
 			DbContext = CreateContext();
 		}
 
-		protected SelpRepository(TRepository dbContext)
+		protected SelpRepository(SelpDbContext dbContext)
 		{
 			DbContext = dbContext;
 		}
 
-		protected TRepository DbContext { get; private set; }
+		protected SelpDbContext DbContext { get; private set; }
 
 		protected abstract DbSet<T> DbSet { get; }
 
@@ -198,7 +195,7 @@
 			return item;
 		}
 
-		protected abstract TRepository CreateContext();
+		protected abstract SelpDbContext CreateContext();
 
 		#region events
 

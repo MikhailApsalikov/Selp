@@ -1,0 +1,1183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="226421d9-4998-4131-af1e-f6d940f735a2"
+  name="Selp.Diagrams" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction
+        Id="d6b2e51c-b070-4d25-ad9c-bd36da0d2111"
+        name="Sequence1"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification
+            Id="8df5967b-a7fc-4dbb-b132-81e49086e993"
+            name="BehaviorExecutionSpecification1">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="500dce12-4a72-498e-81c2-3dddfb2689cd"
+                LastKnownName="ExecutionOccurrenceSpecification2"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="b836d0cb-c2f4-48db-ba23-82bd67c1354e"
+                LastKnownName="ExecutionOccurrenceSpecification1"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="28876888-4ee5-4e3b-b403-b4e90b285243"
+                LastKnownName="MessageOccurrenceSpecification1"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="b337acee-f881-49e3-bbb5-a619b712a67d"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="2f523d0a-e4e3-4eea-b5ae-57f275d13041"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="a02c7cc4-9088-4f5e-a541-019c7b2dcc0b"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="42cc720b-2e83-4503-85a0-dd80dce65d16"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="9b4efa86-9b62-4d62-8abd-20c39d228dc1"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="b836d0cb-c2f4-48db-ba23-82bd67c1354e"
+            name="ExecutionOccurrenceSpecification1">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="3d845fd0-b531-4dbc-bff5-c3d92f4ad1a8"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget
+            Id="576e8a14-752e-47a4-810c-5d4ae54b9776"
+            name="LostFoundTarget1" />
+          <messageOccurrenceSpecification
+            Id="28876888-4ee5-4e3b-b403-b4e90b285243"
+            name="MessageOccurrenceSpecification1">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="db23832f-8582-4c38-a857-13bc5a8c94a5"
+            name="BehaviorExecutionSpecification3">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="cad742e6-fac2-4b60-ab37-50d527667acb"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="99c70db1-b51d-446e-b646-fd38421ecb09"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="a6e23ed0-6340-47d2-95ce-cf8dad192849"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="c385d8dd-8e33-4645-af76-a2689c6e29ee"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="371f915b-1422-48fb-b316-96cb3e82727b"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="11542e32-7185-498b-ade9-e100925628f0"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="99c70db1-b51d-446e-b646-fd38421ecb09"
+            name="ExecutionOccurrenceSpecification5">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="a1d4751d-333a-4b30-84e9-ff277beddaae"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="b337acee-f881-49e3-bbb5-a619b712a67d"
+            name="MessageOccurrenceSpecification6">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a6e23ed0-6340-47d2-95ce-cf8dad192849"
+            name="MessageOccurrenceSpecification7">
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="c047186b-a088-43f1-b9fb-f1bd9cf16ec7"
+            name="BehaviorExecutionSpecification4">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+                LastKnownName="База данных"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="6eb4ff12-3644-4a51-8baf-c9f7ed4bc545"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="515510f3-9158-45c5-9250-ce2364341fe6"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="2259ce23-c487-488c-882f-595d7285b39d"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="45bb3983-e932-41b1-b229-0f3014ff08a1"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="515510f3-9158-45c5-9250-ce2364341fe6"
+            name="ExecutionOccurrenceSpecification7">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="26bc69c6-dc6d-4026-9a13-047e92bb2e23"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+                LastKnownName="База данных"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2259ce23-c487-488c-882f-595d7285b39d"
+            name="MessageOccurrenceSpecification11">
+            <covered>
+              <lifelineMoniker
+                Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+                LastKnownName="База данных"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="c385d8dd-8e33-4645-af76-a2689c6e29ee"
+            name="MessageOccurrenceSpecification10">
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="371f915b-1422-48fb-b316-96cb3e82727b"
+            name="MessageOccurrenceSpecification13">
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="45bb3983-e932-41b1-b229-0f3014ff08a1"
+            name="MessageOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+                LastKnownName="База данных"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="6eb4ff12-3644-4a51-8baf-c9f7ed4bc545"
+            name="ExecutionOccurrenceSpecification8">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="54ba6676-2863-4bcd-a476-4d98ee28f334"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+                LastKnownName="База данных"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2f523d0a-e4e3-4eea-b5ae-57f275d13041"
+            name="MessageOccurrenceSpecification9">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="11542e32-7185-498b-ade9-e100925628f0"
+            name="MessageOccurrenceSpecification8">
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="cad742e6-fac2-4b60-ab37-50d527667acb"
+            name="ExecutionOccurrenceSpecification6">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="1fc7a004-56e6-482d-9573-a823e2a52ba2"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="1b55a1b5-c507-4769-832c-172532623cd4"
+                LastKnownName="Репозиторий"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="7a9d1abb-1522-474f-b519-35eb429bf774"
+            name="BehaviorExecutionSpecification5">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="d1b4d51a-c362-481b-afc0-e92f59faa92d"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="fe0f743e-5295-455a-a74d-deee6672a0ac"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="e99d3745-7a15-4c44-99a9-3e88c37fbd31"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="5b0c9d15-8456-4b68-954a-37f7b28c49e7"
+                LastKnownName="MessageOccurrenceSpecification19"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="50069a5a-140b-4234-9a58-f7b24d2c756d"
+                LastKnownName="ExecutionOccurrenceSpecification11"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="bf52bf40-7846-423f-ad20-a0e8911ddde2"
+                LastKnownName="ExecutionOccurrenceSpecification12"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="37a155a2-cb59-47ed-b315-12dd9f8420cd"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="fe0f743e-5295-455a-a74d-deee6672a0ac"
+            name="ExecutionOccurrenceSpecification9">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="8d4eb34a-f367-4706-bea8-fd089dcdcec7"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a02c7cc4-9088-4f5e-a541-019c7b2dcc0b"
+            name="MessageOccurrenceSpecification14">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="e99d3745-7a15-4c44-99a9-3e88c37fbd31"
+            name="MessageOccurrenceSpecification15">
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="5b0c9d15-8456-4b68-954a-37f7b28c49e7"
+            name="MessageOccurrenceSpecification19">
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="acf131c1-5fc6-4fc2-9a75-b28aa5a0665b"
+            name="BehaviorExecutionSpecification6">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="bf52bf40-7846-423f-ad20-a0e8911ddde2"
+                LastKnownName="ExecutionOccurrenceSpecification12"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="50069a5a-140b-4234-9a58-f7b24d2c756d"
+                LastKnownName="ExecutionOccurrenceSpecification11"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="68e74e09-389a-45d8-9a07-4cf312151634"
+                LastKnownName="MessageOccurrenceSpecification20"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="50069a5a-140b-4234-9a58-f7b24d2c756d"
+            name="ExecutionOccurrenceSpecification11">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="f90bf278-2567-4afd-97c8-6f3900c5ec7e"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="68e74e09-389a-45d8-9a07-4cf312151634"
+            name="MessageOccurrenceSpecification20">
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="bf52bf40-7846-423f-ad20-a0e8911ddde2"
+            name="ExecutionOccurrenceSpecification12">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="ff119d4a-a72a-4938-a49c-ca98217a3267"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="42cc720b-2e83-4503-85a0-dd80dce65d16"
+            name="MessageOccurrenceSpecification17">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="37a155a2-cb59-47ed-b315-12dd9f8420cd"
+            name="MessageOccurrenceSpecification16">
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="d1b4d51a-c362-481b-afc0-e92f59faa92d"
+            name="ExecutionOccurrenceSpecification10">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="63312fd8-7089-4b58-9b4f-32e008ee0dbf"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+                LastKnownName="Семантическое ядро"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="9b4efa86-9b62-4d62-8abd-20c39d228dc1"
+            name="MessageOccurrenceSpecification18">
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget
+            Id="d4eecd54-1134-4e2f-9a9d-21719ca0cfb0"
+            name="LostFoundTarget2" />
+          <executionOccurrenceSpecification
+            Id="500dce12-4a72-498e-81c2-3dddfb2689cd"
+            name="ExecutionOccurrenceSpecification2">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="b3483402-0909-4c06-891c-3f4b349b20b4"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+                LastKnownName="Семантический сервис"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline
+            Id="c7124ec3-c983-4ae7-8f7f-6e82b208386d"
+            name="Семантический сервис"
+            isActor="false"
+            lifelineDisplayName="Семантический сервис">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="b836d0cb-c2f4-48db-ba23-82bd67c1354e"
+                LastKnownName="ExecutionOccurrenceSpecification1"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="500dce12-4a72-498e-81c2-3dddfb2689cd"
+                LastKnownName="ExecutionOccurrenceSpecification2"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="d957ab55-8f57-4238-b0ea-30e8e44ce7b6"
+            name="Семантическое ядро"
+            isActor="false"
+            lifelineDisplayName="Семантическое ядро">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="fe0f743e-5295-455a-a74d-deee6672a0ac"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="d1b4d51a-c362-481b-afc0-e92f59faa92d"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="1b55a1b5-c507-4769-832c-172532623cd4"
+            name="Репозиторий"
+            isActor="false"
+            lifelineDisplayName="Репозиторий">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="99c70db1-b51d-446e-b646-fd38421ecb09"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="cad742e6-fac2-4b60-ab37-50d527667acb"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="f884b665-ef16-482d-b7eb-e0779d938a99"
+            name="База данных"
+            isActor="false"
+            lifelineDisplayName="База данных">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="515510f3-9158-45c5-9250-ce2364341fe6"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="Selp.Diagrams.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="6eb4ff12-3644-4a51-8baf-c9f7ed4bc545"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message
+            Id="c12a8973-8ab0-436c-b045-f24d1719b56d"
+            name="SPARQL запрос"
+            messageKind="Found"
+            messageSort="AsynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <lostFoundTargetMoniker
+                Id="576e8a14-752e-47a4-810c-5d4ae54b9776"
+                LastKnownName="LostFoundTarget1"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="28876888-4ee5-4e3b-b403-b4e90b285243"
+                LastKnownName="MessageOccurrenceSpecification1"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="5454c14b-f59a-4c49-89dc-6c09e3522ac1"
+            name="Expression"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="b337acee-f881-49e3-bbb5-a619b712a67d"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="a6e23ed0-6340-47d2-95ce-cf8dad192849"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a9a1c787-fac3-4a0d-b0fa-3381fd437b02"
+            name="SQL запрос"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="c385d8dd-8e33-4645-af76-a2689c6e29ee"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2259ce23-c487-488c-882f-595d7285b39d"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="f9f19c46-24b0-42e8-ae0e-d7140cc43b69"
+            name="SQL кортеж"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="45bb3983-e932-41b1-b229-0f3014ff08a1"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="371f915b-1422-48fb-b316-96cb3e82727b"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="da478867-76ba-44e6-bcaf-8b97a19f7049"
+            name="Сущности"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="11542e32-7185-498b-ade9-e100925628f0"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2f523d0a-e4e3-4eea-b5ae-57f275d13041"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="fe92b2a5-b393-4ddc-affb-8734bd6e8979"
+            name="Сущность"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="a02c7cc4-9088-4f5e-a541-019c7b2dcc0b"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="e99d3745-7a15-4c44-99a9-3e88c37fbd31"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a781762f-1652-4d98-83f4-f7a38b1ea55c"
+            name="Сущность конвертируется в RDF"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="5b0c9d15-8456-4b68-954a-37f7b28c49e7"
+                LastKnownName="MessageOccurrenceSpecification19"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="68e74e09-389a-45d8-9a07-4cf312151634"
+                LastKnownName="MessageOccurrenceSpecification20"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="31f96aef-adb4-4b04-a0c3-8fc7cf30eef5"
+            name="RDF документ"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="37a155a2-cb59-47ed-b315-12dd9f8420cd"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="42cc720b-2e83-4503-85a0-dd80dce65d16"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="ffb0aed5-7095-490f-a50e-f4ce53273627"
+            name="RDF результат"
+            messageKind="Lost"
+            messageSort="AsynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="9b4efa86-9b62-4d62-8abd-20c39d228dc1"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker
+                Id="d4eecd54-1134-4e2f-9a9d-21719ca0cfb0"
+                LastKnownName="LostFoundTarget2"
+                LastKnownLocation="Selp.Diagrams.uml" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="3d845fd0-b531-4dbc-bff5-c3d92f4ad1a8"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="b3483402-0909-4c06-891c-3f4b349b20b4"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="a1d4751d-333a-4b30-84e9-ff277beddaae"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="1fc7a004-56e6-482d-9573-a823e2a52ba2"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="26bc69c6-dc6d-4026-9a13-047e92bb2e23"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="54ba6676-2863-4bcd-a476-4d98ee28f334"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="8d4eb34a-f367-4706-bea8-fd089dcdcec7"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="63312fd8-7089-4b58-9b4f-32e008ee0dbf"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="f90bf278-2567-4afd-97c8-6f3900c5ec7e"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="ff119d4a-a72a-4938-a49c-ca98217a3267"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="9cbe6036-c2f3-4c3e-acc6-914fd8234267"
+        name="Activity1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="e8bd804d-c9d9-4ab4-a370-08c1f9ba213e"
+            name="Определить тип сущности"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8cb45da3-52a0-46f2-8efd-0b69ab10b6d1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="980e2aaf-8d25-4ec4-878a-7b6378e71ef9"
+                  LastKnownName="Определить использовалась ли сущность ранее"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode
+            Id="2660604f-598f-4276-bf00-8be54a9b4dd2"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="550b80e0-d17a-4d6a-9af5-cc3d1de8d109"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e8bd804d-c9d9-4ab4-a370-08c1f9ba213e"
+                  LastKnownName="Определить тип сущности"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <activityFinalNode
+            Id="e29380c5-63aa-4aea-9a46-ee5951f8dde4"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <decisionNode
+            Id="af30bb98-10c4-4ddb-8ff7-0d8f08d4ded0"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3b4c9382-513a-4b2e-9b2e-2c4b8d1767b0"
+                guard="Да"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="07763032-39ea-425a-82aa-d19455a2c053"
+                  LastKnownName="Найти функцию конвертации сущности"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="2d01867b-5c43-40a8-8830-9d2f88865c94"
+                guard="Нет"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="5d973f32-8e56-4b59-a485-dd0c9bfeef5c"
+                  LastKnownName="Найти описание класса в CLR при помощи рефлексии"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="980e2aaf-8d25-4ec4-878a-7b6378e71ef9"
+            name="Определить использовалась ли сущность ранее"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e2630a0d-8a42-474b-a9f3-e23ff4b20dcf"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="af30bb98-10c4-4ddb-8ff7-0d8f08d4ded0"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="07763032-39ea-425a-82aa-d19455a2c053"
+            name="Найти функцию конвертации сущности"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6e3b135e-77e3-4edf-bdf4-60d18b53eba8"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="3e3b811a-3e3e-47a4-91e2-b2351a208c34"
+                  LastKnownName="Merge2"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="5d973f32-8e56-4b59-a485-dd0c9bfeef5c"
+            name="Найти описание класса в CLR при помощи рефлексии"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="cb8ea210-7ec0-41a0-a28f-7c3c74014a54"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e021a720-d083-4adf-9597-cb0c2efaed79"
+                  LastKnownName="Собрать список значимых полей"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="e021a720-d083-4adf-9597-cb0c2efaed79"
+            name="Собрать список значимых полей"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8cc9d961-cce7-44a9-9684-4a4ed304ee6d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8563ae07-a21e-4662-9384-4c60da2c6fa2"
+                  LastKnownName="Считать конфигурацию"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="8563ae07-a21e-4662-9384-4c60da2c6fa2"
+            name="Считать конфигурацию"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0aa2ff4a-4b45-48c2-ac9b-8fccfab07af3"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9be1b071-d667-4bdd-84d8-7bf7deb8d0b5"
+                  LastKnownName="Определить как нужно генерировать предикат"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="9be1b071-d667-4bdd-84d8-7bf7deb8d0b5"
+            name="Определить как нужно генерировать предикат"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7fd1e248-2512-48be-a2a2-8d0fc3db3b7a"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="ee7f18cf-8d9c-4f53-ad51-9e4b573faa19"
+                  LastKnownName="Decision2"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="ee7f18cf-8d9c-4f53-ad51-9e4b573faa19"
+            name="Decision2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="fbb0138b-2a01-483e-b8d6-9af92fc18d92"
+                guard="Генерировать"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="6ec70196-bf17-46b4-8e74-9c5a315ecfce"
+                  LastKnownName="Сгенерировать предикаты для каждого из значимых полей"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="3bcb578b-6812-46bd-9ce5-9d98379f96a3"
+                guard="Из аттрибута"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="602a90a4-8071-49c5-9d7e-20b00b2a9d4e"
+                  LastKnownName="Считать аттрибуты всех значимых полей"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="6ec70196-bf17-46b4-8e74-9c5a315ecfce"
+            name="Сгенерировать предикаты для каждого из значимых полей"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="5c309592-1651-430b-94fa-23f6b99751eb"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="9c3fe64b-7a3f-45a2-8154-a7bc1dc6b690"
+                  LastKnownName="Merge1"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="602a90a4-8071-49c5-9d7e-20b00b2a9d4e"
+            name="Считать аттрибуты всех значимых полей"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e88b0282-8b1b-4881-b164-b37479d57d40"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="208bf754-a5cf-4c92-9d50-f9506718acfe"
+                  LastKnownName="Сопоставить аттрибуты полям"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="208bf754-a5cf-4c92-9d50-f9506718acfe"
+            name="Сопоставить аттрибуты полям"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6de65543-efb3-4280-9ad9-53d1d29eeba5"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="9c3fe64b-7a3f-45a2-8154-a7bc1dc6b690"
+                  LastKnownName="Merge1"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="8aebe982-c47b-4bbe-a740-6c423bb26bb6"
+            name="Для каждого поля из списка сгенерировать Expression, создающий триплет для него"
+            isLeaf="false" />
+          <mergeNode
+            Id="9c3fe64b-7a3f-45a2-8154-a7bc1dc6b690"
+            name="Merge1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="676c7390-61eb-49e4-92ae-a86a0f86027f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8aebe982-c47b-4bbe-a740-6c423bb26bb6"
+                  LastKnownName="Для каждого поля из списка сгенерировать Expression, создающий триплет для него"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction
+            Id="e7031ae5-2523-4d0d-a698-48928abc8ee5"
+            name="Собрать общий Expression из всех ранее созданных"
+            isLeaf="false" />
+          <opaqueAction
+            Id="d81eb128-6a41-4e40-aaae-84b10474d92e"
+            name="Скомпилировать Expression в функцию"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="184c51d4-555d-43e0-a03b-f1564926f76e"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="3e3b811a-3e3e-47a4-91e2-b2351a208c34"
+                  LastKnownName="Merge2"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode
+            Id="3e3b811a-3e3e-47a4-91e2-b2351a208c34"
+            name="Merge2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b9937a9a-6ad7-4522-9077-09f04af1fcac"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7a73f447-41e2-4ea9-8829-2584164630ff"
+                  LastKnownName="Выполнить функцию и вернуть результат"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction
+            Id="7a73f447-41e2-4ea9-8829-2584164630ff"
+            name="Выполнить функцию и вернуть результат"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b94fae6f-a93e-4048-ba23-3781bb14e5d6"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="e29380c5-63aa-4aea-9a46-ee5951f8dde4"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="Selp.Diagrams.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
