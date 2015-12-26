@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Selp")]
-[assembly: AssemblyDescription("Semantic Helper")]
+[assembly: AssemblyTitle("Selp.Tests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Apsalikov Mikhail")]
-[assembly: AssemblyProduct("Selp")]
-[assembly: AssemblyCopyright("Apsalikov Mikhail ©  2015")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Selp.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d17314bb-d5f5-497e-a3cd-db72293b34f9")]
+[assembly: Guid("392f0dab-1a14-40f8-86fd-ef9aa2f96abb")]
 
 // Version information for an assembly consists of the following four values:
 //
