@@ -127,6 +127,9 @@
     <Content Include="Scripts\angular-material\angular-material-mocks.js" />
     <Content Include="Scripts\angular-material\angular-material.js" />
     <Content Include="Scripts\angular-material\angular-material.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\materialize-v0.97.1\font\roboto\Roboto-Thin.woff2" />
@@ -148,6 +151,7 @@
     <Content Include="Content\materialize-v0.97.1\font\material-design-icons\Material-Design-Icons.woff" />
     <Content Include="Content\materialize-v0.97.1\font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="Content\materialize-v0.97.1\font\material-design-icons\Material-Design-Icons.eot" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
