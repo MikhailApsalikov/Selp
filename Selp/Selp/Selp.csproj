@@ -78,6 +78,7 @@
     <Compile Include="Kernel\BaseClasses\SelpDbContext.cs" />
     <Compile Include="Kernel\BaseClasses\SelpRepository.cs" />
     <Compile Include="Kernel\BaseClasses\SelpSemanticService.cs" />
+    <Compile Include="Kernel\Classes\BaseFilterQuery.cs" />
     <Compile Include="Kernel\Enums\DbContextUsages.cs" />
     <Compile Include="Kernel\Interfaces\ISelpEntity.cs" />
     <Compile Include="Kernel\Interfaces\ISelpRepository.cs" />
