@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Repository", "Selp.Repository\Selp.Repository.csproj", "{78CEE587-C390-47A7-A95A-D0798C29ABC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Controller", "Selp.Controller\Selp.Controller.csproj", "{631E3BA1-8663-4FF7-8439-8FBDB19999F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Semantic", "Selp.Semantic\Selp.Semantic.csproj", "{705057C3-F4C0-429E-9743-284BB0E1B8AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Common", "Selp.Common\Selp.Common.csproj", "{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Interfaces", "Selp.Interfaces\Selp.Interfaces.csproj", "{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Configuration", "Selp.Configuration\Selp.Configuration.csproj", "{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.UnitTests", "Selp.UnitTests\Selp.UnitTests.csproj", "{87D3F9DA-82AE-4601-8FFC-159A8C090559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78CEE587-C390-47A7-A95A-D0798C29ABC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CEE587-C390-47A7-A95A-D0798C29ABC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CEE587-C390-47A7-A95A-D0798C29ABC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CEE587-C390-47A7-A95A-D0798C29ABC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631E3BA1-8663-4FF7-8439-8FBDB19999F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631E3BA1-8663-4FF7-8439-8FBDB19999F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631E3BA1-8663-4FF7-8439-8FBDB19999F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631E3BA1-8663-4FF7-8439-8FBDB19999F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705057C3-F4C0-429E-9743-284BB0E1B8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705057C3-F4C0-429E-9743-284BB0E1B8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705057C3-F4C0-429E-9743-284BB0E1B8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705057C3-F4C0-429E-9743-284BB0E1B8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D3F9DA-82AE-4601-8FFC-159A8C090559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D3F9DA-82AE-4601-8FFC-159A8C090559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D3F9DA-82AE-4601-8FFC-159A8C090559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D3F9DA-82AE-4601-8FFC-159A8C090559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
