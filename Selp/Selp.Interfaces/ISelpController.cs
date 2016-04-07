@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Selp.Interfaces
+﻿namespace Selp.Interfaces
 {
-	public interface ISelpController<TModel, TEntity>
+	using System.Web.Http;
+	using Entities;
+
+	// Зоны ответственности: ошибки, маппинг сущностей
+	public interface ISelpController<in TModel, TEntity, in TKey> where TModel : ISelpEntitiy<TKey>
+		where TEntity : ISelpEntitiy<TKey>
 	{
-		
+		string ControllerName { get; }
+
+		IHttpActionResult Get([FromUri] BaseFilter query);
+		IHttpActionResult Get(TKey id);
+		IHttpActionResult Post([FromBody] TModel value);
+
+		IHttpActionResult Put(TKey id, [FromBody] TModel value);
+
+		IHttpActionResult Delete(TKey id);
 	}
 }
