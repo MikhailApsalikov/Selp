@@ -12,7 +12,7 @@
 		private ValidatorStatus status;
 		public List<SelpValidator> NestedValidators { get; }
 
-		protected abstract string EntityName { get; }
+		public abstract string EntityName { get; }
 
 		protected SelpValidator ParentValidator { get; }
 

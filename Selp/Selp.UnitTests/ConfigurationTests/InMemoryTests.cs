@@ -1,18 +1,14 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Selp.UnitTests.ConfigurationTests
+﻿namespace Selp.UnitTests.ConfigurationTests
 {
 	using Configuration;
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 	[TestClass]
 	public class InMemoryTests
 	{
-		ISelpConfiguration configuration;
+		private ISelpConfiguration configuration;
 
-		[TestInitialize()]
+		[TestInitialize]
 		public void MyTestInitialize()
 		{
 			configuration = SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory);
@@ -22,7 +18,7 @@ namespace Selp.UnitTests.ConfigurationTests
 		public void DefaultPageSizeTest()
 		{
 			configuration.DefaultPageSize = 500;
-			Assert.AreEqual(500, configuration.DefaultPageSize);
+			Assert.AreEqual(500, configuration.DefaultPageSize, "Default page size hasn't saved to configuration");
 		}
 	}
 }
