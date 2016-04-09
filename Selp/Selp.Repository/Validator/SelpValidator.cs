@@ -1,0 +1,109 @@
+﻿namespace Selp.Repository.Validator
+{
+	using System.Collections.Generic;
+	using System.Linq;
+	using Common.Exceptions;
+	using Entities;
+
+	public abstract class SelpValidator
+	{
+		private readonly List<ValidatorError> errors;
+
+		private ValidatorStatus status;
+		public List<SelpValidator> NestedValidators { get; }
+
+		protected abstract string EntityName { get; }
+
+		protected SelpValidator ParentValidator { get; }
+
+		public bool IsValid
+		{
+			get
+			{
+				if (status != ValidatorStatus.Validated)
+				{
+					throw new WorkflowException(
+						$"Validator {EntityName} didn't validate the entity yet. Please, run Validate() and wait for its completion.");
+				}
+
+				return !errors.Any() && NestedValidators.All(nv => nv.IsValid);
+			}
+		}
+
+		public List<ValidatorError> Errors
+		{
+			get
+			{
+				if (status != ValidatorStatus.Validated)
+				{
+					throw new WorkflowException(
+						$"Validator {EntityName} didn't validate the entity yet. Please, run Validate() and wait for its completion.");
+				}
+
+				var result = new List<ValidatorError>(errors);
+				foreach (SelpValidator nestedValidator in NestedValidators)
+				{
+					result.AddRange(nestedValidator.Errors);
+				}
+
+				return result;
+			}
+		}
+
+		protected SelpValidator()
+		{
+			NestedValidators = new List<SelpValidator>();
+			status = ValidatorStatus.Created;
+			errors = new List<ValidatorError>();
+		}
+
+		protected SelpValidator(SelpValidator parentValidator) : this()
+		{
+			ParentValidator = parentValidator;
+		}
+
+		protected void AddError(string text)
+		{
+			var error = new ValidatorError(text);
+			error.ParentEntities.AddRange(InitParentEntitiesList(ParentValidator));
+			errors.Add(error);
+		}
+
+		protected void AddError(string text, string fieldName)
+		{
+			var error = new ValidatorError(text, fieldName);
+			error.ParentEntities.AddRange(InitParentEntitiesList(ParentValidator));
+			errors.Add(error);
+		}
+
+		private List<string> InitParentEntitiesList(SelpValidator parentValidator)
+		{
+			if (parentValidator == null)
+			{
+				return new List<string>();
+			}
+
+			List<string> result = InitParentEntitiesList(parentValidator.ParentValidator);
+			result.Add(parentValidator.EntityName);
+			return result;
+		}
+
+		public void Validate()
+		{
+			if (status != ValidatorStatus.Created)
+			{
+				throw new WorkflowException(
+					$"Validator {EntityName} has already been executed. You cannot use validators more than one time.");
+			}
+			status = ValidatorStatus.InProgress;
+			ValidateLogic();
+			foreach (SelpValidator nestedValidator in NestedValidators)
+			{
+				nestedValidator.Validate();
+			}
+			status = ValidatorStatus.Validated;
+		}
+
+		protected abstract void ValidateLogic();
+	}
+}

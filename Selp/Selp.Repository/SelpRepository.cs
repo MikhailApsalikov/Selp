@@ -6,7 +6,7 @@
 	using Entities;
 	using Interfaces;
 
-	public class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey> where TEntity : ISelpEntitiy<TKey>
+	public abstract class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey> where TEntity : ISelpEntitiy<TKey>
 	{
 		public IQueryable<TEntity> GetAll()
 		{
