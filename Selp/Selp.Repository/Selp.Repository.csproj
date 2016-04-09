@@ -54,6 +54,10 @@
       <Project>{a8e3f885-1d37-4ba4-9b30-d7d539eaf56c}</Project>
       <Name>Selp.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
+      <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
+      <Name>Selp.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
       <Project>{d5e497b6-5cc0-45de-a68a-a3f0eaf79de3}</Project>
       <Name>Selp.Interfaces</Name>
