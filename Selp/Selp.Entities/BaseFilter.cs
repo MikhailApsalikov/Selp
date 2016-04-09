@@ -4,12 +4,6 @@
 
 	public class BaseFilter
 	{
-		private const int DefaultPage = 1;
-		private const int DefaultPageSize = 25; // TODO: в конфиг
-
-		private int? page;
-		private int? pageSize;
-
 		/// <summary>
 		///     Simple search string
 		/// </summary>
@@ -18,39 +12,12 @@
 		/// <summary>
 		///     Current page
 		/// </summary>
-		public int? Page
-		{
-			get { return page; }
-			set
-			{
-				if (value.HasValue && value <= 0)
-				{
-					page = DefaultPage;
-					return;
-				}
-
-				page = value;
-			}
-		}
+		public int? Page { get; set; }
 
 		/// <summary>
 		///     Current page size
 		/// </summary>
-		public int? PageSize {
-			get
-			{
-				return pageSize;
-			}
-			set
-			{
-				if (!value.HasValue || value <= 0)
-				{
-					pageSize = DefaultPageSize;
-					return;
-				}
-
-				pageSize = value;
-			} }
+		public int? PageSize { get; set; }
 
 		/// <summary>
 		///     SortDirection

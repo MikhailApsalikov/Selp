@@ -71,7 +71,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ConfigurationTests\Sanity.cs" />
+    <Compile Include="ConfigurationTests\InMemoryTests.cs" />
     <Compile Include="ControllerTests\GetTests.cs" />
     <Compile Include="Fake\FakeController.cs" />
     <Compile Include="Fake\FakeEntity.cs" />
@@ -82,9 +82,21 @@
     <Folder Include="Mocks\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
+      <Project>{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}</Project>
+      <Name>Selp.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Controller\Selp.Controller.csproj">
       <Project>{631E3BA1-8663-4FF7-8439-8FBDB19999F7}</Project>
       <Name>Selp.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
+      <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
+      <Name>Selp.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
+      <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
+      <Name>Selp.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
       <Project>{78cee587-c390-47a7-a95a-d0798c29abc4}</Project>

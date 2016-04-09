@@ -42,8 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationTypes.cs" />
+    <Compile Include="ISelpConfiguration.cs" />
+    <Compile Include="InMemoryConfiguration.cs" />
+    <Compile Include="SelpConfigurationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
+      <Project>{c4b3a709-2c26-4a6a-b348-928a08d98d81}</Project>
+      <Name>Selp.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

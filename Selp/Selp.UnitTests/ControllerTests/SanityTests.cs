@@ -4,7 +4,6 @@
 	using Fake;
 	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Moq;
 
 	[TestClass]
 	public class SanityTests
