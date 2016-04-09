@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -56,6 +58,10 @@
     <Compile Include="SelpController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
+      <Project>{15fb9881-2db0-4477-aa6b-c4cb18a12a01}</Project>
+      <Name>Selp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
       <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
       <Name>Selp.Entities</Name>

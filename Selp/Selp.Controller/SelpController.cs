@@ -10,27 +10,39 @@
 	{
 		public abstract string ControllerName { get; }
 
-		public IHttpActionResult Delete(TKey id)
+		[NonAction]
+		protected virtual TModel MapEntityToModel(TEntity entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IHttpActionResult Get(TKey id)
+		[NonAction]
+		protected virtual TEntity MapModelToEntity(TModel entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IHttpActionResult Get([FromUri] BaseFilter query)
+		public virtual IHttpActionResult Delete(TKey id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IHttpActionResult Post([FromBody] TModel value)
+		public virtual IHttpActionResult Get(TKey id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IHttpActionResult Put(TKey id, [FromBody] TModel value)
+		public virtual IHttpActionResult Get([FromUri] BaseFilter query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IHttpActionResult Post([FromBody] TModel value)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IHttpActionResult Put(TKey id, [FromBody] TModel value)
 		{
 			throw new NotImplementedException();
 		}

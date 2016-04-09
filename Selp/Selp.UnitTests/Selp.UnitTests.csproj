@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -69,10 +71,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ConfigurationTests\Sanity.cs" />
+    <Compile Include="ControllerTests\GetTests.cs" />
     <Compile Include="Fake\FakeController.cs" />
     <Compile Include="Fake\FakeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControllerTests.cs" />
+    <Compile Include="ControllerTests\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mocks\" />
@@ -82,13 +86,13 @@
       <Project>{631E3BA1-8663-4FF7-8439-8FBDB19999F7}</Project>
       <Name>Selp.Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
-      <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
-      <Name>Selp.Entities</Name>
+    <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
+      <Project>{78cee587-c390-47a7-a95a-d0798c29abc4}</Project>
+      <Name>Selp.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
-      <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
-      <Name>Selp.Interfaces</Name>
+    <ProjectReference Include="..\Selp.Semantic\Selp.Semantic.csproj">
+      <Project>{705057c3-f4c0-429e-9743-284bb0e1b8ab}</Project>
+      <Name>Selp.Semantic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

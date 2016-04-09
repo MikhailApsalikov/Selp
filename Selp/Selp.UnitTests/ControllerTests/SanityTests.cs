@@ -7,7 +7,7 @@
 	using Moq;
 
 	[TestClass]
-	public class ControllerTests
+	public class SanityTests
 	{
 		public ISelpController<FakeEntity, FakeEntity, int> Controller { get; set; }
 
