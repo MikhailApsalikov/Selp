@@ -87,6 +87,7 @@
     <Compile Include="Fake\FakeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
+    <Compile Include="RepositoryTests\GettersTests.cs" />
     <Compile Include="RepositoryTests\Sanity.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
