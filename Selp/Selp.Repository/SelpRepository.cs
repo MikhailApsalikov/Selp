@@ -4,14 +4,14 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using Configuration;
 	using Entities;
 	using Interfaces;
 	using Validator;
 
-	public abstract class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey> where TEntity : class, ISelpEntitiy<TKey>
+	public abstract class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey>
+		where TEntity : class, ISelpEntitiy<TKey>
 	{
-		protected abstract IQueryable<TEntity> ApplyFilters(BaseFilter filter);
-
 		public abstract bool IsRemovingFake { get; }
 
 		public abstract bool FakeRemovingPropertyName { get; }
@@ -19,6 +19,8 @@
 		public abstract DbContext DbContext { get; }
 
 		public abstract IDbSet<TEntity> DbSet { get; }
+
+		public abstract ISelpConfiguration Configuration { get; }
 
 		public SelpValidator CreateValidator { get; set; }
 
@@ -62,5 +64,7 @@
 		{
 			throw new NotImplementedException();
 		}
+
+		protected abstract IQueryable<TEntity> ApplyFilters(BaseFilter filter);
 	}
 }
