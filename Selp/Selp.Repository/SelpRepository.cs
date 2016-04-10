@@ -14,7 +14,7 @@
 	{
 		public abstract bool IsRemovingFake { get; }
 
-		public abstract bool FakeRemovingPropertyName { get; }
+		public abstract string FakeRemovingPropertyName { get; }
 
 		public abstract DbContext DbContext { get; }
 
@@ -26,12 +26,12 @@
 
 		public SelpValidator UpdateValidator { get; set; }
 
-		public IQueryable<TEntity> GetAll()
+		public virtual IQueryable<TEntity> GetAll()
 		{
 			throw new NotImplementedException();
 		}
 
-		public TEntity GetById(TKey id)
+		public virtual TEntity GetById(TKey id)
 		{
 			if (id == null)
 			{
@@ -40,31 +40,55 @@
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> filter)
+		public virtual IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
 
-		public RepositoryModifyResult<TEntity> Create(TEntity item)
+		public virtual RepositoryModifyResult<TEntity> Create(TEntity item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public RepositoryModifyResult<TEntity> Update(TKey id, TEntity item)
+		public virtual RepositoryModifyResult<TEntity> Update(TKey id, TEntity item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Remove(TKey key)
+		public virtual void Remove(TKey key)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<TEntity> GetByFilter(BaseFilter filter)
+		public virtual IQueryable<TEntity> GetByFilter(BaseFilter filter)
 		{
 			throw new NotImplementedException();
 		}
 
 		protected abstract IQueryable<TEntity> ApplyFilters(BaseFilter filter);
+
+		protected virtual void OnCreating(TEntity item)
+		{
+		}
+
+		protected virtual void OnCreated(TEntity item)
+		{
+		}
+
+		protected virtual void OnUpdating(TKey key, TEntity item)
+		{
+		}
+
+		protected virtual void OnUpdated(TKey key, TEntity item)
+		{
+		}
+
+		protected virtual void OnRemoving(TKey key)
+		{
+		}
+
+		protected virtual void OnRemoved(TKey key)
+		{
+		}
 	}
 }

@@ -88,8 +88,12 @@
     <Compile Include="Fake\FakeEntityReferenceKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
+    <Compile Include="RepositoryTests\EventsTests.cs" />
+    <Compile Include="RepositoryTests\ReferenceKeyTests.cs" />
+    <Compile Include="RepositoryTests\SettersTests.cs" />
     <Compile Include="RepositoryTests\GettersTests.cs" />
     <Compile Include="RepositoryTests\Sanity.cs" />
+    <Compile Include="RepositoryTests\ValidatorCallingTests.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorWorkflowTests.cs" />

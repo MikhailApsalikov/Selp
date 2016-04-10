@@ -4,7 +4,7 @@
 	using System.Runtime.Serialization;
 
 	[Serializable]
-	public class EntityIsDeletedException : EntityNotFoundException
+	public class EntityIsRemovedException : EntityNotFoundException
 	{
 		//
 		// For guidelines regarding the creation of new exception types, see
@@ -13,19 +13,19 @@
 		//    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
 		//
 
-		public EntityIsDeletedException()
+		public EntityIsRemovedException()
 		{
 		}
 
-		public EntityIsDeletedException(string message) : base(message)
+		public EntityIsRemovedException(string message) : base(message)
 		{
 		}
 
-		public EntityIsDeletedException(string message, Exception inner) : base(message, inner)
+		public EntityIsRemovedException(string message, Exception inner) : base(message, inner)
 		{
 		}
 
-		protected EntityIsDeletedException(
+		protected EntityIsRemovedException(
 			SerializationInfo info,
 			StreamingContext context) : base(info, context)
 		{

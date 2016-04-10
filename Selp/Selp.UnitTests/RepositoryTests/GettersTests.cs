@@ -19,7 +19,6 @@
 	{
 		private IDbSet<FakeEntity> dbSet;
 		private SelpRepository<FakeEntity, int> repository;
-		private SelpRepository<FakeEntityReferenceKey, string> repositoryReferenceKey;
 
 
 		[TestMethod]
@@ -37,58 +36,50 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(EntityNotFoundException), "Method didn't raise an exception when entity is not found")]
+		[ExpectedException(typeof (EntityNotFoundException), "Method didn't raise an exception when entity is not found")]
 		public void GetByIdShouldThrowAnExceptionWhenEntityNotFound()
 		{
 			InitRepositoryParams(false);
-			var entity = repository.GetById(290);
+			FakeEntity entity = repository.GetById(290);
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(EntityIsDeletedException), "Method didn't raise an exception when found deleted entity")]
+		[ExpectedException(typeof (EntityIsRemovedException), "Method didn't raise an exception when found deleted entity")]
 		public void GetByIdShouldThrowAnExceptionWhenEntityIsFakeDeleted()
 		{
 			InitRepositoryParams(true);
-			var entity = repository.GetById(110);
+			FakeEntity entity = repository.GetById(110);
 		}
 
 		[TestMethod]
 		public void GetByIdShouldReturnAnEntityWhenFakeRemovingIsOff()
 		{
 			InitRepositoryParams(false);
-			var entity = repository.GetById(110);
+			FakeEntity entity = repository.GetById(110);
 			Assert.AreEqual("Entity 110", entity.Name, "Method didn't return entity");
-		}
-
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
-		public void GetByIdShouldThrowAnExceptionWhenKeyIsNull()
-		{
-			InitRepositoryParamsReferenceType();
-			var entity = repositoryReferenceKey.GetById(null);
 		}
 
 		[TestMethod]
 		public void GetByCustomExpression()
 		{
 			InitRepositoryParams(false);
-			var entity = repository.GetById(110);
+			FakeEntity entity = repository.GetById(110);
 			Assert.AreEqual("Entity 110", entity.Name, "Method didn't return entity");
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when expression is null")]
+		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when expression is null")]
 		public void GetByCustomExpressionShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
-			var list = repository.GetByCustomExpression(null);
+			IQueryable<FakeEntity> list = repository.GetByCustomExpression(null);
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionShouldReturnEmptyListWhenNoEntitiesFound()
 		{
 			InitRepositoryParams(false);
-			var list = repository.GetByCustomExpression(a=>false);
+			IQueryable<FakeEntity> list = repository.GetByCustomExpression(a => false);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(0, list.Count(), "Result is not empty");
 		}
@@ -97,7 +88,7 @@
 		public void GetByCustomExpressionShouldWorkWhenFakeRemovingIsOff()
 		{
 			InitRepositoryParams(false);
-			var list = repository.GetByCustomExpression(a => a.Id%2 == 0);
+			IQueryable<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(75, list.Count(), "Result count invalid");
 		}
@@ -106,24 +97,24 @@
 		public void GetByCustomExpressionShouldWorkWhenFakeRemovingIsOn()
 		{
 			InitRepositoryParams(true);
-			var list = repository.GetByCustomExpression(a => a.Id % 2 == 0);
+			IQueryable<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(50, list.Count(), "Result count invalid");
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when filter is null")]
+		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when filter is null")]
 		public void GetByFilterShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
-			var list = repository.GetByFilter(null);
+			IQueryable<FakeEntity> list = repository.GetByFilter(null);
 		}
 
 		[TestMethod]
 		public void GetByFilterShouldReturnEmptyListWhenNoEntitiesFound()
 		{
 			InitRepositoryParams(false);
-			var list = repository.GetByFilter(new BaseFilter()
+			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				Page = 100,
 				PageSize = 200
@@ -136,7 +127,7 @@
 		public void GetByFilterShouldHaveCorrectCountWhenPageSizeIsSpecified()
 		{
 			InitRepositoryParams(true);
-			var list = repository.GetByFilter(new BaseFilter()
+			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20
 			});
@@ -148,20 +139,20 @@
 		public void GetByFilterShouldHaveCorrectOffsetWhenPageIsSpecified()
 		{
 			InitRepositoryParams(true);
-			var list = repository.GetByFilter(new BaseFilter()
+			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20,
 				Page = 2
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(21, list.Min(d=>d.Id), "Minimal ID is wrong");
+			Assert.AreEqual(21, list.Min(d => d.Id), "Minimal ID is wrong");
 		}
 
 		[TestMethod]
 		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecified()
 		{
 			InitRepositoryParams(true);
-			var list = repository.GetByFilter(new BaseFilter()
+			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20,
 				Page = 3,
@@ -178,11 +169,11 @@
 			ISelpConfiguration configuration = SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory);
 			configuration.DefaultPageSize = 11;
 			InitRepositoryParams(true, configuration);
-			BaseFilter filter = new BaseFilter()
+			var filter = new BaseFilter
 			{
 				PageSize = -55
 			};
-			var list = repository.GetByFilter(filter);
+			IQueryable<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(11, list.Count(), "Result count is wrong");
 			Assert.AreEqual(11, filter.PageSize, "Filter hasn't been normalized");
@@ -192,11 +183,11 @@
 		public void GetByFilterShouldUseFirstPageIfItIsIncorrect()
 		{
 			InitRepositoryParams(true);
-			BaseFilter filter = new BaseFilter()
+			var filter = new BaseFilter
 			{
 				PageSize = 20
 			};
-			var list = repository.GetByFilter(filter);
+			IQueryable<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(1, list.Min(d => d.Id), "Minimal ID is incorrect");
 			Assert.AreEqual(1, filter.Page, "Filter hasn't been normalized");
@@ -206,11 +197,11 @@
 		public void GetByFilterShouldFilterEntitiesByName()
 		{
 			InitRepositoryParams(false);
-			BaseFilter filter = new BaseFilter()
+			var filter = new BaseFilter
 			{
 				Search = "Entity 1"
 			};
-			var list = repository.GetByFilter(filter);
+			IQueryable<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(3, list.Count(), "Count is incorrect");
 		}
@@ -219,15 +210,15 @@
 		public void GetByFilterShouldFilterEntitiesByNameNotIncludedDeleted()
 		{
 			InitRepositoryParams(true);
-			BaseFilter filter = new BaseFilter()
+			var filter = new BaseFilter
 			{
 				Search = "125"
 			};
-			var list = repository.GetByFilter(filter);
+			IQueryable<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(0, list.Count(), "Count is incorrect");
 		}
-		
+
 
 		private void InitRepositoryParams(bool isRemovingFake, ISelpConfiguration configuration = null)
 		{
@@ -239,7 +230,7 @@
 					Id = i,
 					Name = "Entity " + i.ToString(),
 					Description = null,
-					IsDeleted = (i > 100)
+					IsDeleted = i > 100
 				});
 			}
 			IQueryable<FakeEntity> fakeList = testData.AsQueryable();
@@ -260,10 +251,9 @@
 			mockRepository.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
 			mockRepository.SetupGet(d => d.DbSet).Returns(dbSet);
 			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(isRemovingFake);
-			mockRepository.Protected().Setup<IQueryable<FakeEntity>>("ApplyFilters", ItExpr.IsAny<BaseFilter>()).Returns<BaseFilter>(f =>
-			{
-				return testData.Where(s => s.Name.Contains(f.Search)).AsQueryable();
-			});
+			mockRepository.Protected()
+				.Setup<IQueryable<FakeEntity>>("ApplyFilters", ItExpr.IsAny<BaseFilter>())
+				.Returns<BaseFilter>(f => { return testData.Where(s => s.Name.Contains(f.Search)).AsQueryable(); });
 			if (configuration != null)
 			{
 				mockRepository.SetupGet(d => d.Configuration).Returns(configuration);
@@ -271,22 +261,5 @@
 
 			repository = mockRepository.Object;
 		}
-
-		private void InitRepositoryParamsReferenceType()
-		{
-			var dbSetMock = new Mock<IDbSet<FakeEntityReferenceKey>>();
-
-			var dbContextMock = new Mock<FakeDbContext>();
-			dbContextMock
-				.Setup(x => x.FakeEntitiesReferenceKey)
-				.Returns(dbSetMock.Object);
-
-			var mockRepository = new Mock<SelpRepository<FakeEntityReferenceKey, string>>();
-			mockRepository.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
-			mockRepository.SetupGet(d => d.DbSet).Returns(dbSetMock.Object);
-			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(false);
-			repositoryReferenceKey = mockRepository.Object;
-		}
-
 	}
 }

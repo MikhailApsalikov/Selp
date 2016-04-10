@@ -12,19 +12,19 @@
 	[TestClass]
 	public class Sanity
 	{
-		SelpRepository<FakeEntity, int> repository;
-		private IDbSet<FakeEntity> dbSet; 
+		private IDbSet<FakeEntity> dbSet;
+		private SelpRepository<FakeEntity, int> repository;
 
 
 		[TestInitialize]
 		public void Initialize()
 		{
-			var fakeList = new List<FakeEntity>
+			IQueryable<FakeEntity> fakeList = new List<FakeEntity>
 			{
-				new FakeEntity { Id = 1, Name = "Entity 1", IsDeleted = false, Description = "Description 1"},
-				new FakeEntity { Id = 2, Name = "Entity 2", IsDeleted = false, Description = "Description 2" },
-				new FakeEntity { Id = 3, Name = "Entity 3", IsDeleted = true, Description = "Description 3" },
-				new FakeEntity { Id = 4, Name = "Entity 4", IsDeleted = false, Description = null }
+				new FakeEntity {Id = 1, Name = "Entity 1", IsDeleted = false, Description = "Description 1"},
+				new FakeEntity {Id = 2, Name = "Entity 2", IsDeleted = false, Description = "Description 2"},
+				new FakeEntity {Id = 3, Name = "Entity 3", IsDeleted = true, Description = "Description 3"},
+				new FakeEntity {Id = 4, Name = "Entity 4", IsDeleted = false, Description = null}
 			}.AsQueryable();
 
 			var dbSetMock = new Mock<IDbSet<FakeEntity>>();
@@ -49,38 +49,38 @@
 		[TestMethod]
 		public void GetAllWorks()
 		{
-			var list = repository.GetAll();
+			IQueryable<FakeEntity> list = repository.GetAll();
 			Assert.AreEqual(4, list.Count(), "GetAll doesn't work");
-        }
+		}
 
 		[TestMethod]
 		public void GetByIdWorks()
 		{
-			var entity = repository.GetById(1);
+			FakeEntity entity = repository.GetById(1);
 			Assert.AreEqual("Entity 1", entity.Name, "GetById doesn't work");
 		}
 
 		[TestMethod]
 		public void GetByFilterWorks()
 		{
-			var list = repository.GetByFilter(new BaseFilter());
+			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter());
 			Assert.AreEqual(4, list.Count(), "GetByFilter doesn't work");
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionWorks()
 		{
-			var list = repository.GetByCustomExpression(d=>true);
+			IQueryable<FakeEntity> list = repository.GetByCustomExpression(d => true);
 			Assert.AreEqual(4, list.Count(), "GetByCustomExpression doesn't work");
 		}
 
 		[TestMethod]
 		public void CreateWorks()
 		{
-			var result = repository.Create(new FakeEntity()
+			RepositoryModifyResult<FakeEntity> result = repository.Create(new FakeEntity
 			{
 				Name = "New entity",
-				Description	= "Description"
+				Description = "Description"
 			});
 			Assert.IsNotNull(result.ModifiedEntity, "Create doesn't work");
 			Assert.AreEqual(5, dbSet.Count(), "Create doesn't work");
@@ -89,7 +89,7 @@
 		[TestMethod]
 		public void UpdateWorks()
 		{
-			var result = repository.Update(2, new FakeEntity()
+			RepositoryModifyResult<FakeEntity> result = repository.Update(2, new FakeEntity
 			{
 				Name = "New entity",
 				Description = "Description"
