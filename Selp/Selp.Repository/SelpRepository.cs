@@ -39,22 +39,17 @@
 			throw new NotImplementedException();
 		}
 
-		public TEntity Create(TEntity item)
+		public RepositoryModifyResult<TEntity> Create(TEntity item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public TEntity Update(TEntity item)
+		public RepositoryModifyResult<TEntity> Update(TKey id, TEntity item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Remove(TEntity item)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void RemoveById(TKey key)
+		public void Remove(TKey key)
 		{
 			throw new NotImplementedException();
 		}

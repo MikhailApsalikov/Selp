@@ -14,12 +14,10 @@
 
 		IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> filter);
 
-		TEntity Create(TEntity item);
+		RepositoryModifyResult<TEntity> Create(TEntity item);
 
-		TEntity Update(TEntity item);
+		RepositoryModifyResult<TEntity> Update(TKey id, TEntity item);
 
-		void Remove(TEntity item);
-
-		void RemoveById(TKey key);
+		void Remove(TKey key);
 	}
 }

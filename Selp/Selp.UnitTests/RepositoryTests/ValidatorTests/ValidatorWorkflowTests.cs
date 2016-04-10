@@ -1,8 +1,8 @@
 ﻿namespace Selp.UnitTests.RepositoryTests.ValidatorTests
 {
-	using System.Runtime.Remoting.Messaging;
-	using System.Web.Http;
+	using System.Collections.Generic;
 	using Common.Exceptions;
+	using Entities;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
 	using Repository.Validator;
@@ -70,7 +70,7 @@
 			Assert.AreEqual("FieldName", mock.Object.Errors[0].FieldName, "Validator didn't save fieldname");
 			Assert.AreEqual(1, mock.Object.Errors[0].ParentEntities.Count, "Parent entities should contain 1 element");
 			Assert.AreEqual("Mock", mock.Object.Errors[0].ParentEntities[0], "Parent entities should contain 1 element: Mock");
-        }
+		}
 
 		[TestMethod]
 		public void NestedValidatorLevel2Works()
@@ -87,16 +87,19 @@
 			Assert.AreEqual("Text", mock.Object.Errors[0].Text, "Level1 validator text failed");
 			Assert.AreEqual("FieldName", mock.Object.Errors[0].FieldName, "Level1 validator fieldname failed");
 			Assert.AreEqual(1, mock.Object.Errors[0].ParentEntities.Count, "Parent entities level 1 should contain 1 element");
-			Assert.AreEqual("Mock", mock.Object.Errors[0].ParentEntities[0], "Parent entities level 1 should contain 1 element: Mock");
+			Assert.AreEqual("Mock", mock.Object.Errors[0].ParentEntities[0],
+				"Parent entities level 1 should contain 1 element: Mock");
 			Assert.AreEqual("Text level 2", mock.Object.Errors[1].Text, "Level2 validator text failed");
 			Assert.IsNull(mock.Object.Errors[1].FieldName, "Level2 validator fieldname failed (should contains nothing)");
 			Assert.AreEqual(2, mock.Object.Errors[1].ParentEntities.Count, "Parent entities level 2 should contain 2 elements");
-			Assert.AreEqual("Mock", mock.Object.Errors[1].ParentEntities[0], "Parent entities level 2 should contain element Mock on 1st position");
-			Assert.AreEqual("Failed", mock.Object.Errors[1].ParentEntities[1], "Parent entities level 2 should contain element Failed on 2nd position");
+			Assert.AreEqual("Mock", mock.Object.Errors[1].ParentEntities[0],
+				"Parent entities level 2 should contain element Mock on 1st position");
+			Assert.AreEqual("Failed", mock.Object.Errors[1].ParentEntities[1],
+				"Parent entities level 2 should contain element Failed on 2nd position");
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(WorkflowException))]
+		[ExpectedException(typeof (WorkflowException))]
 		public void DoubleValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
@@ -105,7 +108,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(WorkflowException))]
+		[ExpectedException(typeof (WorkflowException))]
 		public void AddingNestedAfterValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
@@ -114,19 +117,19 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(WorkflowException))]
+		[ExpectedException(typeof (WorkflowException))]
 		public void GettingErrorsBeforeValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
-			var errors = mock.Object.Errors;
+			List<ValidatorError> errors = mock.Object.Errors;
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(WorkflowException))]
+		[ExpectedException(typeof (WorkflowException))]
 		public void CheckingIsValidBeforeValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
-			var isValid = mock.Object.IsValid;
+			bool isValid = mock.Object.IsValid;
 		}
 	}
 }
