@@ -77,6 +77,7 @@
     <Compile Include="Fake\FakeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
+    <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
     <Compile Include="RepositoryTests\ValidatorTests\ValidatorWorkflowTests.cs" />
   </ItemGroup>
@@ -84,6 +85,10 @@
     <Folder Include="Mocks\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
+      <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
+      <Name>Selp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
       <Project>{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}</Project>
       <Name>Selp.Configuration</Name>

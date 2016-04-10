@@ -10,11 +10,24 @@
 		private readonly List<ValidatorError> errors;
 
 		private ValidatorStatus status;
+
+		protected SelpValidator()
+		{
+			NestedValidators = new List<SelpValidator>();
+			status = ValidatorStatus.Created;
+			errors = new List<ValidatorError>();
+		}
+
+		protected SelpValidator(SelpValidator parentValidator) : this()
+		{
+			ParentValidator = parentValidator;
+		}
+
 		public List<SelpValidator> NestedValidators { get; }
 
 		public abstract string EntityName { get; }
 
-		protected SelpValidator ParentValidator { get; }
+		protected SelpValidator ParentValidator { get; private set; }
 
 		public bool IsValid
 		{
@@ -50,16 +63,21 @@
 			}
 		}
 
-		protected SelpValidator()
+		public void AddNestedValidator(SelpValidator validator)
 		{
-			NestedValidators = new List<SelpValidator>();
-			status = ValidatorStatus.Created;
-			errors = new List<ValidatorError>();
-		}
+			if (status != ValidatorStatus.Created)
+			{
+				throw new WorkflowException(
+					$"Validator {EntityName} has already been executed. There is no sense to add a nested validator.");
+			}
 
-		protected SelpValidator(SelpValidator parentValidator) : this()
-		{
-			ParentValidator = parentValidator;
+			if (validator == null)
+			{
+				return;
+			}
+
+			validator.ParentValidator = this;
+			NestedValidators.Add(validator);
 		}
 
 		protected void AddError(string text)
