@@ -164,21 +164,6 @@
 
 			repository = mockRepository.Object;
 		}
-
-		private void InitRepositoryParamsReferenceType()
-		{
-			var dbSetMock = new Mock<IDbSet<FakeEntityReferenceKey>>();
-
-			var dbContextMock = new Mock<FakeDbContext>();
-			dbContextMock
-				.Setup(x => x.FakeEntitiesReferenceKey)
-				.Returns(dbSetMock.Object);
-
-			var mockRepository = new Mock<SelpRepository<FakeEntityReferenceKey, string>>();
-			mockRepository.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
-			mockRepository.SetupGet(d => d.DbSet).Returns(dbSetMock.Object);
-			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(false);
-			repositoryReferenceKey = mockRepository.Object;
-		}
+		
 	}
 }

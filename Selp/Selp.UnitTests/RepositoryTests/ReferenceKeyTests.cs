@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Data.Entity;
+	using Entities;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
@@ -12,34 +13,9 @@
 	{
 		private SelpRepository<FakeEntityReferenceKey, string> repositoryReferenceKey;
 
-		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
-		public void GetByIdShouldThrowAnExceptionWhenKeyIsNull()
-		{
-			InitRepositoryParamsReferenceType();
-			FakeEntityReferenceKey entity = repositoryReferenceKey.GetById(null);
-		}
 
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
-		public void UpdateShouldThrowAnExceptionWhenKeyIsNull()
-		{
-			InitRepositoryParamsReferenceType();
-			var result = repositoryReferenceKey.Update(null, new FakeEntityReferenceKey()
-			{
-				Name = "Preved medved!"
-			});
-		}
-
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
-		public void RemoveShouldThrowAnExceptionWhenKeyIsNull()
-		{
-			InitRepositoryParamsReferenceType();
-			repositoryReferenceKey.Remove(null);
-		}
-
-		private void InitRepositoryParamsReferenceType()
+		[TestInitialize]
+		public void InitRepositoryParamsReferenceType()
 		{
 			var dbSetMock = new Mock<IDbSet<FakeEntityReferenceKey>>();
 
@@ -53,6 +29,31 @@
 			mockRepository.SetupGet(d => d.DbSet).Returns(dbSetMock.Object);
 			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(false);
 			repositoryReferenceKey = mockRepository.Object;
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		public void GetByIdShouldThrowAnExceptionWhenKeyIsNull()
+		{
+			FakeEntityReferenceKey entity = repositoryReferenceKey.GetById(null);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		public void UpdateShouldThrowAnExceptionWhenKeyIsNull()
+		{
+			RepositoryModifyResult<FakeEntityReferenceKey> result = repositoryReferenceKey.Update(null,
+				new FakeEntityReferenceKey
+				{
+					Name = "Preved medved!"
+				});
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		public void RemoveShouldThrowAnExceptionWhenKeyIsNull()
+		{
+			repositoryReferenceKey.Remove(null);
 		}
 	}
 }
