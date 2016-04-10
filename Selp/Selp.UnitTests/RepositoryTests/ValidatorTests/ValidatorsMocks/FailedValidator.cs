@@ -6,6 +6,14 @@
 	{
 		public override string EntityName => "Failed";
 
+		public FailedValidator()
+		{
+		}
+
+		public FailedValidator(SelpValidator parentValidor) : base(parentValidor)
+		{
+		}
+
 		protected override void ValidateLogic()
 		{
 			AddError("Text", "FieldName");

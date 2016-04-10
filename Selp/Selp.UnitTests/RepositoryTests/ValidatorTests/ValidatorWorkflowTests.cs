@@ -40,13 +40,20 @@
 			Assert.AreEqual(2, mock.Object.NestedValidators.Count, "Validators haven't been added to the collection");
 		}
 
-
 		[TestMethod]
 		public void ValidatorCanPassNullNesterValidators()
 		{
 			var mock = new Mock<SelpValidator>();
 			mock.Object.AddNestedValidator(null);
 			Assert.AreEqual(0, mock.Object.NestedValidators.Count, "Validators list is not empty");
+		}
+
+		[TestMethod]
+		public void ValidatorCanCreateNestedValidatorUsingConstructorWithParentValidator()
+		{
+			var mock = new Mock<SelpValidator>();
+			mock.Object.AddNestedValidator(new FailedValidator(mock.Object));
+			Assert.AreEqual(1, mock.Object.NestedValidators.Count, "Validator hasn't been added to the collection");
 		}
 
 		[TestMethod]
