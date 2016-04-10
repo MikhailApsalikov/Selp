@@ -3,6 +3,7 @@
 	using System.Collections.Generic;
 	using System.Data.Entity;
 	using System.Linq;
+	using Configuration;
 	using Entities;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,7 @@
 	public class Sanity
 	{
 		private IDbSet<FakeEntity> dbSet;
-		private SelpRepository<FakeEntity, int> repository;
+		private FakeRepository repository;
 
 
 		[TestInitialize]
@@ -39,11 +40,7 @@
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSet);
 
-			var mock = new Mock<SelpRepository<FakeEntity, int>>();
-			mock.SetupGet(d => d.IsRemovingFake).Returns(false);
-			mock.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
-			mock.SetupGet(d => d.DbSet).Returns(dbSet);
-			repository = mock.Object;
+			repository = new FakeRepository(false, dbContextMock.Object, dbSet, SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory)); ;
 		}
 
 		[TestMethod]

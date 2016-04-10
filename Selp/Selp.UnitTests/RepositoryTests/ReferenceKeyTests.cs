@@ -2,16 +2,16 @@
 {
 	using System;
 	using System.Data.Entity;
+	using Configuration;
 	using Entities;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
-	using Repository;
 
 	[TestClass]
 	public class ReferenceKeyTests
 	{
-		private SelpRepository<FakeEntityReferenceKey, string> repositoryReferenceKey;
+		private FakeRepositoryReferenceKey repositoryReferenceKey;
 
 
 		[TestInitialize]
@@ -24,11 +24,8 @@
 				.Setup(x => x.FakeEntitiesReferenceKey)
 				.Returns(dbSetMock.Object);
 
-			var mockRepository = new Mock<SelpRepository<FakeEntityReferenceKey, string>>();
-			mockRepository.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
-			mockRepository.SetupGet(d => d.DbSet).Returns(dbSetMock.Object);
-			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(false);
-			repositoryReferenceKey = mockRepository.Object;
+			repositoryReferenceKey = new FakeRepositoryReferenceKey(dbContextMock.Object, dbSetMock.Object,
+				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}
 
 		[TestMethod]

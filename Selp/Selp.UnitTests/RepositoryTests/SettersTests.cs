@@ -18,7 +18,7 @@
 	public class SettersTests
 	{
 		private IDbSet<FakeEntity> dbSet;
-		private SelpRepository<FakeEntity, int> repository;
+		private FakeRepository repository;
 
 		[TestMethod]
 		public void CreateShouldntFailWhenDbContextThrowsExcetion()
@@ -121,7 +121,7 @@
 			Assert.IsNull(entity, "Entity should not be in collection");
 		}
 
-		private void InitRepositoryParams(bool isRemovingFake, ISelpConfiguration configuration = null)
+		private void InitRepositoryParams(bool isRemovingFake)
 		{
 			var testData = new List<FakeEntity>();
 			for (var i = 1; i <= 150; i++)
@@ -148,21 +148,7 @@
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSet);
 
-			var mockRepository = new Mock<SelpRepository<FakeEntity, int>>();
-			mockRepository.SetupGet(d => d.DbContext).Returns(dbContextMock.Object);
-			mockRepository.SetupGet(d => d.DbSet).Returns(dbSet);
-			mockRepository.SetupGet(d => d.IsRemovingFake).Returns(isRemovingFake);
-			mockRepository.SetupGet(d => d.FakeRemovingPropertyName).Returns("IsDeleted");
-			mockRepository.Protected().Setup<IQueryable<FakeEntity>>("ApplyFilters", ItExpr.IsAny<BaseFilter>()).Returns<BaseFilter>(f =>
-			{
-				return testData.Where(s => s.Name.Contains(f.Search)).AsQueryable();
-			});
-			if (configuration != null)
-			{
-				mockRepository.SetupGet(d => d.Configuration).Returns(configuration);
-			}
-
-			repository = mockRepository.Object;
+			repository = new FakeRepository(isRemovingFake, dbContextMock.Object, dbSet, SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}
 		
 	}
