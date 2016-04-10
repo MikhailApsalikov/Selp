@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EntityIsDeletedException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\WorkflowException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

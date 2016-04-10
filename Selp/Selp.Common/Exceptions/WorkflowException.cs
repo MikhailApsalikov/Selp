@@ -3,6 +3,7 @@
 	using System;
 	using System.Runtime.Serialization;
 
+	[Serializable]
 	public class WorkflowException : Exception
 	{
 		public WorkflowException()

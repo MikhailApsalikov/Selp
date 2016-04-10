@@ -29,8 +29,12 @@
 			throw new NotImplementedException();
 		}
 
-		public TEntity GetById(int id)
+		public TEntity GetById(TKey id)
 		{
+			if (id == null)
+			{
+				throw new ArgumentException("ID cannot be null");
+			}
 			throw new NotImplementedException();
 		}
 

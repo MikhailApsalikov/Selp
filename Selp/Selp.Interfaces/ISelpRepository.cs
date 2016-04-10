@@ -8,7 +8,7 @@
 	public interface ISelpRepository<TEntity, TKey> where TEntity : ISelpEntitiy<TKey>
 	{
 		IQueryable<TEntity> GetAll();
-		TEntity GetById(int id);
+		TEntity GetById(TKey id);
 
 		IQueryable<TEntity> GetByFilter(BaseFilter filter);
 
