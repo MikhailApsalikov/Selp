@@ -81,7 +81,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConfigurationTests\InMemoryTests.cs" />
-    <Compile Include="ControllerTests\GetTests.cs" />
     <Compile Include="Fake\FakeController.cs" />
     <Compile Include="Fake\FakeDbContext.cs" />
     <Compile Include="Fake\FakeEntity.cs" />
