@@ -11,7 +11,7 @@
 	using Validator;
 
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
-		where TModel : class, ISelpEntitiy<TKey>  where TEntity : class, ISelpEntitiy<TKey>
+		where TModel : class, ISelpEntity<TKey>  where TEntity : class, ISelpEntity<TKey>
 	{
 		public abstract bool IsRemovingFake { get; }
 

@@ -31,18 +31,14 @@
 			}
 			IQueryable<FakeEntity> fakeList = testData.AsQueryable();
 
-			var dbSetMock = new Mock<IDbSet<FakeEntity>>();
-			dbSetMock.Setup(m => m.Provider).Returns(fakeList.Provider);
-			dbSetMock.Setup(m => m.Expression).Returns(fakeList.Expression);
-			dbSetMock.Setup(m => m.ElementType).Returns(fakeList.ElementType);
-			dbSetMock.Setup(m => m.GetEnumerator()).Returns(fakeList.GetEnumerator());
+			IDbSet<FakeEntity> dbSetMock = TestsMockFactory.CreateDbSet<FakeEntity, int>(fakeList);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock
 				.Setup(x => x.FakeEntities)
-				.Returns(dbSetMock.Object);
+				.Returns(dbSetMock);
 
-			repository = new FakeRepository(true, dbContextMock.Object, dbSetMock.Object,
+			repository = new FakeRepository(true, dbContextMock.Object, dbSetMock,
 				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}
 

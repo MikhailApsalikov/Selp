@@ -1,18 +1,18 @@
 ﻿namespace Selp.UnitTests.RepositoryTests
 {
+	using System.Collections.Generic;
+	using System.Data.Entity;
 	using Configuration;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
 	using Repository.Validator;
-	using System.Collections.Generic;   //создать
-	using System.Data.Entity;
-	using System.Linq;
 	using ValidatorTests.ValidatorsMocks;
+
 	[TestClass]
 	public class ValidatorCallingTests
 	{
-		FakeRepository repository;
+		private FakeRepository repository;
 
 		[TestInitialize]
 		public void Initialize()
@@ -28,20 +28,17 @@
 					IsDeleted = i > 100
 				});
 			}
-			IQueryable<FakeEntity> fakeList = testData.AsQueryable();
 
-			var dbSetMock = new Mock<IDbSet<FakeEntity>>();
-			dbSetMock.Setup(m => m.Provider).Returns(fakeList.Provider);
-			dbSetMock.Setup(m => m.Expression).Returns(fakeList.Expression);
-			dbSetMock.Setup(m => m.ElementType).Returns(fakeList.ElementType);
-			dbSetMock.Setup(m => m.GetEnumerator()).Returns(fakeList.GetEnumerator());
+			IDbSet<FakeEntity> dbSetMock = TestsMockFactory.CreateDbSet<FakeEntity, int>(testData);
+
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock
 				.Setup(x => x.FakeEntities)
-				.Returns(dbSetMock.Object);
+				.Returns(dbSetMock);
 
-			repository = new FakeRepository(false, dbContextMock.Object, dbSetMock.Object, SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
+			repository = new FakeRepository(false, dbContextMock.Object, dbSetMock,
+				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}
 
 		[TestMethod]
@@ -49,7 +46,7 @@
 		{
 			var mock = new Mock<SelpValidator>();
 			repository.CreateValidator = mock.Object;
-			repository.Create(new FakeEntity()
+			repository.Create(new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
@@ -62,7 +59,7 @@
 		{
 			var mock = new FailedValidator();
 			repository.CreateValidator = mock;
-			repository.Create(new FakeEntity()
+			repository.Create(new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
@@ -77,7 +74,7 @@
 			var mock = new Mock<SelpValidator>();
 			mock.Object.AddNestedValidator(new FailedValidator());
 			repository.CreateValidator = mock.Object;
-			repository.Create(new FakeEntity()
+			repository.Create(new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
@@ -91,7 +88,7 @@
 		{
 			var mock = new Mock<SelpValidator>();
 			repository.CreateValidator = mock.Object;
-			repository.Update(1, new FakeEntity()
+			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
@@ -104,7 +101,7 @@
 		{
 			var mock = new FailedValidator();
 			repository.CreateValidator = mock;
-			repository.Update(1, new FakeEntity()
+			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
@@ -119,7 +116,7 @@
 			var mock = new Mock<SelpValidator>();
 			mock.Object.AddNestedValidator(new FailedValidator());
 			repository.CreateValidator = mock.Object;
-			repository.Update(1, new FakeEntity()
+			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
 				Description = null

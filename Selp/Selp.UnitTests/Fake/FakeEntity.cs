@@ -3,7 +3,7 @@
 	using System.ComponentModel.DataAnnotations;
 	using Interfaces;
 
-	public class FakeEntity : ISelpEntitiy<int>
+	public class FakeEntity : ISelpEntity<int>
 	{
 		[MaxLength(50)]
 		public string Name { get; set; }

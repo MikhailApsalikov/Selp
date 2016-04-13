@@ -9,7 +9,7 @@
 	using Selp.Entities;
 
 	public abstract class SelpController<TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TKey>
-		where TModel : ISelpEntitiy<TKey> where TEntity : ISelpEntitiy<TKey>
+		where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>
 	{
 		protected SelpController(ISelpRepository<TModel, TEntity, TKey> repository)
 		{

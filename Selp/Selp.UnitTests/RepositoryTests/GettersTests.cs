@@ -231,21 +231,15 @@
 					IsDeleted = i > 100
 				});
 			}
-			IQueryable<FakeEntity> fakeList = testData.AsQueryable();
 
-			var dbSetMock = new Mock<IDbSet<FakeEntity>>();
-			dbSetMock.Setup(m => m.Provider).Returns(fakeList.Provider);
-			dbSetMock.Setup(m => m.Expression).Returns(fakeList.Expression);
-			dbSetMock.Setup(m => m.ElementType).Returns(fakeList.ElementType);
-			dbSetMock.Setup(m => m.GetEnumerator()).Returns(fakeList.GetEnumerator());
-			dbSet = dbSetMock.Object;
+			dbSet = TestsMockFactory.CreateDbSet<FakeEntity, int>(testData);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSet);
 
-			repository = new FakeRepository(isRemovingFake, dbContextMock.Object, dbSetMock.Object,
+			repository = new FakeRepository(isRemovingFake, dbContextMock.Object, dbSet,
 				configuration ?? SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}
 	}

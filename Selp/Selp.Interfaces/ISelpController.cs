@@ -4,7 +4,7 @@
 	using Entities;
 
 	// Зоны ответственности: ошибки, маппинг сущностей
-	public interface ISelpController<in TModel, in TKey> where TModel : ISelpEntitiy<TKey>
+	public interface ISelpController<in TModel, in TKey> where TModel : ISelpEntity<TKey>
 	{
 		string ControllerName { get; }
 

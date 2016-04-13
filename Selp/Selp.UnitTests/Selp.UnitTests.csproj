@@ -87,6 +87,7 @@
     <Compile Include="Fake\FakeEntityReferenceKey.cs" />
     <Compile Include="Fake\FakeRepositoryReferenceKey.cs" />
     <Compile Include="Fake\FakeRepository.cs" />
+    <Compile Include="Fake\TestsMockFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
     <Compile Include="RepositoryTests\EventsTests.cs" />

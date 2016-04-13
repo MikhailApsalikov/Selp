@@ -8,7 +8,6 @@
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
-	using Repository;
 
 	[TestClass]
 	public class Sanity
@@ -20,27 +19,24 @@
 		[TestInitialize]
 		public void Initialize()
 		{
-			IQueryable<FakeEntity> fakeList = new List<FakeEntity>
+			IEnumerable<FakeEntity> fakeList = new List<FakeEntity>
 			{
 				new FakeEntity {Id = 1, Name = "Entity 1", IsDeleted = false, Description = "Description 1"},
 				new FakeEntity {Id = 2, Name = "Entity 2", IsDeleted = false, Description = "Description 2"},
 				new FakeEntity {Id = 3, Name = "Entity 3", IsDeleted = true, Description = "Description 3"},
 				new FakeEntity {Id = 4, Name = "Entity 4", IsDeleted = false, Description = null}
-			}.AsQueryable();
+			};
 
-			var dbSetMock = new Mock<IDbSet<FakeEntity>>();
-			dbSetMock.Setup(m => m.Provider).Returns(fakeList.Provider);
-			dbSetMock.Setup(m => m.Expression).Returns(fakeList.Expression);
-			dbSetMock.Setup(m => m.ElementType).Returns(fakeList.ElementType);
-			dbSetMock.Setup(m => m.GetEnumerator()).Returns(fakeList.GetEnumerator());
-			dbSet = dbSetMock.Object;
+			dbSet = TestsMockFactory.CreateDbSet<FakeEntity, int>(fakeList);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSet);
 
-			repository = new FakeRepository(false, dbContextMock.Object, dbSet, SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory)); ;
+			repository = new FakeRepository(false, dbContextMock.Object, dbSet,
+				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
+			;
 		}
 
 		[TestMethod]

@@ -1,6 +1,6 @@
 ﻿namespace Selp.Interfaces
 {
-	public interface ISelpEntitiy<TId>
+	public interface ISelpEntity<TId>
 	{
 		TId Id { get; set; }
 	}

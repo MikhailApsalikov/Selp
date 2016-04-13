@@ -6,7 +6,7 @@
 	using System.Linq.Expressions;
 	using Entities;
 
-	public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntitiy<TKey> where TEntity : ISelpEntitiy<TKey>
+	public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>
 	{
 		IEnumerable<TModel> GetAll();
 		TModel GetById(TKey id);

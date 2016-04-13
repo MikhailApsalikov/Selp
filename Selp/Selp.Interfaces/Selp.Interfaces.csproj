@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISelpController.cs" />
-    <Compile Include="ISelpEntitiy.cs" />
+    <Compile Include="ISelpEntity.cs" />
     <Compile Include="ISelpRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
