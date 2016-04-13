@@ -74,10 +74,13 @@
 		{
 			TEntity entity = MapModelToEntity(item);
 			OnCreating(entity);
-			CreateValidator.Validate();
-			if (!CreateValidator.IsValid)
+			if (CreateValidator != null)
 			{
-				return new RepositoryModifyResult<TModel>(CreateValidator.Errors);
+				CreateValidator.Validate();
+				if (!CreateValidator.IsValid)
+				{
+					return new RepositoryModifyResult<TModel>(CreateValidator.Errors);
+				}
 			}
 
 			TEntity result = DbSet.Add(entity);
@@ -92,10 +95,13 @@
 			TEntity entity = DbSet.Find(id);
 			OnUpdating(id, entity);
 			MapModelToEntity(model, entity);
-			UpdateValidator.Validate();
-			if (!UpdateValidator.IsValid)
+			if (UpdateValidator != null)
 			{
-				return new RepositoryModifyResult<TModel>(UpdateValidator.Errors);
+				UpdateValidator.Validate();
+				if (!UpdateValidator.IsValid)
+				{
+					return new RepositoryModifyResult<TModel>(UpdateValidator.Errors);
+				}
 			}
 
 			DbContext.Entry(entity).State = EntityState.Modified;
