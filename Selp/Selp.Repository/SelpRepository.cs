@@ -60,8 +60,11 @@
 
 		public virtual RepositoryModifyResult<TModel> Create(TModel item)
 		{
-			var result = DbSet.Add(MapModelToEntity(item));
+			TEntity entity = MapModelToEntity(item);
+			OnCreating(entity);
+			var result = DbSet.Add(entity);
 			DbContext.SaveChanges();
+			OnCreated(entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
 		}
 
@@ -73,9 +76,11 @@
 			}
 
 			TEntity entity = DbSet.Find(id);
+			OnUpdating(id, entity);
 			MapModelToEntity(model, entity);
 			DbContext.Entry(entity).State = EntityState.Modified;
 			DbContext.SaveChanges();
+			OnUpdated(id, entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(entity));
 		}
 
@@ -87,7 +92,10 @@
 			}
 
 			TEntity entity = DbSet.Find(id);
+			OnRemoving(id, entity);
 			DbSet.Remove(entity);
+			DbContext.SaveChanges();
+			OnRemoved(id);
 		}
 
 		protected abstract IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> entities, BaseFilter filter);
@@ -109,7 +117,7 @@
 		{
 		}
 
-		protected virtual void OnRemoving(TKey key)
+		protected virtual void OnRemoving(TKey key, TEntity item)
 		{
 		}
 

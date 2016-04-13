@@ -74,7 +74,7 @@
 			IsAfterEventExecuted = true;
 		}
 
-		protected override void OnRemoving(int key)
+		protected override void OnRemoving(int key, FakeEntity item)
 		{
 			IsBeforeEventExecuted = true;
 		}
