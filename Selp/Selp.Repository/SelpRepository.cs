@@ -11,8 +11,10 @@
 	using Validator;
 
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
-		where TModel : class, ISelpEntity<TKey>  where TEntity : class, ISelpEntity<TKey>
+		where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
 	{
+		private Expression<Func<TEntity, bool>> isFakeDeletedExpression;
+
 		public abstract bool IsRemovingFake { get; }
 
 		public abstract string FakeRemovingPropertyName { get; }
@@ -23,19 +25,13 @@
 
 		public abstract ISelpConfiguration Configuration { get; }
 
-		protected abstract TModel MapEntityToModel(TEntity entity);
-
-		protected abstract TEntity MapModelToEntity(TModel entity);
-
-		protected abstract TEntity MapModelToEntity(TModel source, TEntity destination);
-
 		public SelpValidator CreateValidator { get; set; }
 
 		public SelpValidator UpdateValidator { get; set; }
 
 		public virtual IEnumerable<TModel> GetAll()
 		{
-			return DbSet.Select(entity => MapEntityToModel(entity));
+			return FilterDeleted(DbSet).Select(entity => MapEntityToModel(entity));
 		}
 
 		public virtual TModel GetById(TKey id)
@@ -62,7 +58,7 @@
 		{
 			TEntity entity = MapModelToEntity(item);
 			OnCreating(entity);
-			var result = DbSet.Add(entity);
+			TEntity result = DbSet.Add(entity);
 			DbContext.SaveChanges();
 			OnCreated(entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
@@ -98,9 +94,34 @@
 			OnRemoved(id);
 		}
 
+		protected abstract TModel MapEntityToModel(TEntity entity);
+
+		protected abstract TEntity MapModelToEntity(TModel entity);
+
+		protected abstract TEntity MapModelToEntity(TModel source, TEntity destination);
+
 		protected abstract IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> entities, BaseFilter filter);
 
+		private IQueryable<TEntity> FilterDeleted(IQueryable<TEntity> entities)
+		{
+			if (!IsRemovingFake)
+			{
+				return entities;
+			}
+
+			if (isFakeDeletedExpression == null)
+			{
+				ParameterExpression entityParamenter = Expression.Parameter(typeof (TEntity));
+				isFakeDeletedExpression =
+					Expression.Lambda<Func<TEntity, bool>>(
+						Expression.Not(Expression.Property(entityParamenter, FakeRemovingPropertyName)), entityParamenter);
+			}
+
+			return entities.Where(isFakeDeletedExpression);
+		}
+
 		#region events for overriding
+
 		protected virtual void OnCreating(TEntity item)
 		{
 		}
@@ -124,6 +145,7 @@
 		protected virtual void OnRemoved(TKey key)
 		{
 		}
+
 		#endregion
 	}
 }
