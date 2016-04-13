@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentGuard.cs" />
     <Compile Include="Exceptions\EntityIsRemovedException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\WorkflowException.cs" />

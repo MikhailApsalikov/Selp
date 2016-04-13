@@ -197,11 +197,11 @@
 			InitRepositoryParams(false);
 			var filter = new BaseFilter
 			{
-				Search = "Entity 1"
+				Search = "Entity 10"
 			};
 			IEnumerable<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(3, list.Count(), "Count is incorrect");
+			Assert.AreEqual(11, list.Count(), "Count is incorrect");
 		}
 
 		[TestMethod]

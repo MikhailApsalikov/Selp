@@ -2,18 +2,25 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.Data.Entity;
+	using System.Data.Entity.Core.EntityClient;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using Common;
+	using Common.Exceptions;
 	using Configuration;
 	using Entities;
 	using Interfaces;
+	using Pagination;
 	using Validator;
 
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
 		where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
 	{
-		private Expression<Func<TEntity, bool>> isFakeDeletedExpression;
+		private Expression<Func<TEntity, bool>> isFakeRemovedExpression;
+
+		private Func<TEntity, bool> checkFakeRemovingCompiledFunction;
 
 		public abstract bool IsRemovingFake { get; }
 
@@ -36,22 +43,31 @@
 
 		public virtual TModel GetById(TKey id)
 		{
-			if (id == null)
+			id.ThrowIfNull("ID cannot be null");
+			TEntity entity = DbSet.Find(id);
+			if (entity == null)
 			{
-				throw new ArgumentException("ID cannot be null");
+				throw new EntityNotFoundException();
 			}
 
-			return MapEntityToModel(DbSet.Find(id));
+			CheckForFakeRemoved(entity);
+			return MapEntityToModel(entity);
 		}
 
 		public virtual IEnumerable<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
 		{
-			return DbSet.Where(customExpression).Select(entity => MapEntityToModel(entity));
+			customExpression.ThrowIfNull("custom expression cannot be null");
+			return FilterDeleted(DbSet).Where(customExpression).Select(entity => MapEntityToModel(entity));
 		}
 
 		public virtual IEnumerable<TModel> GetByFilter(BaseFilter filter)
 		{
-			return ApplyFilters(DbSet, filter).Select(entity => MapEntityToModel(entity));
+			filter.ThrowIfNull("Filter expression cannot be null");
+			FilterDeleted(DbSet);
+			return ApplyFilters(FilterDeleted(DbSet), filter)
+				.ApplySorting(filter)
+				.ApplyPagination(filter, Configuration.DefaultPageSize)
+				.Select(entity => MapEntityToModel(entity));
 		}
 
 		public virtual RepositoryModifyResult<TModel> Create(TModel item)
@@ -66,11 +82,7 @@
 
 		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
 		{
-			if (id == null)
-			{
-				throw new ArgumentException("ID cannot be null");
-			}
-
+			id.ThrowIfNull("ID cannot be null");
 			TEntity entity = DbSet.Find(id);
 			OnUpdating(id, entity);
 			MapModelToEntity(model, entity);
@@ -82,11 +94,7 @@
 
 		public virtual void Remove(TKey id)
 		{
-			if (id == null)
-			{
-				throw new ArgumentException("ID cannot be null");
-			}
-
+			id.ThrowIfNull("ID cannot be null");
 			TEntity entity = DbSet.Find(id);
 			OnRemoving(id, entity);
 			DbSet.Remove(entity);
@@ -109,15 +117,38 @@
 				return entities;
 			}
 
-			if (isFakeDeletedExpression == null)
+			InitFakeRemoving();
+			return entities.Where(isFakeRemovedExpression);
+		}
+
+		private void CheckForFakeRemoved(TEntity entity)
+		{
+			if (!IsRemovingFake)
+			{
+				return;
+			}
+
+			InitFakeRemoving();
+			if (!checkFakeRemovingCompiledFunction(entity))
+			{
+				throw new EntityIsRemovedException();
+			}
+		}
+
+		private void InitFakeRemoving()
+		{
+			if (isFakeRemovedExpression == null)
 			{
 				ParameterExpression entityParamenter = Expression.Parameter(typeof (TEntity));
-				isFakeDeletedExpression =
+				isFakeRemovedExpression =
 					Expression.Lambda<Func<TEntity, bool>>(
 						Expression.Not(Expression.Property(entityParamenter, FakeRemovingPropertyName)), entityParamenter);
 			}
 
-			return entities.Where(isFakeDeletedExpression);
+			if (checkFakeRemovingCompiledFunction == null)
+			{
+				checkFakeRemovingCompiledFunction = isFakeRemovedExpression.Compile();
+			}
 		}
 
 		#region events for overriding
