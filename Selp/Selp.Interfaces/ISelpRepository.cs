@@ -12,7 +12,7 @@
 
 		IQueryable<TEntity> GetByFilter(BaseFilter filter);
 
-		IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> filter);
+		IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression);
 
 		RepositoryModifyResult<TEntity> Create(TEntity item);
 

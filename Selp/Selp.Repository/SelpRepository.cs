@@ -28,7 +28,7 @@
 
 		public virtual IQueryable<TEntity> GetAll()
 		{
-			throw new NotImplementedException();
+			return DbSet;
 		}
 
 		public virtual TEntity GetById(TKey id)
@@ -37,36 +37,42 @@
 			{
 				throw new ArgumentException("ID cannot be null");
 			}
-			throw new NotImplementedException();
+
+			return DbSet.Find(id);
 		}
 
-		public virtual IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> filter)
+		public virtual IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
 		{
-			throw new NotImplementedException();
+			return DbSet.Where(customExpression);
 		}
 
 		public virtual RepositoryModifyResult<TEntity> Create(TEntity item)
 		{
-			throw new NotImplementedException();
+			var result = DbSet.Add(item);
+			DbContext.SaveChanges();
+			return new RepositoryModifyResult<TEntity>(result);
 		}
 
 		public virtual RepositoryModifyResult<TEntity> Update(TKey id, TEntity item)
 		{
+			//context.Entry(entity).State = EntityState.Modified;
 			throw new NotImplementedException();
 		}
 
 		public virtual void Remove(TKey key)
 		{
-			throw new NotImplementedException();
+			TEntity entity = DbSet.Find(key);
+			DbSet.Remove(entity);
 		}
 
 		public virtual IQueryable<TEntity> GetByFilter(BaseFilter filter)
 		{
-			throw new NotImplementedException();
+			return ApplyFilters(DbSet, filter);
 		}
 
-		protected abstract IQueryable<TEntity> ApplyFilters(BaseFilter filter);
+		protected abstract IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> entities, BaseFilter filter);
 
+		#region events for overriding
 		protected virtual void OnCreating(TEntity item)
 		{
 		}
@@ -90,5 +96,6 @@
 		protected virtual void OnRemoved(TKey key)
 		{
 		}
+		#endregion
 	}
 }

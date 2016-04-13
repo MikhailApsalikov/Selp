@@ -26,9 +26,9 @@
 		public bool IsBeforeEventExecuted { get; set; }
 		public bool IsAfterEventExecuted { get; set; }
 
-		protected override IQueryable<FakeEntity> ApplyFilters(BaseFilter filter)
+		protected override IQueryable<FakeEntity> ApplyFilters(IQueryable<FakeEntity> dbSet, BaseFilter filter)
 		{
-			return DbSet.Where(s => s.Name.Contains(filter.Search)).AsQueryable();
+			return dbSet.Where(s => s.Name.Contains(filter.Search)).AsQueryable();
 		}
 
 		protected override void OnCreating(FakeEntity item)
