@@ -36,6 +36,14 @@
 			return entity;
 		}
 
+		protected override FakeEntity MapModelToEntity(FakeEntity source, FakeEntity destination)
+		{
+			destination.Name = source.Name;
+			destination.Description = source.Description;
+
+			return destination;
+		}
+
 		protected override IQueryable<FakeEntity> ApplyFilters(IQueryable<FakeEntity> dbSet, BaseFilter filter)
 		{
 			if (string.IsNullOrWhiteSpace(filter.Search))

@@ -22,6 +22,10 @@
 		public override DbContext DbContext { get; }
 		public override IDbSet<FakeEntityReferenceKey> DbSet { get; }
 		public override ISelpConfiguration Configuration { get; }
+
+		public bool IsBeforeEventExecuted { get; set; }
+		public bool IsAfterEventExecuted { get; set; }
+
 		protected override FakeEntityReferenceKey MapEntityToModel(FakeEntityReferenceKey entity)
 		{
 			return entity;
@@ -32,10 +36,16 @@
 			return entity;
 		}
 
-		public bool IsBeforeEventExecuted { get; set; }
-		public bool IsAfterEventExecuted { get; set; }
+		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey source,
+			FakeEntityReferenceKey destination)
+		{
+			destination.Name = source.Name;
 
-		protected override IQueryable<FakeEntityReferenceKey> ApplyFilters(IQueryable<FakeEntityReferenceKey> dbSet, BaseFilter filter)
+			return destination;
+		}
+
+		protected override IQueryable<FakeEntityReferenceKey> ApplyFilters(IQueryable<FakeEntityReferenceKey> dbSet,
+			BaseFilter filter)
 		{
 			return dbSet.Where(s => s.Name.Contains(filter.Search)).AsQueryable();
 		}

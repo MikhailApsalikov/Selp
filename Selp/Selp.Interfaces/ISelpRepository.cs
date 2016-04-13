@@ -17,8 +17,8 @@
 
 		RepositoryModifyResult<TModel> Create(TModel item);
 
-		RepositoryModifyResult<TModel> Update(TKey id, TModel item);
+		RepositoryModifyResult<TModel> Update(TKey id, TModel model);
 
-		void Remove(TKey key);
+		void Remove(TKey id);
 	}
 }

@@ -27,6 +27,8 @@
 
 		protected abstract TEntity MapModelToEntity(TModel entity);
 
+		protected abstract TEntity MapModelToEntity(TModel source, TEntity destination);
+
 		public SelpValidator CreateValidator { get; set; }
 
 		public SelpValidator UpdateValidator { get; set; }
@@ -63,25 +65,28 @@
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
 		}
 
-		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel item)
+		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
 		{
 			if (id == null)
 			{
 				throw new ArgumentException("ID cannot be null");
 			}
 
-			//context.Entry(entity).State = EntityState.Modified;
-			throw new NotImplementedException();
+			TEntity entity = DbSet.Find(id);
+			MapModelToEntity(model, entity);
+			DbContext.Entry(entity).State = EntityState.Modified;
+			DbContext.SaveChanges();
+			return new RepositoryModifyResult<TModel>(MapEntityToModel(entity));
 		}
 
-		public virtual void Remove(TKey key)
+		public virtual void Remove(TKey id)
 		{
-			if (key == null)
+			if (id == null)
 			{
 				throw new ArgumentException("ID cannot be null");
 			}
 
-			TEntity entity = DbSet.Find(key);
+			TEntity entity = DbSet.Find(id);
 			DbSet.Remove(entity);
 		}
 
