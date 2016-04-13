@@ -1,6 +1,7 @@
 ﻿namespace Selp.Repository
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Data.Entity;
 	using System.Linq;
 	using System.Linq.Expressions;
@@ -9,8 +10,8 @@
 	using Interfaces;
 	using Validator;
 
-	public abstract class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey>
-		where TEntity : class, ISelpEntitiy<TKey>
+	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
+		where TModel : class, ISelpEntitiy<TKey>  where TEntity : class, ISelpEntitiy<TKey>
 	{
 		public abstract bool IsRemovingFake { get; }
 
@@ -22,38 +23,47 @@
 
 		public abstract ISelpConfiguration Configuration { get; }
 
+		protected abstract TModel MapEntityToModel(TEntity entity);
+
+		protected abstract TEntity MapModelToEntity(TModel entity);
+
 		public SelpValidator CreateValidator { get; set; }
 
 		public SelpValidator UpdateValidator { get; set; }
 
-		public virtual IQueryable<TEntity> GetAll()
+		public virtual IEnumerable<TModel> GetAll()
 		{
-			return DbSet;
+			return DbSet.Select(entity => MapEntityToModel(entity));
 		}
 
-		public virtual TEntity GetById(TKey id)
+		public virtual TModel GetById(TKey id)
 		{
 			if (id == null)
 			{
 				throw new ArgumentException("ID cannot be null");
 			}
 
-			return DbSet.Find(id);
+			return MapEntityToModel(DbSet.Find(id));
 		}
 
-		public virtual IQueryable<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
+		public virtual IEnumerable<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
 		{
-			return DbSet.Where(customExpression);
+			return DbSet.Where(customExpression).Select(entity => MapEntityToModel(entity));
 		}
 
-		public virtual RepositoryModifyResult<TEntity> Create(TEntity item)
+		public virtual IEnumerable<TModel> GetByFilter(BaseFilter filter)
 		{
-			var result = DbSet.Add(item);
+			return ApplyFilters(DbSet, filter).Select(entity => MapEntityToModel(entity));
+		}
+
+		public virtual RepositoryModifyResult<TModel> Create(TModel item)
+		{
+			var result = DbSet.Add(MapModelToEntity(item));
 			DbContext.SaveChanges();
-			return new RepositoryModifyResult<TEntity>(result);
+			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
 		}
 
-		public virtual RepositoryModifyResult<TEntity> Update(TKey id, TEntity item)
+		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel item)
 		{
 			//context.Entry(entity).State = EntityState.Modified;
 			throw new NotImplementedException();
@@ -63,11 +73,6 @@
 		{
 			TEntity entity = DbSet.Find(key);
 			DbSet.Remove(entity);
-		}
-
-		public virtual IQueryable<TEntity> GetByFilter(BaseFilter filter)
-		{
-			return ApplyFilters(DbSet, filter);
 		}
 
 		protected abstract IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> entities, BaseFilter filter);

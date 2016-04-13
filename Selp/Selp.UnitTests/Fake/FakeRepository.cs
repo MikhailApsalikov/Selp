@@ -6,7 +6,7 @@
 	using Entities;
 	using Repository;
 
-	public class FakeRepository : SelpRepository<FakeEntity, int>
+	public class FakeRepository : SelpRepository<FakeEntity, FakeEntity, int>
 	{
 		public FakeRepository(bool isRemovingFake, DbContext dbContext,
 			IDbSet<FakeEntity> dbSet, ISelpConfiguration configuration)
@@ -25,6 +25,16 @@
 
 		public bool IsBeforeEventExecuted { get; set; }
 		public bool IsAfterEventExecuted { get; set; }
+
+		protected override FakeEntity MapEntityToModel(FakeEntity entity)
+		{
+			return entity;
+		}
+
+		protected override FakeEntity MapModelToEntity(FakeEntity entity)
+		{
+			return entity;
+		}
 
 		protected override IQueryable<FakeEntity> ApplyFilters(IQueryable<FakeEntity> dbSet, BaseFilter filter)
 		{

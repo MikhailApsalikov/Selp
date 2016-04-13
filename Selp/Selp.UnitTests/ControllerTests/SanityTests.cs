@@ -1,19 +1,20 @@
-﻿namespace Selp.UnitTests
+﻿namespace Selp.UnitTests.ControllerTests
 {
 	using Entities;
 	using Fake;
 	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
+	using Moq;
 
 	[TestClass]
 	public class SanityTests
 	{
-		public ISelpController<FakeEntity, FakeEntity, int> Controller { get; set; }
+		internal FakeController Controller { get; set; }
 
 		[TestInitialize]
 		public void Initialise()
 		{
-			Controller = new FakeController();
+			Controller = new FakeController(Mock.Of<ISelpRepository<FakeEntity, FakeEntity, int>>());
 		}
 
 		[TestMethod]

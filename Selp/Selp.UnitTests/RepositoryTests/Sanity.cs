@@ -46,7 +46,7 @@
 		[TestMethod]
 		public void GetAllWorks()
 		{
-			IQueryable<FakeEntity> list = repository.GetAll();
+			IEnumerable<FakeEntity> list = repository.GetAll();
 			Assert.AreEqual(4, list.Count(), "GetAll doesn't work");
 		}
 
@@ -60,14 +60,14 @@
 		[TestMethod]
 		public void GetByFilterWorks()
 		{
-			IQueryable<FakeEntity> list = repository.GetByFilter(new BaseFilter());
+			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter());
 			Assert.AreEqual(4, list.Count(), "GetByFilter doesn't work");
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionWorks()
 		{
-			IQueryable<FakeEntity> list = repository.GetByCustomExpression(d => true);
+			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(d => true);
 			Assert.AreEqual(4, list.Count(), "GetByCustomExpression doesn't work");
 		}
 

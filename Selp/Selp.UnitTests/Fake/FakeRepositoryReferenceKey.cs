@@ -6,7 +6,7 @@
 	using Entities;
 	using Repository;
 
-	public class FakeRepositoryReferenceKey : SelpRepository<FakeEntityReferenceKey, string>
+	public class FakeRepositoryReferenceKey : SelpRepository<FakeEntityReferenceKey, FakeEntityReferenceKey, string>
 	{
 		public FakeRepositoryReferenceKey(DbContext dbContext,
 			IDbSet<FakeEntityReferenceKey> dbSet, ISelpConfiguration configuration)
@@ -22,6 +22,15 @@
 		public override DbContext DbContext { get; }
 		public override IDbSet<FakeEntityReferenceKey> DbSet { get; }
 		public override ISelpConfiguration Configuration { get; }
+		protected override FakeEntityReferenceKey MapEntityToModel(FakeEntityReferenceKey entity)
+		{
+			return entity;
+		}
+
+		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey entity)
+		{
+			return entity;
+		}
 
 		public bool IsBeforeEventExecuted { get; set; }
 		public bool IsAfterEventExecuted { get; set; }

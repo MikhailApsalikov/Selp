@@ -1,8 +1,6 @@
 ﻿namespace Selp.Controller
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
 	using System.Net;
 	using System.Web.Http;
 	using Common.Exceptions;
@@ -10,15 +8,15 @@
 	using Interfaces;
 	using Selp.Entities;
 
-	public abstract class SelpController<TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TEntity, TKey>
+	public abstract class SelpController<TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TKey>
 		where TModel : ISelpEntitiy<TKey> where TEntity : ISelpEntitiy<TKey>
 	{
-		protected SelpController(ISelpRepository<TEntity, TKey> repository)
+		protected SelpController(ISelpRepository<TModel, TEntity, TKey> repository)
 		{
 			Repository = repository;
 		}
 
-		protected ISelpRepository<TEntity, TKey> Repository { get; }
+		protected ISelpRepository<TModel, TEntity, TKey> Repository { get; }
 
 		public abstract string ControllerName { get; }
 
@@ -39,7 +37,7 @@
 		{
 			try
 			{
-				return Ok(MapEntityToModel(Repository.GetById(id)));
+				return Ok(Repository.GetById(id));
 			}
 			catch (Exception e)
 			{
@@ -51,14 +49,7 @@
 		{
 			try
 			{
-				IQueryable<TEntity> entities = Repository.GetByFilter(query);
-				var models = new List<TModel>();
-				foreach (TEntity entity in entities)
-				{
-					models.Add(MapEntityToModel(entity));
-				}
-
-				return Ok(models);
+				return Ok(Repository.GetByFilter(query));
 			}
 			catch (Exception e)
 			{
@@ -70,11 +61,11 @@
 		{
 			try
 			{
-				RepositoryModifyResult<TEntity> result = Repository.Create(MapModelToEntity(value));
+				RepositoryModifyResult<TModel> result = Repository.Create(value);
 				if (result.ModifiedEntity != null)
 				{
 					return Created(new Uri($"{ControllerName}/{result.ModifiedEntity.Id}", UriKind.Relative),
-						MapEntityToModel(result.ModifiedEntity));
+						result.ModifiedEntity);
 				}
 
 				return Content(HttpStatusCode.InternalServerError, new ErrorList(result.Errors));
@@ -90,10 +81,10 @@
 			try
 			{
 				value.Id = id;
-				RepositoryModifyResult<TEntity> result = Repository.Update(id, MapModelToEntity(value));
+				RepositoryModifyResult<TModel> result = Repository.Update(id, value);
 				if (result.ModifiedEntity != null)
 				{
-					return Ok(MapEntityToModel(result.ModifiedEntity));
+					return Ok(result.ModifiedEntity);
 				}
 
 				return Content(HttpStatusCode.InternalServerError, new ErrorList(result.Errors));
@@ -118,11 +109,5 @@
 
 			return InternalServerError(e);
 		}
-
-		[NonAction]
-		protected abstract TModel MapEntityToModel(TEntity entity);
-
-		[NonAction]
-		protected abstract TEntity MapModelToEntity(TModel entity);
 	}
 }
