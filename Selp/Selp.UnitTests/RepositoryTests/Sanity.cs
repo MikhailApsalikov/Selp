@@ -27,7 +27,7 @@
 				new FakeEntity {Id = 4, Name = "Entity 4", IsDeleted = false, Description = null}
 			};
 
-			dbSet = TestsMockFactory.CreateDbSet<FakeEntity, int>(fakeList);
+			dbSet = TestsMockFactory.CreateDbSet(fakeList);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock

@@ -4,8 +4,6 @@
 
 	internal class FailedValidator : SelpValidator
 	{
-		public override string EntityName => "Failed";
-
 		public FailedValidator()
 		{
 		}
@@ -13,6 +11,8 @@
 		public FailedValidator(SelpValidator parentValidor) : base(parentValidor)
 		{
 		}
+
+		public override string EntityName => "Failed";
 
 		protected override void ValidateLogic()
 		{

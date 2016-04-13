@@ -31,7 +31,7 @@
 			}
 			IQueryable<FakeEntity> fakeList = testData.AsQueryable();
 
-			IDbSet<FakeEntity> dbSetMock = TestsMockFactory.CreateDbSet<FakeEntity, int>(fakeList);
+			IDbSet<FakeEntity> dbSetMock = TestsMockFactory.CreateDbSet(fakeList);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock

@@ -134,7 +134,7 @@
 				});
 			}
 
-			dbSet = TestsMockFactory.CreateDbSet<FakeEntity, int>(testData);
+			dbSet = TestsMockFactory.CreateDbSet(testData);
 
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock

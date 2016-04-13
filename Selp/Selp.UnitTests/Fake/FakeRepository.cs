@@ -38,7 +38,12 @@
 
 		protected override IQueryable<FakeEntity> ApplyFilters(IQueryable<FakeEntity> dbSet, BaseFilter filter)
 		{
-			return dbSet.Where(s => s.Name.Contains(filter.Search)).AsQueryable();
+			if (string.IsNullOrWhiteSpace(filter.Search))
+			{
+				return DbSet;
+			}
+
+			return dbSet.Where(s => s.Name.Contains(filter.Search));
 		}
 
 		protected override void OnCreating(FakeEntity item)
