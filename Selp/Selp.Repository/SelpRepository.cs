@@ -74,10 +74,16 @@
 		{
 			TEntity entity = MapModelToEntity(item);
 			OnCreating(entity);
+			CreateValidator.Validate();
+			if (!CreateValidator.IsValid)
+			{
+				return new RepositoryModifyResult<TModel>(CreateValidator.Errors);
+			}
+
 			TEntity result = DbSet.Add(entity);
 			DbContext.SaveChanges();
 			OnCreated(entity);
-			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
+			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));	
 		}
 
 		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
@@ -86,6 +92,12 @@
 			TEntity entity = DbSet.Find(id);
 			OnUpdating(id, entity);
 			MapModelToEntity(model, entity);
+			UpdateValidator.Validate();
+			if (!UpdateValidator.IsValid)
+			{
+				return new RepositoryModifyResult<TModel>(UpdateValidator.Errors);
+			}
+
 			DbContext.Entry(entity).State = EntityState.Modified;
 			DbContext.SaveChanges();
 			OnUpdated(id, entity);

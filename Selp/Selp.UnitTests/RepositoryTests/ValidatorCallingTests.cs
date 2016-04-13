@@ -87,7 +87,7 @@
 		public void UpdateCanPassWithValidator()
 		{
 			var mock = new Mock<SelpValidator>();
-			repository.CreateValidator = mock.Object;
+			repository.UpdateValidator = mock.Object;
 			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
@@ -100,7 +100,7 @@
 		public void UpdateEntityCanBeFailedByValidator()
 		{
 			var mock = new FailedValidator();
-			repository.CreateValidator = mock;
+			repository.UpdateValidator = mock;
 			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
@@ -115,7 +115,7 @@
 		{
 			var mock = new Mock<SelpValidator>();
 			mock.Object.AddNestedValidator(new FailedValidator());
-			repository.CreateValidator = mock.Object;
+			repository.UpdateValidator = mock.Object;
 			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
