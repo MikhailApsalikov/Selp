@@ -65,12 +65,22 @@
 
 		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel item)
 		{
+			if (id == null)
+			{
+				throw new ArgumentException("ID cannot be null");
+			}
+
 			//context.Entry(entity).State = EntityState.Modified;
 			throw new NotImplementedException();
 		}
 
 		public virtual void Remove(TKey key)
 		{
+			if (key == null)
+			{
+				throw new ArgumentException("ID cannot be null");
+			}
+
 			TEntity entity = DbSet.Find(key);
 			DbSet.Remove(entity);
 		}
