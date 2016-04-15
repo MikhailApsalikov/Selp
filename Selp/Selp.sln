@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Repository", "Selp.Repository\Selp.Repository.csproj", "{78CEE587-C390-47A7-A95A-D0798C29ABC4}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.UnitTests", "Selp.UnitTests\Selp.UnitTests.csproj", "{87D3F9DA-82AE-4601-8FFC-159A8C090559}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Entities", "Selp.Entities\Selp.Entities.csproj", "{C4B3A709-2C26-4A6A-B348-928A08D98D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{997EEBEA-9B17-4098-B29C-0359F2E5590F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{C4B3A709-2C26-4A6A-B348-928A08D98D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B3A709-2C26-4A6A-B348-928A08D98D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B3A709-2C26-4A6A-B348-928A08D98D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{997EEBEA-9B17-4098-B29C-0359F2E5590F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{997EEBEA-9B17-4098-B29C-0359F2E5590F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{997EEBEA-9B17-4098-B29C-0359F2E5590F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{997EEBEA-9B17-4098-B29C-0359F2E5590F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
