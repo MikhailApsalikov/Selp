@@ -29,7 +29,7 @@
 			{
 				ParameterExpression entityParameter = Expression.Parameter(typeof (T));
 				Expression<Func<T, object>> lambda =
-					Expression.Lambda<Func<T, object>>(Expression.Property(entityParameter, filter.SortField), entityParameter);
+					Expression.Lambda<Func<T, object>>(Expression.Convert(Expression.Property(entityParameter, filter.SortField), typeof(object)), entityParameter);
 				switch (filter.SortDirection)
 				{
 					case ListSortDirection.Ascending:

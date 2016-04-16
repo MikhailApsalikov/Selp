@@ -48,7 +48,7 @@
 		{
 			if (string.IsNullOrWhiteSpace(filter.Search))
 			{
-				return DbSet;
+				return dbSet;
 			}
 
 			return dbSet.Where(s => s.Name.Contains(filter.Search));

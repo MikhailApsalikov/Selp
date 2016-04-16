@@ -63,7 +63,6 @@
 		public virtual IEnumerable<TModel> GetByFilter(BaseFilter filter)
 		{
 			filter.ThrowIfNull("Filter expression cannot be null");
-			FilterDeleted(DbSet);
 			return ApplyFilters(FilterDeleted(DbSet), filter)
 				.ApplySorting(filter)
 				.ApplyPagination(filter, Configuration.DefaultPageSize)

@@ -158,7 +158,7 @@
 				SortField = "Id"
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(60, list.ToList()[0], "First item id is wrong");
+			Assert.AreEqual(60, list.ToList()[0].Id, "First item id is wrong");
 		}
 
 		[TestMethod]
