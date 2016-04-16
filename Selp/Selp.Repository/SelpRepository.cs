@@ -1,4 +1,7 @@
-﻿namespace Selp.Repository
+﻿using System.Diagnostics.PerformanceData;
+using Selp.Repository.ExpressionConstructor;
+
+namespace Selp.Repository
 {
 	using System;
 	using System.Collections.Generic;
@@ -18,9 +21,7 @@
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
 		where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
 	{
-		private Expression<Func<TEntity, bool>> isFakeRemovedExpression;
-
-		private Func<TEntity, bool> checkFakeRemovingCompiledFunction;
+		private FakeRemovingExpressionContainer<TEntity> fakeRemoving = FakeRemovingExpressionContainer<TEntity>.Instance;
 
 		public abstract bool IsRemovingFake { get; }
 
@@ -114,7 +115,15 @@
 			id.ThrowIfNull("ID cannot be null");
 			TEntity entity = DbSet.Find(id);
 			OnRemoving(id, entity);
-			DbSet.Remove(entity);
+			if (IsRemovingFake)
+			{
+				fakeRemoving.GetFakeDeleteCompiledFunction(FakeRemovingPropertyName)(entity);
+				DbContext.Entry(entity).State = EntityState.Modified;
+			}
+			else
+			{
+				DbSet.Remove(entity);
+			}
 			DbContext.SaveChanges();
 			OnRemoved(id);
 		}
@@ -133,9 +142,8 @@
 			{
 				return entities;
 			}
-
-			InitFakeRemoving();
-			return entities.Where(isFakeRemovedExpression);
+			
+			return entities.Where(fakeRemoving.GetIsRemovedExpression(FakeRemovingPropertyName));
 		}
 
 		private void CheckForFakeRemoved(TEntity entity)
@@ -144,27 +152,10 @@
 			{
 				return;
 			}
-
-			InitFakeRemoving();
-			if (!checkFakeRemovingCompiledFunction(entity))
+			
+			if (!fakeRemoving.GetIsRemovedCompiledFunction(FakeRemovingPropertyName)(entity))
 			{
 				throw new EntityIsRemovedException();
-			}
-		}
-
-		private void InitFakeRemoving()
-		{
-			if (isFakeRemovedExpression == null)
-			{
-				ParameterExpression entityParamenter = Expression.Parameter(typeof (TEntity));
-				isFakeRemovedExpression =
-					Expression.Lambda<Func<TEntity, bool>>(
-						Expression.Not(Expression.Property(entityParamenter, FakeRemovingPropertyName)), entityParamenter);
-			}
-
-			if (checkFakeRemovingCompiledFunction == null)
-			{
-				checkFakeRemovingCompiledFunction = isFakeRemovedExpression.Compile();
 			}
 		}
 
