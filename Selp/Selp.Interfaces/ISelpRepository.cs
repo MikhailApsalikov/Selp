@@ -15,7 +15,7 @@
 
 		IEnumerable<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression);
 
-		RepositoryModifyResult<TModel> Create(TModel item);
+		RepositoryModifyResult<TModel> Create(TModel model);
 
 		RepositoryModifyResult<TModel> Update(TKey id, TModel model);
 

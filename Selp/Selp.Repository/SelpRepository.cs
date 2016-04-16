@@ -45,34 +45,29 @@ namespace Selp.Repository
 		public virtual TModel GetById(TKey id)
 		{
 			id.ThrowIfNull("ID cannot be null");
-			TEntity entity = DbSet.Find(id);
-			if (entity == null)
-			{
-				throw new EntityNotFoundException();
-			}
-
-			CheckForFakeRemoved(entity);
+			TEntity entity = FindById(id);
 			return MapEntityToModel(entity);
 		}
 
 		public virtual IEnumerable<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
 		{
-			customExpression.ThrowIfNull("custom expression cannot be null");
+			customExpression.ThrowIfNull("Custom expression cannot be null");
 			return FilterDeleted(DbSet).Where(customExpression).Select(entity => MapEntityToModel(entity));
 		}
 
 		public virtual IEnumerable<TModel> GetByFilter(BaseFilter filter)
 		{
-			filter.ThrowIfNull("Filter expression cannot be null");
+			filter.ThrowIfNull("Filter cannot be null");
 			return ApplyFilters(FilterDeleted(DbSet), filter)
 				.ApplySorting(filter)
 				.ApplyPagination(filter, Configuration.DefaultPageSize)
 				.Select(entity => MapEntityToModel(entity));
 		}
 
-		public virtual RepositoryModifyResult<TModel> Create(TModel item)
+		public virtual RepositoryModifyResult<TModel> Create(TModel model)
 		{
-			TEntity entity = MapModelToEntity(item);
+			model.ThrowIfNull("Model cannot be null");
+			TEntity entity = MapModelToEntity(model);
 			OnCreating(entity);
 			if (CreateValidator != null)
 			{
@@ -92,7 +87,8 @@ namespace Selp.Repository
 		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
 		{
 			id.ThrowIfNull("ID cannot be null");
-			TEntity entity = DbSet.Find(id);
+			model.ThrowIfNull("Model cannot be null");
+			TEntity entity = FindById(id);
 			OnUpdating(id, entity);
 			MapModelToEntity(model, entity);
 			if (UpdateValidator != null)
@@ -113,7 +109,7 @@ namespace Selp.Repository
 		public virtual void Remove(TKey id)
 		{
 			id.ThrowIfNull("ID cannot be null");
-			TEntity entity = DbSet.Find(id);
+			TEntity entity = FindById(id);
 			OnRemoving(id, entity);
 			if (IsRemovingFake)
 			{
@@ -126,6 +122,18 @@ namespace Selp.Repository
 			}
 			DbContext.SaveChanges();
 			OnRemoved(id);
+		}
+
+		private TEntity FindById(TKey id)
+		{
+			TEntity entity = DbSet.Find(id);
+			if (entity == null)
+			{
+				throw new EntityNotFoundException();
+			}
+
+			CheckForFakeRemoved(entity);
+			return entity;
 		}
 
 		protected abstract TModel MapEntityToModel(TEntity entity);
