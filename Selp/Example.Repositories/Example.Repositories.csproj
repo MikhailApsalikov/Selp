@@ -49,12 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ExampleDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
+      <Project>{755AA3CF-2314-4312-B9DC-6E05B7A8EEC7}</Project>
+      <Name>Example.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
+      <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
+      <Name>Selp.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
