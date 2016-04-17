@@ -1,26 +1,22 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using Example.Entities;
-using Example.Models;
-using Selp.Configuration;
-using Selp.Entities;
-using Selp.Repository;
-
-namespace Example.Repositories
+﻿namespace Example.Repositories
 {
+	using System.Data.Entity;
+	using System.Linq;
+	using Entities;
+	using Models;
+	using Selp.Configuration;
+	using Selp.Entities;
+	using Selp.Repository;
+
 	public class UserRepository : SelpRepository<UserModel, User, string>
 	{
-		public UserRepository(ExampleDbContext dbContext, ISelpConfiguration configuration)
+		public UserRepository(ExampleDbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{
-			DbContext = dbContext;
-			Configuration = configuration;
 		}
 
 		public override bool IsRemovingFake => true;
 		public override string FakeRemovingPropertyName => "IsInactive";
-		public override DbContext DbContext { get; }
 		public override IDbSet<User> DbSet => ((ExampleDbContext) DbContext).Users;
-		public override ISelpConfiguration Configuration { get; }
 
 		protected override UserModel MapEntityToModel(User entity)
 		{

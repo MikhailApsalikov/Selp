@@ -34,7 +34,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityNotFoundException), "Method didn't raise an exception when entity is not found")]
+		[ExpectedException(typeof(EntityNotFoundException), "Method didn't raise an exception when entity is not found")]
 		public void GetByIdShouldThrowAnExceptionWhenEntityNotFound()
 		{
 			InitRepositoryParams(false);
@@ -42,7 +42,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityIsRemovedException), "Method didn't raise an exception when found deleted entity")]
+		[ExpectedException(typeof(EntityIsRemovedException), "Method didn't raise an exception when found deleted entity")]
 		public void GetByIdShouldThrowAnExceptionWhenEntityIsFakeDeleted()
 		{
 			InitRepositoryParams(true);
@@ -66,7 +66,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when expression is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when expression is null")]
 		public void GetByCustomExpressionShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
@@ -101,7 +101,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when filter is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when filter is null")]
 		public void GetByFilterShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
@@ -226,7 +226,7 @@
 				testData.Add(new FakeEntity
 				{
 					Id = i,
-					Name = "Entity " + i.ToString(),
+					Name = "Entity " + i,
 					Description = null,
 					IsDeleted = i > 100
 				});

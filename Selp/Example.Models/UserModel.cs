@@ -1,7 +1,7 @@
-﻿using Selp.Interfaces;
-
-namespace Example.Models
+﻿namespace Example.Models
 {
+	using Selp.Interfaces;
+
 	public class UserModel : ISelpEntity<string>
 	{
 		public string Password { get; set; }

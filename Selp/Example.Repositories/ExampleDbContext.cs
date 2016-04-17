@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
-using Example.Entities;
-
-namespace Example.Repositories
+﻿namespace Example.Repositories
 {
+	using System.Data.Entity;
+	using Entities;
+
 	public class ExampleDbContext : DbContext
 	{
 		public IDbSet<User> Users { get; set; }

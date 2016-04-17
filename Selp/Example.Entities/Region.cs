@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Selp.Interfaces;
-
-namespace Example.Entities
+﻿namespace Example.Entities
 {
+	using System.ComponentModel.DataAnnotations;
+	using Selp.Interfaces;
+
 	public class Region : ISelpEntity<int>
 	{
 		[Required]

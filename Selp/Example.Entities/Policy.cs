@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Selp.Interfaces;
-
-namespace Example.Entities
+﻿namespace Example.Entities
 {
+	using System;
+	using System.Collections.Generic;
+	using Selp.Interfaces;
+
 	public class Policy : ISelpEntity<int>
 	{
 		public DateTime CreatedDate { get; set; }

@@ -32,7 +32,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when entity is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when entity is null")]
 		public void CreateShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
@@ -54,7 +54,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when entity is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when entity is null")]
 		public void UpdateShouldThrowWhenEntityIsNull()
 		{
 			InitRepositoryParams(false);
@@ -62,7 +62,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityNotFoundException), "Method didn't raise an exception when entity doesn't exist")]
+		[ExpectedException(typeof(EntityNotFoundException), "Method didn't raise an exception when entity doesn't exist")]
 		public void UpdateShouldThrowWhenEntityDoesntExist()
 		{
 			InitRepositoryParams(false);
@@ -74,7 +74,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityIsRemovedException), "Method didn't raise an exception when entity is deleted")]
+		[ExpectedException(typeof(EntityIsRemovedException), "Method didn't raise an exception when entity is deleted")]
 		public void UpdateShouldThrowWhenEntityDeleted()
 		{
 			InitRepositoryParams(true);
@@ -86,7 +86,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityNotFoundException), "Method didn't raise an exception when entity doesn't exist")]
+		[ExpectedException(typeof(EntityNotFoundException), "Method didn't raise an exception when entity doesn't exist")]
 		public void RemoveShouldThrowWhenEntityDoesntExist()
 		{
 			InitRepositoryParams(false);
@@ -94,7 +94,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (EntityIsRemovedException), "Method didn't raise an exception when entity is deleted")]
+		[ExpectedException(typeof(EntityIsRemovedException), "Method didn't raise an exception when entity is deleted")]
 		public void RemoveShouldThrowWhenEntityIsDeleted()
 		{
 			InitRepositoryParams(true);
@@ -128,7 +128,7 @@
 				testData.Add(new FakeEntity
 				{
 					Id = i,
-					Name = "Entity " + i.ToString(),
+					Name = "Entity " + i,
 					Description = null,
 					IsDeleted = i > 100
 				});

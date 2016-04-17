@@ -4,9 +4,6 @@
 
 	public class RepositoryModifyResult<TEntity>
 	{
-		public TEntity ModifiedEntity { get; }
-		public IEnumerable<ValidatorError> Errors { get; }
-
 		public RepositoryModifyResult(IEnumerable<ValidatorError> errors)
 		{
 			Errors = errors;
@@ -16,5 +13,8 @@
 		{
 			ModifiedEntity = entity;
 		}
+
+		public TEntity ModifiedEntity { get; }
+		public IEnumerable<ValidatorError> Errors { get; }
 	}
 }

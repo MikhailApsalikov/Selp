@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-
-namespace Selp.Repository.ExpressionConstructor
+﻿namespace Selp.Repository.ExpressionConstructor
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq.Expressions;
+
 	internal class FakeRemovingExpressionContainer<TEntity>
 	{
 		private readonly Dictionary<string, Action<TEntity>> fakeDeleteCompiled = new Dictionary<string, Action<TEntity>>();
@@ -21,7 +21,7 @@ namespace Selp.Repository.ExpressionConstructor
 			{
 				if (!isRemovedExpressions.ContainsKey(fakeRemovingPropertyName))
 				{
-					var entityParamenter = Expression.Parameter(typeof (TEntity));
+					ParameterExpression entityParamenter = Expression.Parameter(typeof(TEntity));
 					isRemovedExpressions[fakeRemovingPropertyName] =
 						Expression.Lambda<Func<TEntity, bool>>(
 							Expression.Not(Expression.Property(entityParamenter, fakeRemovingPropertyName)), entityParamenter);
@@ -50,8 +50,11 @@ namespace Selp.Repository.ExpressionConstructor
 			{
 				if (!fakeDeleteCompiled.ContainsKey(fakeRemovingPropertyName))
 				{
-					var entityParamenter = Expression.Parameter(typeof(TEntity));
-					Expression<Action<TEntity>> lambda = Expression.Lambda<Action<TEntity>>(Expression.Assign(Expression.Property(entityParamenter, fakeRemovingPropertyName), Expression.Constant(true)), entityParamenter);
+					ParameterExpression entityParamenter = Expression.Parameter(typeof(TEntity));
+					Expression<Action<TEntity>> lambda =
+						Expression.Lambda<Action<TEntity>>(
+							Expression.Assign(Expression.Property(entityParamenter, fakeRemovingPropertyName), Expression.Constant(true)),
+							entityParamenter);
 					fakeDeleteCompiled[fakeRemovingPropertyName] = lambda.Compile();
 				}
 			}

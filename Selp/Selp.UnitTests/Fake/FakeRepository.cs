@@ -9,22 +9,22 @@
 	public class FakeRepository : SelpRepository<FakeEntity, FakeEntity, int>
 	{
 		public FakeRepository(bool isRemovingFake, DbContext dbContext,
-			IDbSet<FakeEntity> dbSet, ISelpConfiguration configuration)
+			IDbSet<FakeEntity> dbSet, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{
 			IsRemovingFake = isRemovingFake;
-			DbContext = dbContext;
 			DbSet = dbSet;
-			Configuration = configuration;
 		}
 
 		public override bool IsRemovingFake { get; }
 		public override string FakeRemovingPropertyName => "IsDeleted";
-		public override DbContext DbContext { get; }
 		public override IDbSet<FakeEntity> DbSet { get; }
-		public override ISelpConfiguration Configuration { get; }
 
 		public bool IsBeforeEventExecuted { get; set; }
 		public bool IsAfterEventExecuted { get; set; }
+
+		protected override void MarkAsModified(FakeEntity entity)
+		{
+		}
 
 		protected override FakeEntity MapEntityToModel(FakeEntity entity)
 		{

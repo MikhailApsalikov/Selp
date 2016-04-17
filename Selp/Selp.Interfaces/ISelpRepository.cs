@@ -2,11 +2,11 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
 	using System.Linq.Expressions;
 	using Entities;
 
-	public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>
+	public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntity<TKey>
+		where TEntity : ISelpEntity<TKey>
 	{
 		IEnumerable<TModel> GetAll();
 		TModel GetById(TKey id);

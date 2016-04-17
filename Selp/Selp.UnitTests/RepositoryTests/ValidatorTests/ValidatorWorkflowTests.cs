@@ -99,7 +99,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (WorkflowException))]
+		[ExpectedException(typeof(WorkflowException))]
 		public void DoubleValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
@@ -108,7 +108,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (WorkflowException))]
+		[ExpectedException(typeof(WorkflowException))]
 		public void AddingNestedAfterValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
@@ -117,7 +117,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (WorkflowException))]
+		[ExpectedException(typeof(WorkflowException))]
 		public void GettingErrorsBeforeValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();
@@ -125,7 +125,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (WorkflowException))]
+		[ExpectedException(typeof(WorkflowException))]
 		public void CheckingIsValidBeforeValidationShouldRaiseAnException()
 		{
 			var mock = new Mock<SelpValidator>();

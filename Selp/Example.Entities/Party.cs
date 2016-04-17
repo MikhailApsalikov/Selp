@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Selp.Interfaces;
-
-namespace Example.Entities
+﻿namespace Example.Entities
 {
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
+	using Selp.Interfaces;
+
 	public class Party : ISelpEntity<int>
 	{
 		[MaxLength(50)]

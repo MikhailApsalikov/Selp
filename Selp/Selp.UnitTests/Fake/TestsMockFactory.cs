@@ -25,7 +25,7 @@
 			dbSetMock.Setup(m => m.Add(It.IsAny<T>())).Returns<T>(e =>
 			{
 				e.Id = Random.Next(500, 50000000);
-				var list = queryable.ToList();
+				List<T> list = queryable.ToList();
 				list.Add(e);
 				queryable = list.AsQueryable();
 				return e;
@@ -33,7 +33,7 @@
 
 			dbSetMock.Setup(m => m.Remove(It.IsAny<T>())).Returns<T>(e =>
 			{
-				var list = queryable.ToList();
+				List<T> list = queryable.ToList();
 				list.Remove(e);
 				queryable = list.AsQueryable();
 				return e;

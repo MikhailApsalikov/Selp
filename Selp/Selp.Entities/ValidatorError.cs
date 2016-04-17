@@ -4,12 +4,6 @@
 
 	public class ValidatorError
 	{
-		public string FieldName { get; }
-
-		public string Text { get; }
-
-		public List<string> ParentEntities { get; private set; }
-
 		public ValidatorError(string text)
 		{
 			ParentEntities = new List<string>();
@@ -20,5 +14,11 @@
 		{
 			FieldName = fieldName;
 		}
+
+		public string FieldName { get; }
+
+		public string Text { get; }
+
+		public List<string> ParentEntities { get; private set; }
 	}
 }

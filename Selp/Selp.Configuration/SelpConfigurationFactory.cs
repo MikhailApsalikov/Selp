@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Selp.Configuration
+﻿namespace Selp.Configuration
 {
+	using System;
+
 	public static class SelpConfigurationFactory
 	{
 		public static ISelpConfiguration GetConfiguration(ConfigurationTypes configuration)

@@ -29,14 +29,14 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
 		public void GetByIdShouldThrowAnExceptionWhenKeyIsNull()
 		{
 			FakeEntityReferenceKey entity = repositoryReferenceKey.GetById(null);
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
 		public void UpdateShouldThrowAnExceptionWhenKeyIsNull()
 		{
 			RepositoryModifyResult<FakeEntityReferenceKey> result = repositoryReferenceKey.Update(null,
@@ -47,7 +47,7 @@
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof (ArgumentException), "Method didn't raise an exception when key is null")]
+		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when key is null")]
 		public void RemoveShouldThrowAnExceptionWhenKeyIsNull()
 		{
 			repositoryReferenceKey.Remove(null);

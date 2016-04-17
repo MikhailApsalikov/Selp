@@ -23,20 +23,17 @@
 				testData.Add(new FakeEntity
 				{
 					Id = i,
-					Name = "Entity " + i.ToString(),
+					Name = "Entity " + i,
 					Description = null,
 					IsDeleted = i > 100
 				});
 			}
 
 			IDbSet<FakeEntity> dbSetMock = TestsMockFactory.CreateDbSet(testData);
-
-
 			var dbContextMock = new Mock<FakeDbContext>();
 			dbContextMock
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSetMock);
-
 			repository = new FakeRepository(false, dbContextMock.Object, dbSetMock,
 				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
 		}

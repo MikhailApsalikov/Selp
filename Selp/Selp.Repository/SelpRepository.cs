@@ -1,19 +1,15 @@
-﻿using System.Diagnostics.PerformanceData;
-using Selp.Repository.ExpressionConstructor;
-
-namespace Selp.Repository
+﻿namespace Selp.Repository
 {
 	using System;
 	using System.Collections.Generic;
-	using System.ComponentModel;
 	using System.Data.Entity;
-	using System.Data.Entity.Core.EntityClient;
 	using System.Linq;
 	using System.Linq.Expressions;
 	using Common;
 	using Common.Exceptions;
 	using Configuration;
 	using Entities;
+	using ExpressionConstructor;
 	using Interfaces;
 	using Pagination;
 	using Validator;
@@ -21,21 +17,29 @@ namespace Selp.Repository
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
 		where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
 	{
-		private FakeRemovingExpressionContainer<TEntity> fakeRemoving = FakeRemovingExpressionContainer<TEntity>.Instance;
+		private readonly ISelpConfiguration configuration;
+
+		private readonly FakeRemovingExpressionContainer<TEntity> fakeRemoving =
+			FakeRemovingExpressionContainer<TEntity>.Instance;
+
+		protected SelpRepository(DbContext dbContext, ISelpConfiguration configuration)
+		{
+			DbContext = dbContext;
+			this.configuration = configuration;
+		}
+
+		protected DbContext DbContext { get; }
 
 		public abstract bool IsRemovingFake { get; }
 
 		public abstract string FakeRemovingPropertyName { get; }
 
-		public abstract DbContext DbContext { get; }
-
 		public abstract IDbSet<TEntity> DbSet { get; }
-
-		public abstract ISelpConfiguration Configuration { get; }
 
 		public SelpValidator CreateValidator { get; set; }
 
 		public SelpValidator UpdateValidator { get; set; }
+
 
 		public virtual IEnumerable<TModel> GetAll()
 		{
@@ -60,7 +64,7 @@ namespace Selp.Repository
 			filter.ThrowIfNull("Filter cannot be null");
 			return ApplyFilters(FilterDeleted(DbSet), filter)
 				.ApplySorting(filter)
-				.ApplyPagination(filter, Configuration.DefaultPageSize)
+				.ApplyPagination(filter, configuration.DefaultPageSize)
 				.Select(entity => MapEntityToModel(entity));
 		}
 
@@ -81,7 +85,7 @@ namespace Selp.Repository
 			TEntity result = DbSet.Add(entity);
 			DbContext.SaveChanges();
 			OnCreated(entity);
-			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));	
+			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
 		}
 
 		public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
@@ -100,7 +104,8 @@ namespace Selp.Repository
 				}
 			}
 
-			DbContext.Entry(entity).State = EntityState.Modified;
+
+			MarkAsModified(entity);
 			DbContext.SaveChanges();
 			OnUpdated(id, entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(entity));
@@ -114,7 +119,7 @@ namespace Selp.Repository
 			if (IsRemovingFake)
 			{
 				fakeRemoving.GetFakeDeleteCompiledFunction(FakeRemovingPropertyName)(entity);
-				DbContext.Entry(entity).State = EntityState.Modified;
+				MarkAsModified(entity);
 			}
 			else
 			{
@@ -122,6 +127,11 @@ namespace Selp.Repository
 			}
 			DbContext.SaveChanges();
 			OnRemoved(id);
+		}
+
+		protected virtual void MarkAsModified(TEntity entity)
+		{
+			DbContext.Entry(entity).State = EntityState.Modified;
 		}
 
 		private TEntity FindById(TKey id)
@@ -150,7 +160,7 @@ namespace Selp.Repository
 			{
 				return entities;
 			}
-			
+
 			return entities.Where(fakeRemoving.GetIsRemovedExpression(FakeRemovingPropertyName));
 		}
 
@@ -160,7 +170,7 @@ namespace Selp.Repository
 			{
 				return;
 			}
-			
+
 			if (!fakeRemoving.GetIsRemovedCompiledFunction(FakeRemovingPropertyName)(entity))
 			{
 				throw new EntityIsRemovedException();
