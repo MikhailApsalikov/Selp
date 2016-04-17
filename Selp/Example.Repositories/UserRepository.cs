@@ -4,8 +4,8 @@
 	using System.Linq;
 	using Entities;
 	using Models;
-	using Selp.Configuration;
-	using Selp.Entities;
+	using Selp.Common.Entities;
+	using Selp.Interfaces;
 	using Selp.Repository;
 
 	public class UserRepository : SelpRepository<UserModel, User, string>

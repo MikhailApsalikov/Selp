@@ -1,6 +1,6 @@
 ﻿namespace Selp.UnitTests.ControllerTests
 {
-	using Entities;
+	using Common.Entities;
 	using Fake;
 	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;

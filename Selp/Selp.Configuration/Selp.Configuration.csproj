@@ -35,22 +35,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISelpConfiguration.cs" />
     <Compile Include="InMemoryConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
-      <Project>{c4b3a709-2c26-4a6a-b348-928a08d98d81}</Project>
-      <Name>Selp.Entities</Name>
+    <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
+      <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
+      <Name>Selp.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

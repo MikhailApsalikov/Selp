@@ -1,7 +1,7 @@
 ﻿namespace Selp.Interfaces
 {
 	using System.Web.Http;
-	using Entities;
+	using Common.Entities;
 
 	// Зоны ответственности: ошибки, маппинг сущностей
 	public interface ISelpController<in TModel, in TKey> where TModel : ISelpEntity<TKey>

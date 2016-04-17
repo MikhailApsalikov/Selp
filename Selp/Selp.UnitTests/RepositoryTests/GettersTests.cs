@@ -5,10 +5,11 @@
 	using System.ComponentModel;
 	using System.Data.Entity;
 	using System.Linq;
+	using Common.Entities;
 	using Common.Exceptions;
 	using Configuration;
-	using Entities;
 	using Fake;
+	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
 

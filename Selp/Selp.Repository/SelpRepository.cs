@@ -6,9 +6,8 @@
 	using System.Linq;
 	using System.Linq.Expressions;
 	using Common;
+	using Common.Entities;
 	using Common.Exceptions;
-	using Configuration;
-	using Entities;
 	using ExpressionConstructor;
 	using Interfaces;
 	using Pagination;

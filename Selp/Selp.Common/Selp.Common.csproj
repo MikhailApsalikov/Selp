@@ -35,15 +35,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgumentGuard.cs" />
+    <Compile Include="Entities\BaseFilter.cs" />
+    <Compile Include="Entities\RepositoryModifyResult.cs" />
+    <Compile Include="Entities\ValidatorError.cs" />
     <Compile Include="Exceptions\EntityIsRemovedException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\WorkflowException.cs" />

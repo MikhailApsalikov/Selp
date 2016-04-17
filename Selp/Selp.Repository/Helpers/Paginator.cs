@@ -4,7 +4,7 @@
 	using System.ComponentModel;
 	using System.Linq;
 	using System.Linq.Expressions;
-	using Entities;
+	using Common.Entities;
 
 	internal static class Pagination
 	{

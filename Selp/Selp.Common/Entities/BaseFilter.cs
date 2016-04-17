@@ -1,4 +1,4 @@
-﻿namespace Selp.Entities
+﻿namespace Selp.Common.Entities
 {
 	using System.ComponentModel;
 

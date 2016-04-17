@@ -3,7 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq.Expressions;
-	using Entities;
+	using Common.Entities;
 
 	public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntity<TKey>
 		where TEntity : ISelpEntity<TKey>

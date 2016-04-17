@@ -3,10 +3,10 @@
 	using System;
 	using System.Net;
 	using System.Web.Http;
+	using Common.Entities;
 	using Common.Exceptions;
 	using Entities;
 	using Interfaces;
-	using Selp.Entities;
 
 	public abstract class SelpController<TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TKey>
 		where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>

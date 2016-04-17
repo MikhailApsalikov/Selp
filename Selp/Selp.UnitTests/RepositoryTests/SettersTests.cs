@@ -4,9 +4,9 @@
 	using System.Collections.Generic;
 	using System.Data.Entity;
 	using System.Linq;
+	using Common.Entities;
 	using Common.Exceptions;
 	using Configuration;
-	using Entities;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;

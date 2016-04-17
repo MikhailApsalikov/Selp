@@ -39,14 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleDbContext.cs" />
@@ -67,13 +60,13 @@
       <Project>{01D442E9-2363-4462-AB59-D6B5C09FDAFC}</Project>
       <Name>Example.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
+      <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
+      <Name>Selp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
       <Project>{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}</Project>
       <Name>Selp.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
-      <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
-      <Name>Selp.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
       <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>

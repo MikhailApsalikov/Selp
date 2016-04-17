@@ -1,4 +1,4 @@
-﻿namespace Selp.Configuration
+﻿namespace Selp.Interfaces
 {
 	public interface ISelpConfiguration
 	{

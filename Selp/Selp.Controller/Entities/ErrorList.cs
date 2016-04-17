@@ -3,7 +3,7 @@
 namespace Selp.Controller.Entities
 {
 	using System.Collections.Generic;
-	using Selp.Entities;
+	using Common.Entities;
 
 	internal class ErrorList
 	{

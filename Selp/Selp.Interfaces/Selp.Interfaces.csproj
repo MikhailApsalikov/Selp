@@ -51,14 +51,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISelpConfiguration.cs" />
     <Compile Include="ISelpController.cs" />
     <Compile Include="ISelpEntity.cs" />
     <Compile Include="ISelpRepository.cs" />
@@ -69,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Selp.Entities\Selp.Entities.csproj">
-      <Project>{C4B3A709-2C26-4A6A-B348-928A08D98D81}</Project>
-      <Name>Selp.Entities</Name>
+    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
+      <Project>{15fb9881-2db0-4477-aa6b-c4cb18a12a01}</Project>
+      <Name>Selp.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

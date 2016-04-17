@@ -1,8 +1,8 @@
 ﻿namespace Selp.UnitTests.RepositoryTests.ValidatorTests
 {
 	using System.Collections.Generic;
+	using Common.Entities;
 	using Common.Exceptions;
-	using Entities;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
 	using Repository.Validator;

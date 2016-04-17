@@ -1,6 +1,7 @@
 ﻿namespace Selp.UnitTests.ConfigurationTests
 {
 	using Configuration;
+	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 	[TestClass]

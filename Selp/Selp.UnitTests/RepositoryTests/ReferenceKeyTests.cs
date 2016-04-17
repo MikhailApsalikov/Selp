@@ -2,8 +2,8 @@
 {
 	using System;
 	using System.Data.Entity;
+	using Common.Entities;
 	using Configuration;
-	using Entities;
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;

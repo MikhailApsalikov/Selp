@@ -2,8 +2,9 @@
 {
 	using System.Data.Entity;
 	using System.Linq;
+	using Common.Entities;
 	using Configuration;
-	using Entities;
+	using Interfaces;
 	using Repository;
 
 	public class FakeRepository : SelpRepository<FakeEntity, FakeEntity, int>
