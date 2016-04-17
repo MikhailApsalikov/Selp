@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Selp.Interfaces;
 
 namespace Example.Entities
 {
-	class Region
+	public class Region : ISelpEntity<int>
 	{
+		[Required]
+		[MaxLength(50)]
+		public string Name { get; set; }
+
+		public int Id { get; set; }
 	}
 }
