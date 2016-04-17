@@ -164,7 +164,7 @@
 		[TestMethod]
 		public void GetByFilterShouldUseDefaultIfPageSizeIfItIsIncorrect()
 		{
-			ISelpConfiguration configuration = SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory);
+			ISelpConfiguration configuration = new InMemoryConfiguration();
 			configuration.DefaultPageSize = 11;
 			InitRepositoryParams(true, configuration);
 			var filter = new BaseFilter
@@ -240,7 +240,7 @@
 				.Returns(dbSet);
 
 			repository = new FakeRepository(isRemovingFake, dbContextMock.Object, dbSet,
-				configuration ?? SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
+				configuration ?? new InMemoryConfiguration());
 		}
 	}
 }

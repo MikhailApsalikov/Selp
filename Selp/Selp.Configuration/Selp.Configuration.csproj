@@ -43,10 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationTypes.cs" />
     <Compile Include="ISelpConfiguration.cs" />
     <Compile Include="InMemoryConfiguration.cs" />
-    <Compile Include="SelpConfigurationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

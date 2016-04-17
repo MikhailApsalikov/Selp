@@ -1,6 +1,7 @@
 ﻿namespace Example.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 	using Selp.Interfaces;
 
 	public class User : ISelpEntity<string>
@@ -9,10 +10,6 @@
 		[MinLength(3)]
 		[MaxLength(50)]
 		public string Password { get; set; }
-
-		public int? PartyId { get; set; }
-
-		public virtual Party Party { get; set; }
 
 		public bool IsInactive { get; set; }
 

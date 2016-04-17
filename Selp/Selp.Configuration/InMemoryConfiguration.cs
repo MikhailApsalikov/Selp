@@ -1,23 +1,12 @@
 ﻿namespace Selp.Configuration
 {
-	internal sealed class InMemoryConfiguration : ISelpConfiguration
+	public sealed class InMemoryConfiguration : ISelpConfiguration
 	{
-		public int DefaultPageSize { get; set; }
-
-		#region Singleton
-
-		public static InMemoryConfiguration Instance { get; }
-
-		static InMemoryConfiguration()
-		{
-			Instance = new InMemoryConfiguration();
-		}
-
-		private InMemoryConfiguration()
+		public InMemoryConfiguration()
 		{
 			DefaultPageSize = 25;
 		}
 
-		#endregion
+		public int DefaultPageSize { get; set; }
 	}
 }

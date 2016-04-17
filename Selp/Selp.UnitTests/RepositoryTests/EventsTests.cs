@@ -39,7 +39,7 @@
 				.Returns(dbSetMock);
 
 			repository = new FakeRepository(true, dbContextMock.Object, dbSetMock,
-				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
+				new InMemoryConfiguration());
 		}
 
 		[TestMethod]

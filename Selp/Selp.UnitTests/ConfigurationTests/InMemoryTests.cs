@@ -11,7 +11,7 @@
 		[TestInitialize]
 		public void MyTestInitialize()
 		{
-			configuration = SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory);
+			configuration = new InMemoryConfiguration();
 		}
 
 		[TestMethod]

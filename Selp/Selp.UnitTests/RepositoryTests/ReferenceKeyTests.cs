@@ -25,7 +25,7 @@
 				.Returns(dbSetMock.Object);
 
 			repositoryReferenceKey = new FakeRepositoryReferenceKey(dbContextMock.Object, dbSetMock.Object,
-				SelpConfigurationFactory.GetConfiguration(ConfigurationTypes.InMemory));
+				new InMemoryConfiguration());
 		}
 
 		[TestMethod]

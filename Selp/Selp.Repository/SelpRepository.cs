@@ -43,7 +43,7 @@
 
 		public virtual IEnumerable<TModel> GetAll()
 		{
-			return FilterDeleted(DbSet).Select(entity => MapEntityToModel(entity));
+			return FilterDeleted(DbSet).AsEnumerable().Select(MapEntityToModel);
 		}
 
 		public virtual TModel GetById(TKey id)
@@ -56,7 +56,7 @@
 		public virtual IEnumerable<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
 		{
 			customExpression.ThrowIfNull("Custom expression cannot be null");
-			return FilterDeleted(DbSet).Where(customExpression).Select(entity => MapEntityToModel(entity));
+			return FilterDeleted(DbSet).Where(customExpression).AsEnumerable().Select(MapEntityToModel);
 		}
 
 		public virtual IEnumerable<TModel> GetByFilter(BaseFilter filter)
@@ -65,7 +65,8 @@
 			return ApplyFilters(FilterDeleted(DbSet), filter)
 				.ApplySorting(filter)
 				.ApplyPagination(filter, configuration.DefaultPageSize)
-				.Select(entity => MapEntityToModel(entity));
+				.AsEnumerable()
+				.Select(MapEntityToModel);
 		}
 
 		public virtual RepositoryModifyResult<TModel> Create(TModel model)
