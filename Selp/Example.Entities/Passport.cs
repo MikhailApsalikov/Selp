@@ -4,7 +4,7 @@
 	using System.ComponentModel.DataAnnotations;
 	using Selp.Interfaces;
 
-	public class Document : ISelpEntity<int>
+	public class Passport : ISelpEntity<int>
 	{
 		[Required]
 		[MaxLength(50)]

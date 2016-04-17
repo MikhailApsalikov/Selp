@@ -5,13 +5,13 @@
 
 	public class ExampleDbContext : DbContext
 	{
-		public IDbSet<User> Users { get; set; }
-		public IDbSet<Policy> Policies { get; set; }
+		public DbSet<User> Users { get; set; }
+		public DbSet<Policy> Policies { get; set; }
 
-		public IDbSet<Party> Parties { get; set; }
+		public DbSet<Party> Parties { get; set; }
 
-		public IDbSet<Document> Documents { get; set; }
-		public IDbSet<Region> Regions { get; set; }
-		public IDbSet<Attachment> Attachments { get; set; }
+		public DbSet<Passport> Documents { get; set; }
+		public DbSet<Region> Regions { get; set; }
+		public DbSet<Attachment> Attachments { get; set; }
 	}
 }
