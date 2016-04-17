@@ -31,9 +31,9 @@
 			return entity;
 		}
 
-		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey entity)
+		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey model)
 		{
-			return entity;
+			return model;
 		}
 
 		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey source,

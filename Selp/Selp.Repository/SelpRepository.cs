@@ -138,7 +138,7 @@ namespace Selp.Repository
 
 		protected abstract TModel MapEntityToModel(TEntity entity);
 
-		protected abstract TEntity MapModelToEntity(TModel entity);
+		protected abstract TEntity MapModelToEntity(TModel model);
 
 		protected abstract TEntity MapModelToEntity(TModel source, TEntity destination);
 

@@ -31,9 +31,9 @@
 			return entity;
 		}
 
-		protected override FakeEntity MapModelToEntity(FakeEntity entity)
+		protected override FakeEntity MapModelToEntity(FakeEntity model)
 		{
-			return entity;
+			return model;
 		}
 
 		protected override FakeEntity MapModelToEntity(FakeEntity source, FakeEntity destination)

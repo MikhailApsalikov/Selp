@@ -1,0 +1,58 @@
+﻿using System.Data.Entity;
+using System.Linq;
+using Example.Entities;
+using Example.Models;
+using Selp.Configuration;
+using Selp.Entities;
+using Selp.Repository;
+
+namespace Example.Repositories
+{
+	public class UserRepository : SelpRepository<UserModel, User, string>
+	{
+		public UserRepository(ExampleDbContext dbContext, ISelpConfiguration configuration)
+		{
+			DbContext = dbContext;
+			Configuration = configuration;
+		}
+
+		public override bool IsRemovingFake => true;
+		public override string FakeRemovingPropertyName => "IsInactive";
+		public override DbContext DbContext { get; }
+		public override IDbSet<User> DbSet => ((ExampleDbContext) DbContext).Users;
+		public override ISelpConfiguration Configuration { get; }
+
+		protected override UserModel MapEntityToModel(User entity)
+		{
+			return new UserModel
+			{
+				Id = entity.Id,
+				Password = entity.Password
+			};
+		}
+
+		protected override User MapModelToEntity(UserModel model)
+		{
+			return new User
+			{
+				Id = model.Id,
+				Password = model.Password
+			};
+		}
+
+		protected override User MapModelToEntity(UserModel source, User destination)
+		{
+			destination.Password = source.Password;
+			return destination;
+		}
+
+		protected override IQueryable<User> ApplyFilters(IQueryable<User> entities, BaseFilter filter)
+		{
+			if (string.IsNullOrWhiteSpace(filter.Search))
+			{
+				return entities;
+			}
+			return entities.Where(e => e.Id.Contains(filter.Search));
+		}
+	}
+}
