@@ -18,39 +18,11 @@
 		private FakeRepository repository;
 
 		[TestMethod]
-		public void CreateShouldntFailWhenDbContextThrowsExcetion()
-		{
-			InitRepositoryParams(false);
-			RepositoryModifyResult<FakeEntity> result = repository.Create(new FakeEntity
-			{
-				Name =
-					"New entity with invalid too long as motherfucker's name. It is more than 50 symbols. Here you are.....................",
-				Description = "Description"
-			});
-			Assert.IsNull(result.ModifiedEntity, "Should not pass the entity back");
-			Assert.AreEqual(1, result.Errors.Count(), "Should contain an error");
-		}
-
-		[TestMethod]
 		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when entity is null")]
 		public void CreateShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
 			RepositoryModifyResult<FakeEntity> result = repository.Create(null);
-		}
-
-		[TestMethod]
-		public void UpdateShouldntFailWhenDbContextThrowsExcetion()
-		{
-			InitRepositoryParams(false);
-			RepositoryModifyResult<FakeEntity> result = repository.Update(10, new FakeEntity
-			{
-				Name =
-					"Existing entity with invalid too long as motherfucker's name. It is more than 50 symbols. Here you are.....................",
-				Description = "Description"
-			});
-			Assert.IsNull(result.ModifiedEntity, "Should not pass the entity back");
-			Assert.AreEqual(1, result.Errors.Count(), "Should contain an error");
 		}
 
 		[TestMethod]

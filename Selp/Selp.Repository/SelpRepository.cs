@@ -3,12 +3,14 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Data.Entity;
+	using System.Data.Entity.Validation;
 	using System.Linq;
 	using System.Linq.Expressions;
 	using Common;
 	using Common.Entities;
 	using Common.Exceptions;
 	using ExpressionConstructor;
+	using Helpers;
 	using Interfaces;
 	using Pagination;
 	using Validator;
@@ -83,7 +85,16 @@
 			}
 
 			TEntity result = DbSet.Add(entity);
-			DbContext.SaveChanges();
+			try
+			{
+				DbContext.SaveChanges();
+			}
+			catch (DbEntityValidationException ex)
+			{
+				return new RepositoryModifyResult<TModel>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
+			}
+
+
 			OnCreated(entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
 		}
@@ -106,7 +117,14 @@
 
 
 			MarkAsModified(entity);
-			DbContext.SaveChanges();
+			try
+			{
+				DbContext.SaveChanges();
+			}
+			catch (DbEntityValidationException ex)
+			{
+				return new RepositoryModifyResult<TModel>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
+			}
 			OnUpdated(id, entity);
 			return new RepositoryModifyResult<TModel>(MapEntityToModel(entity));
 		}

@@ -43,9 +43,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionConstructor\FakeRemovingExpressionContainer.cs" />
+    <Compile Include="Helpers\EntityFrameworkValidationConverter.cs" />
     <Compile Include="Helpers\Paginator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelpRepository.cs" />

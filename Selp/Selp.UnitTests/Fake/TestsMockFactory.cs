@@ -33,6 +33,11 @@
 
 			dbSetMock.Setup(m => m.Remove(It.IsAny<T>())).Returns<T>(e =>
 			{
+				if (e.Id == 43)
+				{
+					throw new Exception();
+				}
+
 				List<T> list = queryable.ToList();
 				list.Remove(e);
 				queryable = list.AsQueryable();

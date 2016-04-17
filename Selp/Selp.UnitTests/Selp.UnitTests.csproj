@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
@@ -90,6 +91,7 @@
     <Compile Include="Fake\TestsMockFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
+    <Compile Include="RepositoryTests\DbContextNativeExceptionTests.cs" />
     <Compile Include="RepositoryTests\EventsTests.cs" />
     <Compile Include="RepositoryTests\ReferenceKeyTests.cs" />
     <Compile Include="RepositoryTests\SettersTests.cs" />

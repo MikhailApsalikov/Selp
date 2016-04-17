@@ -1,22 +1,31 @@
 ﻿namespace Example.Polygon
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Data.Entity;
+	using System.Globalization;
 	using System.Linq;
+	using System.Threading;
 	using Models;
 	using Repositories;
+	using Selp.Common.Entities;
 	using Selp.Configuration;
 
 	internal class Program
 	{
 		private static void Main(string[] args)
 		{
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
 			Database.SetInitializer(new TestDataInitializer());
-			ExampleDbContext dbContext = new ExampleDbContext();
+			var dbContext = new ExampleDbContext();
 			var repo = new UserRepository(dbContext, new InMemoryConfiguration());
-			List<UserModel> users = repo.GetAll().ToList();
-				
+			RepositoryModifyResult<UserModel> result = repo.Create(new UserModel
+			{
+				Id = "Pr",
+				Password = "Me"
+			});
+			var errors = result.Errors.ToList();
+
 			Console.WriteLine();
 		}
 	}

@@ -8,6 +8,7 @@
 	using Fake;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
+	using ValidatorTests.ValidatorsMocks;
 
 	//создать
 	[TestClass]
@@ -38,7 +39,7 @@
 				.Setup(x => x.FakeEntities)
 				.Returns(dbSetMock);
 
-			repository = new FakeRepository(true, dbContextMock.Object, dbSetMock,
+			repository = new FakeRepository(false, dbContextMock.Object, dbSetMock,
 				new InMemoryConfiguration());
 		}
 
@@ -77,10 +78,10 @@
 		[TestMethod]
 		public void CreateShouldExecuteOnlyBeforeEventWhenFail()
 		{
+			repository.CreateValidator = new FailedValidator();
 			RepositoryModifyResult<FakeEntity> result = repository.Create(new FakeEntity
 			{
-				Name =
-					"New entity dasd sa das d asd sa da sd sad sad asd as das da sd asd asd as das d asd as das das sd as asd sa das das ",
+				Name = "New entity",
 				Description = "Description"
 			});
 			Assert.IsTrue(repository.IsBeforeEventExecuted, "Before event isn't fired");
@@ -90,10 +91,10 @@
 		[TestMethod]
 		public void UpdateShouldExecuteOnlyBeforeEventWhenFail()
 		{
+			repository.UpdateValidator = new FailedValidator();
 			RepositoryModifyResult<FakeEntity> result = repository.Update(10, new FakeEntity
 			{
-				Name =
-					"New entity dasd sa das d asd sa da sd sad sad asd as das da sd asd asd as das d asd as das das sd as asd sa das das ",
+				Name = "New entity",
 				Description = "Description"
 			});
 			Assert.IsTrue(repository.IsBeforeEventExecuted, "Before event isn't fired");
@@ -105,7 +106,7 @@
 		{
 			try
 			{
-				repository.Remove(1000);
+				repository.Remove(43); // special ID for fail mock
 			}
 			catch
 			{
