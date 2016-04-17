@@ -22,8 +22,7 @@
 		{
 			return new UserModel
 			{
-				Id = entity.Id,
-				Password = entity.Password
+				Id = entity.Id
 			};
 		}
 

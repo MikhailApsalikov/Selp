@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -135,10 +136,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
+      <Project>{755AA3CF-2314-4312-B9DC-6E05B7A8EEC7}</Project>
+      <Name>Example.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Example.Models\Example.Models.csproj">
+      <Project>{01D442E9-2363-4462-AB59-D6B5C09FDAFC}</Project>
+      <Name>Example.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
       <Project>{a8e3f885-1d37-4ba4-9b30-d7d539eaf56c}</Project>
       <Name>Selp.Configuration</Name>
