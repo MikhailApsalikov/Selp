@@ -16,7 +16,7 @@
     <RootNamespace>Example.Web</RootNamespace>
     <AssemblyName>Example.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -109,10 +109,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularApp\app.js" />
+    <Content Include="AngularApp\Controllers\ctaController.js" />
+    <Content Include="AngularApp\Controllers\policyListController.js" />
     <Content Include="Content\angular-material\angular-material.css" />
     <Content Include="Content\angular-material\angular-material.min.css" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Pages\CallToAction\template.html" />
+    <Content Include="Pages\PolicyList\template.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\angular-animate.js" />
@@ -128,6 +132,8 @@
     <Content Include="scripts\angular-animate.min.js.map" />
     <Content Include="scripts\angular-aria.min.js.map" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="scripts\AngularUI\ui-router.js" />
+    <Content Include="scripts\AngularUI\ui-router.min.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="Web.config" />
@@ -155,7 +161,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AngularApp\Controllers\" />
     <Folder Include="AngularApp\Directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
@@ -201,16 +206,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>19766</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:19766/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
