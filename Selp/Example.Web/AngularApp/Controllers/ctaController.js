@@ -11,6 +11,10 @@
 
 		activate();
 
-		function activate() { }
+		function activate() {
+			$(document).ready(function () {
+				$('.parallax').parallax();
+			});
+		}
 	}
 })();
