@@ -1,6 +1,6 @@
 ﻿(function () {
 	'use strict';
-	angular.module("APP", ["ui.router"]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+	angular.module("APP", ["ui.router", "ngMaterial"]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider
 			.when('', '/callToAction')
 			.otherwise('/policyList');
