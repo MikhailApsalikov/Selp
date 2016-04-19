@@ -148,7 +148,7 @@
 		}
 
 		[TestMethod]
-		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecified()
+		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecifiedDescending()
 		{
 			InitRepositoryParams(true);
 			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
@@ -160,6 +160,21 @@
 			});
 			Assert.IsNotNull(list, "Result is null");
 			Assert.AreEqual(60, list.ToList()[0].Id, "First item id is wrong");
+		}
+
+		[TestMethod]
+		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecified()
+		{
+			InitRepositoryParams(true);
+			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+			{
+				PageSize = 20,
+				Page = 3,
+				SortDirection = ListSortDirection.Ascending,
+				SortField = "Id"
+			});
+			Assert.IsNotNull(list, "Result is null");
+			Assert.AreEqual(41, list.ToList()[0].Id, "First item id is wrong");
 		}
 
 		[TestMethod]
