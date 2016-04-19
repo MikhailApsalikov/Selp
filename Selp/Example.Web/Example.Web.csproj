@@ -120,6 +120,8 @@
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="images\11149a-insurance-top-hd-wallpaper.jpg" />
+    <Content Include="images\slide-commercial-insurance.jpg" />
     <Content Include="index.html" />
     <Content Include="Pages\CallToAction\call-to-action.css" />
     <Content Include="Pages\CallToAction\call-to-action.js" />
