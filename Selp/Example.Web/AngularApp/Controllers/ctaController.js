@@ -3,13 +3,31 @@
 
 	angular
       .module('APP')
-      .controller('ctaController', ['$scope', ctaController]);
+      .controller('ctaController', ['$scope', '$mdDialog', ctaController]);
 
-	function ctaController($scope) {
+	function ctaController($scope, $mdDialog) {
 		var vm = this;
-		vm.title = '';
-
 		activate();
+
+		vm.login = function () {
+
+		};
+
+		vm.signup = function () {
+
+		};
+
+		$scope.learnMore = function (ev) {
+			$mdDialog.show(
+				$mdDialog.alert()
+				.parent(angular.element(document.querySelector('#popupContainer')))
+				.clickOutsideToClose(true)
+				.title('This is an alert title')
+				.textContent('You can specify some description text in here.')
+				.ariaLabel('Alert Dialog Demo')
+				.ok('Got it!')
+				.targetEvent(ev));
+		};
 
 		function activate() {
 			$(document).ready(function () {

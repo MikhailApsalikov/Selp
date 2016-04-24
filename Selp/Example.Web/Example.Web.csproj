@@ -113,8 +113,7 @@
     <Content Include="AngularApp\Controllers\policyListController.js" />
     <Content Include="AngularApp\Services\loginService.js" />
     <Content Include="AngularApp\Services\urlService.js" />
-    <Content Include="Content\angular-material\angular-material.css" />
-    <Content Include="Content\angular-material\angular-material.min.css" />
+    <Content Include="Content\angular-material.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
@@ -126,7 +125,6 @@
     <Content Include="images\slide-commercial-insurance.jpg" />
     <Content Include="index.html" />
     <Content Include="Pages\CallToAction\call-to-action.css" />
-    <Content Include="Pages\CallToAction\call-to-action.js" />
     <Content Include="Pages\CallToAction\template.html" />
     <Content Include="Pages\PolicyList\template.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -135,14 +133,6 @@
     <Content Include="scripts\angular-animate.min.js" />
     <Content Include="scripts\angular-aria.js" />
     <Content Include="scripts\angular-aria.min.js" />
-    <Content Include="scripts\angular-material.js" />
-    <Content Include="scripts\angular-material.min.js" />
-    <Content Include="scripts\angular-mocks.js" />
-    <Content Include="scripts\angular.js" />
-    <Content Include="scripts\angular.min.js" />
-    <Content Include="scripts\angular.min.js.map" />
-    <Content Include="scripts\angular-animate.min.js.map" />
-    <Content Include="scripts\angular-aria.min.js.map" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.woff2" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.woff" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.ttf" />
@@ -167,6 +157,13 @@
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.woff" />
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.eot" />
+    <Content Include="scripts\angular-material.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-aria.min.js.map" />
+    <Content Include="scripts\angular-animate.min.js.map" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\AngularUI\ui-router.js" />
     <Content Include="scripts\AngularUI\ui-router.min.js" />
