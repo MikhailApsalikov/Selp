@@ -1,6 +1,7 @@
 ﻿namespace Example.Web.Controllers
 {
 	using System;
+	using System.Linq;
 	using System.Web.Http;
 	using Entities;
 	using Models;
@@ -23,6 +24,19 @@
 		public override IHttpActionResult Delete(string id)
 		{
 			throw new NotSupportedException();
+		}
+
+		[Route("login")]
+		[HttpGet]
+		public IHttpActionResult Login(UserModel model)
+		{
+			var result = Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
+			if (result.Any())
+			{
+				return Ok(new {valid = true});
+			}
+
+			return NotFound();
 		}
 	}
 }

@@ -3,12 +3,12 @@
 
 	angular
       .module('APP')
-      .controller('loginController', ['$scope', loginController]);
+      .controller('loginController', ['$scope', 'loginService', loginController]);
 
-	function loginController($scope) {
-		var vm = this;
-
-		vm.title = '';
+	function loginController($scope, loginService) {
+		$scope.login = function() {
+			loginService.login($scope.user.id, $scope.user.password);
+		};
 
 		activate();
 

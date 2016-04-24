@@ -10,7 +10,7 @@
 
 		return {
 			login: function(login, password) {
-
+				console.log(login, password, "Залогинилися");
 			},
 			logout: function() {
 
