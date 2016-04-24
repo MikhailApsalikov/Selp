@@ -52,3 +52,8 @@
     font-weight: bold;
     color: limegreen;
 }
+
+.cta-login-modal {
+	margin: 24px;
+	width: 500px;
+}

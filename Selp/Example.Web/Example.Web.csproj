@@ -125,6 +125,9 @@
     <Content Include="images\slide-commercial-insurance.jpg" />
     <Content Include="index.html" />
     <Content Include="Pages\CallToAction\call-to-action.css" />
+    <Content Include="Pages\CallToAction\signupController.js" />
+    <Content Include="Pages\CallToAction\loginController.js" />
+    <Content Include="Pages\CallToAction\signupTemplate.html" />
     <Content Include="Pages\CallToAction\template.html" />
     <Content Include="Pages\PolicyList\template.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -164,6 +167,7 @@
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\angular-aria.min.js.map" />
     <Content Include="scripts\angular-animate.min.js.map" />
+    <Content Include="Pages\CallToAction\loginTemplate.html" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\AngularUI\ui-router.js" />
     <Content Include="scripts\AngularUI\ui-router.min.js" />

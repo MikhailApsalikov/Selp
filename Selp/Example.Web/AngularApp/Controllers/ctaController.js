@@ -9,12 +9,24 @@
 		var vm = this;
 		activate();
 
-		vm.login = function () {
-
+		$scope.login = function (ev) {
+			$mdDialog.show({
+				templateUrl: 'Pages/CallToAction/loginTemplate.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: false
+			});
 		};
 
-		vm.signup = function () {
-
+		$scope.signup = function (ev) {
+			$mdDialog.show({
+				templateUrl: 'Pages/CallToAction/signupTemplate.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: false
+			});
 		};
 
 		$scope.learnMore = function (ev) {
@@ -22,10 +34,10 @@
 				$mdDialog.alert()
 				.parent(angular.element(document.querySelector('#popupContainer')))
 				.clickOutsideToClose(true)
-				.title('This is an alert title')
-				.textContent('You can specify some description text in here.')
+				.title('Контакты')
+				.textContent('Вы можете найти нас по адресу г.Москва ул. Пушкина д.5 или позвонить по телефону +7 (123) 456-78-90')
 				.ariaLabel('Alert Dialog Demo')
-				.ok('Got it!')
+				.ok('ОК!')
 				.targetEvent(ev));
 		};
 
