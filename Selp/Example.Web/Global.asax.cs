@@ -4,6 +4,7 @@
 	using System.Web;
 	using System.Web.Http;
 	using Repositories;
+	using SampleApplication.App_Start;
 
 	public class WebApiApplication : HttpApplication
 	{
@@ -11,6 +12,7 @@
 		{
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 			Database.SetInitializer(new TestDataInitializer());
+			UnityConfig.Register(GlobalConfiguration.Configuration);
 		}
 	}
 }

@@ -8,6 +8,8 @@ namespace SampleApplication.App_Start
 {
 	using System;
 	using System.Web;
+	using System.Web.Http;
+	using System.Web.Http.Dependencies;
 	using Example.Entities;
 	using Example.Models;
 	using Example.Repositories;
@@ -68,5 +70,7 @@ namespace SampleApplication.App_Start
 				.To<UserRepository>()
 				.WithConstructorArgument("dbContext", dbContext);
 		}
+
+
 	}
 }

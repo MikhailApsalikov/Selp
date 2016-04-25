@@ -26,7 +26,7 @@
 			throw new NotSupportedException();
 		}
 
-		[Route("login")]
+		[Route("api/user/login")]
 		[HttpGet]
 		public IHttpActionResult Login(UserModel model)
 		{

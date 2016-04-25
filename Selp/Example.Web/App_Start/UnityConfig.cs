@@ -1,0 +1,88 @@
+﻿using SampleApplication.App_Start;
+using WebActivatorEx;
+
+namespace SampleApplication.App_Start
+{
+	using System;
+	using System.Collections.Generic;
+	using System.Web;
+	using System.Web.Http;
+	using System.Web.Http.Dependencies;
+	using Example.Entities;
+	using Example.Models;
+	using Example.Repositories;
+	using Microsoft.Practices.Unity;
+	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+	using Ninject;
+	using Ninject.Web.Common;
+	using Selp.Configuration;
+	using Selp.Interfaces;
+
+	/// <summary>
+	///     Bootstrapper for the application.
+	/// </summary>
+	public static class UnityConfig
+	{
+		public static void Register(HttpConfiguration config)
+		{
+			var dbContext = new ExampleDbContext();
+			var container = new UnityContainer();
+			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
+			container.RegisterType<ISelpRepository<UserModel, User, string>, UserRepository>(new InjectionConstructor(dbContext, container.Resolve<ISelpConfiguration>()));
+			/*kernel.Bind<ISelpConfiguration>().To<InMemoryConfiguration>().InSingletonScope();
+			kernel.Bind<ISelpRepository<UserModel, User, string>>()
+				.To<UserRepository>()
+				.WithConstructorArgument("dbContext", dbContext);*/
+			config.DependencyResolver = new UnityResolver(container);
+		}
+	}
+
+	public class UnityResolver : IDependencyResolver
+	{
+		protected IUnityContainer container;
+
+		public UnityResolver(IUnityContainer container)
+		{
+			if (container == null)
+			{
+				throw new ArgumentNullException("container");
+			}
+			this.container = container;
+		}
+
+		public object GetService(Type serviceType)
+		{
+			try
+			{
+				return container.Resolve(serviceType);
+			}
+			catch (ResolutionFailedException)
+			{
+				return null;
+			}
+		}
+
+		public IEnumerable<object> GetServices(Type serviceType)
+		{
+			try
+			{
+				return container.ResolveAll(serviceType);
+			}
+			catch (ResolutionFailedException)
+			{
+				return new List<object>();
+			}
+		}
+
+		public IDependencyScope BeginScope()
+		{
+			var child = container.CreateChildContainer();
+			return new UnityResolver(child);
+		}
+
+		public void Dispose()
+		{
+			container.Dispose();
+		}
+	}
+}
