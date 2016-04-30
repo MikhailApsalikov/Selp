@@ -23,6 +23,8 @@
 			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
 			container.RegisterType<ISelpRepository<UserModel, User, string>, UserRepository>(new InjectionConstructor(dbContext,
 				container.Resolve<ISelpConfiguration>()));
+			container.RegisterType<ISelpRepository<RegionModel, Region, int>, RegionRepository>(new InjectionConstructor(dbContext,
+				container.Resolve<ISelpConfiguration>()));
 			config.DependencyResolver = new UnityResolver(container);
 		}
 	}
