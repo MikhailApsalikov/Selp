@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Example.Models
+﻿namespace Example.Models
 {
-	class RegionModel
+	public class RegionModel
 	{
+		public string Name { get; set; }
+
+		public int Id { get; set; }
 	}
 }
