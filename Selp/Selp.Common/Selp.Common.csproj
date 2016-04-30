@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="ArgumentGuard.cs" />
     <Compile Include="Entities\BaseFilter.cs" />
+    <Compile Include="Entities\EntitiesListResult.cs" />
     <Compile Include="Entities\RepositoryModifyResult.cs" />
     <Compile Include="Entities\ValidatorError.cs" />
     <Compile Include="Exceptions\EntityIsRemovedException.cs" />

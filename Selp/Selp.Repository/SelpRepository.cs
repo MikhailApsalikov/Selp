@@ -12,7 +12,6 @@
 	using ExpressionConstructor;
 	using Helpers;
 	using Interfaces;
-	using Pagination;
 	using Validator;
 
 	public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
@@ -64,10 +63,7 @@
 		{
 			filter.ThrowIfNull("Filter cannot be null");
 			return ApplyFilters(FilterDeleted(DbSet), filter)
-				.ApplySorting(filter)
-				.ApplyPagination(filter, configuration.DefaultPageSize)
-				.AsEnumerable()
-				.Select(MapEntityToModel);
+				.ApplyPaginationAndSorting(filter, configuration.DefaultPageSize, MapEntityToModel).Data;
 		}
 
 		public virtual RepositoryModifyResult<TModel> Create(TModel model)

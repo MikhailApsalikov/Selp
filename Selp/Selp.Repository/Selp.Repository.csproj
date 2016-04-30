@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="ExpressionConstructor\FakeRemovingExpressionContainer.cs" />
     <Compile Include="Helpers\EntityFrameworkValidationConverter.cs" />
-    <Compile Include="Helpers\Paginator.cs" />
+    <Compile Include="Helpers\Pagination.cs" />
+    <Compile Include="InternalEntities\SortKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelpRepository.cs" />
     <Compile Include="Validator\SelpValidator.cs" />

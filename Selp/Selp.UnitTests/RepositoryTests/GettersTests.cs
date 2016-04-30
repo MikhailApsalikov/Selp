@@ -178,6 +178,18 @@
 		}
 
 		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public void GetByFilterShouldThrowIfSortFieldNotFound()
+		{
+			InitRepositoryParams(true);
+			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+			{
+				SortDirection = ListSortDirection.Descending,
+				SortField = "dsadsadsada"
+			});
+		}
+
+		[TestMethod]
 		public void GetByFilterShouldUseDefaultIfPageSizeIfItIsIncorrect()
 		{
 			ISelpConfiguration configuration = new InMemoryConfiguration();
