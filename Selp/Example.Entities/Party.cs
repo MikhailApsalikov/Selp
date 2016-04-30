@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 	using Selp.Interfaces;
 
 	public class Party : ISelpEntity<int>
@@ -34,6 +35,7 @@
 
 		public virtual ICollection<Passport> Documents { get; set; }
 
+		[InverseProperty("Parties")]
 		public virtual ICollection<Policy> Policies { get; set; }
 
 		public int Id { get; set; }

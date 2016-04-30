@@ -36,6 +36,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachmentModel.cs" />
+    <Compile Include="DocumentModel.cs" />
+    <Compile Include="PartyModel.cs" />
+    <Compile Include="PolicyModel.cs" />
+    <Compile Include="RegionModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

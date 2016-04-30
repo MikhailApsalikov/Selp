@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachment.cs" />
+    <Compile Include="Enums\PolicyStatus.cs" />
     <Compile Include="Passport.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Policy.cs" />
