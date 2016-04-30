@@ -148,7 +148,7 @@
 			DbContext.Entry(entity).State = EntityState.Modified;
 		}
 
-		private TEntity FindById(TKey id)
+		protected TEntity FindById(TKey id)
 		{
 			TEntity entity = DbSet.Find(id);
 			if (entity == null)

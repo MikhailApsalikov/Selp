@@ -42,6 +42,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalInterfaces\IAttachmentRepository.cs" />
+    <Compile Include="AttachmentRepository.cs" />
     <Compile Include="ExampleDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionRepository.cs" />

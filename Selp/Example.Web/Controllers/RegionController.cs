@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Example.Web.Controllers
+﻿namespace Example.Web.Controllers
 {
+	using System;
 	using System.Web.Http;
 	using Entities;
 	using Models;
@@ -19,21 +15,21 @@ namespace Example.Web.Controllers
 
 		public override string ControllerName => "Region";
 
-		/*[HttpPost]
+		[HttpPost]
 		public override IHttpActionResult Post(RegionModel value)
 		{
 			throw new NotSupportedException();
 		}
 
 		[HttpPut]
-		public override IHttpActionResult Put(string id, RegionModel value)
+		public override IHttpActionResult Put(int id, RegionModel value)
 		{
 			throw new NotSupportedException();
 		}
 
-		public override IHttpActionResult Delete(string id)
+		public override IHttpActionResult Delete(int id)
 		{
 			throw new NotSupportedException();
-		}*/
+		}
 	}
 }
