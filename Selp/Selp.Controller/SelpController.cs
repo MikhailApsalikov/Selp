@@ -20,6 +20,7 @@
 
 		public abstract string ControllerName { get; }
 
+		[HttpDelete]
 		public virtual IHttpActionResult Delete(TKey id)
 		{
 			try
@@ -33,6 +34,7 @@
 			}
 		}
 
+		[HttpGet]
 		public virtual IHttpActionResult Get(TKey id)
 		{
 			try
@@ -45,6 +47,7 @@
 			}
 		}
 
+		[HttpGet]
 		public virtual IHttpActionResult Get([FromUri] BaseFilter query)
 		{
 			try
@@ -57,6 +60,7 @@
 			}
 		}
 
+		[HttpPost]
 		public virtual IHttpActionResult Post([FromBody] TModel value)
 		{
 			try
@@ -76,6 +80,7 @@
 			}
 		}
 
+		[HttpPut]
 		public virtual IHttpActionResult Put(TKey id, [FromBody] TModel value)
 		{
 			try

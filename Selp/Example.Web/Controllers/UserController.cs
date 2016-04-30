@@ -19,16 +19,19 @@
 
 		public override string ControllerName => "User";
 
+		[HttpPost]
 		public override IHttpActionResult Post(UserModel value)
 		{
 			throw new NotSupportedException();
 		}
 
+		[HttpPut]
 		public override IHttpActionResult Put(string id, UserModel value)
 		{
 			throw new NotSupportedException();
 		}
 
+		[HttpDelete]
 		public override IHttpActionResult Delete(string id)
 		{
 			throw new NotSupportedException();
