@@ -225,7 +225,6 @@
   <ItemGroup>
     <Folder Include="AngularApp\Directives\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
