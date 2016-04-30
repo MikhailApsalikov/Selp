@@ -9,6 +9,7 @@
 		var urls = {
 			//uncommon
 			login: "api/user/login",
+			signup: "api/user/signup",
 
 			//controllers
 			user: "api/user"

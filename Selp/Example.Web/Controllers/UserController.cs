@@ -7,6 +7,7 @@
 	using Entities;
 	using Models;
 	using Repositories.Validators;
+	using Selp.Common.Entities;
 	using Selp.Controller;
 	using Selp.Interfaces;
 
@@ -17,6 +18,11 @@
 		}
 
 		public override string ControllerName => "User";
+
+		public override IHttpActionResult Post(UserModel value)
+		{
+			throw new NotSupportedException();
+		}
 
 		public override IHttpActionResult Put(string id, UserModel value)
 		{
@@ -51,6 +57,22 @@
 			}
 
 			return NotFound();
+		}
+
+		[Route("api/user/signup")]
+		[HttpPost]
+		public IHttpActionResult Signup([FromBody] UserModel model)
+		{
+			RepositoryModifyResult<UserModel> result = Repository.Create(model);
+			if (result.IsValid)
+			{
+				return Ok(new {valid = true});
+			}
+			return Ok(new
+			{
+				valid = false,
+				errors = result.Errors
+			});
 		}
 	}
 }

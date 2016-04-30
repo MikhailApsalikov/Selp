@@ -53,7 +53,7 @@
     color: limegreen;
 }
 
-.cta-login-modal {
+.cta-login-modal, .cta-signup-modal {
 	margin: 24px;
 	width: 500px;
 }

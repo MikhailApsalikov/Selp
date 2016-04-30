@@ -16,5 +16,7 @@
 
 		public TEntity ModifiedEntity { get; }
 		public IEnumerable<ValidatorError> Errors { get; }
+
+		public bool IsValid => ModifiedEntity != null;
 	}
 }

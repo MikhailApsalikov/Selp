@@ -14,7 +14,7 @@
 				//string entityName = validationResult.Entry.Entity.GetType().Name;
 				foreach (DbValidationError error in validationResult.ValidationErrors)
 				{
-					yield return new ValidatorError(error.PropertyName, error.ErrorMessage);
+					yield return new ValidatorError(error.ErrorMessage, error.PropertyName);
 				}
 			}
 		}

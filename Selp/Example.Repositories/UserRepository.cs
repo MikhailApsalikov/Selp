@@ -7,6 +7,7 @@
 	using Selp.Common.Entities;
 	using Selp.Interfaces;
 	using Selp.Repository;
+	using Validators;
 
 	public class UserRepository : SelpRepository<UserModel, User, string>
 	{
@@ -48,6 +49,12 @@
 				return entities;
 			}
 			return entities.Where(e => e.Id.Contains(filter.Search));
+		}
+
+		protected override void OnCreating(User item)
+		{
+			base.OnCreating(item);
+			CreateValidator = new UserSignupValidator(item, this);
 		}
 	}
 }

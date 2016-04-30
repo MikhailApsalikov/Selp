@@ -1,6 +1,21 @@
-﻿<div ng-controller="signupController">
+﻿<div ng-controller="signupController" class="cta-signup-modal">
+	<h2 class="md-title">Регистрация</h2>
 	<md-input-container class="md-block" flex-gt-sm>
-		<label>First name</label>
-		<input ng-model="user.firstName">
+		<label>Имя пользователя</label>
+		<input ng-model="user.id">
+		<div class="form-error" ng-if="loginErrors[0]" ng-bind="loginErrors[0]"></div>
 	</md-input-container>
+	<md-input-container class="md-block" flex-gt-sm>
+		<label>Пароль</label>
+		<input type="password" ng-model="user.password">
+		<div class="form-error" ng-if="passwordErrors[0]" ng-bind="passwordErrors[0]"></div>
+	</md-input-container>
+	<md-input-container class="md-block" flex-gt-sm>
+		<label>Подтверждение пароля</label>
+		<input type="password" ng-model="user.passwordConfirmation">
+		<div class="form-error" ng-if="!arePasswordsTheSame()" ng-bind="passwordConfirmationError"></div>
+	</md-input-container>
+	<div layout="column">
+		<md-button class="md-raised md-primary" ng-click="signup($event)" ng-disabled="isInProgress">Регистрация</md-button>
+	</div>
 </div>

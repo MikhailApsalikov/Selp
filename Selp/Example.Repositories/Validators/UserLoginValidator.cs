@@ -12,7 +12,7 @@
 
 		public UserModel User { get; set; }
 
-		public override string EntityName => "Login";
+		public override string EntityName => "UserModel";
 
 		protected override void ValidateLogic()
 		{

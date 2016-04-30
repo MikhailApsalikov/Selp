@@ -7,6 +7,7 @@
 
 	function loginController($scope, loginService, $location, $mdDialog) {
 		$scope.login = function() {
+			$scope.isInProgress = true;
 			$scope.loginErrors = null;
 			$scope.passwordErrors = null;
 			loginService.login($scope.user.id, $scope.user.password)
@@ -42,11 +43,16 @@
 						}
 
 						$scope.passwordErrors = ["Ошибка сервера авторизации, попробуйте зайти позднее."];
-					});
+					})
+				.finally(function() {
+					$scope.isInProgress = false;
+				});
 		};
 
 		activate();
 
-		function activate() {}
+		function activate() {
+			$scope.user = {};
+		}
 	}
 })();

@@ -12,8 +12,11 @@
 				{
 					Id: login,
 					Password: password
-				}).then(function(result) {
-					window.localStorage['login'] = login;
+				}).then(function (result) {
+					if (result.data.valid) {
+						window.localStorage['login'] = login;
+					}
+					
 					return result.data;
 				});
 			},
@@ -25,7 +28,17 @@
 				return !!window.localStorage['login'];
 			},
 			signup: function(login, password) {
-				
+				return $http.post(urls.signup,
+				{
+					Id: login,
+					Password: password
+				}).then(function (result) {
+					if (result.data.valid) {
+						window.localStorage['login'] = login;
+					}
+
+					return result.data;
+				});
 			}
 		};
 	}
