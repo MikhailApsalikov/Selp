@@ -28,7 +28,7 @@
 
 		[Route("api/user/login")]
 		[HttpGet]
-		public IHttpActionResult Login(UserModel model)
+		public IHttpActionResult Login([FromUri]UserModel model)
 		{
 			var result = Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
 			if (result.Any())

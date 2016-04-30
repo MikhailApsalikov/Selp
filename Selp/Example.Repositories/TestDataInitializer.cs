@@ -12,6 +12,37 @@
 		{
 			InitializeRegions(context);
 			InitializeTestParties(context);
+			InitializeTestUsers(context);
+		}
+
+		private void InitializeTestUsers(ExampleDbContext context)
+		{
+			if (context.Users.Any())
+			{
+				return;
+			}
+
+			var users = new List<User>()
+			{
+				new User()
+				{
+					Id = "admin",
+					Password = "demo"
+				},
+				new User()
+				{
+					Id = "user",
+					Password = "user"
+				},
+				new User()
+				{
+					Id = "inactive",
+					Password = "inactive",
+					IsInactive = true
+				}
+			};
+
+			context.Users.AddRange(users);
 		}
 
 		private void InitializeTestParties(ExampleDbContext context)

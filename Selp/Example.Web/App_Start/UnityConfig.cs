@@ -1,20 +1,13 @@
-﻿using SampleApplication.App_Start;
-using WebActivatorEx;
-
-namespace SampleApplication.App_Start
+﻿namespace SampleApplication.App_Start
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Web;
 	using System.Web.Http;
 	using System.Web.Http.Dependencies;
 	using Example.Entities;
 	using Example.Models;
 	using Example.Repositories;
 	using Microsoft.Practices.Unity;
-	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-	using Ninject;
-	using Ninject.Web.Common;
 	using Selp.Configuration;
 	using Selp.Interfaces;
 
@@ -28,11 +21,8 @@ namespace SampleApplication.App_Start
 			var dbContext = new ExampleDbContext();
 			var container = new UnityContainer();
 			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
-			container.RegisterType<ISelpRepository<UserModel, User, string>, UserRepository>(new InjectionConstructor(dbContext, container.Resolve<ISelpConfiguration>()));
-			/*kernel.Bind<ISelpConfiguration>().To<InMemoryConfiguration>().InSingletonScope();
-			kernel.Bind<ISelpRepository<UserModel, User, string>>()
-				.To<UserRepository>()
-				.WithConstructorArgument("dbContext", dbContext);*/
+			container.RegisterType<ISelpRepository<UserModel, User, string>, UserRepository>(new InjectionConstructor(dbContext,
+				container.Resolve<ISelpConfiguration>()));
 			config.DependencyResolver = new UnityResolver(container);
 		}
 	}
