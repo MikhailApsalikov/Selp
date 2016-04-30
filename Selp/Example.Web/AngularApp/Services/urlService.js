@@ -7,7 +7,11 @@
 
 	function urlService() {
 		var urls = {
-			
+			//uncommon
+			login: "api/user/login",
+
+			//controllers
+			user: "api/user"
 		};
 
 		return urls;

@@ -1,3 +1,16 @@
-﻿body {
-	background: initial;
+﻿body { background: initial; }
+
+.form-error {
+	bottom: 17px;
+	color: #dd2c00;
+	font-size: 15px;
+	left: 2px;
+	line-height: 14px;
+	position: absolute;
+	right: auto;
+	-webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+	-moz-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+	-ms-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+	-o-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+	transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }

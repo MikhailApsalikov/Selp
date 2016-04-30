@@ -1,6 +1,7 @@
 ﻿namespace Example.Web.Controllers
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Web.Http;
 	using Entities;
@@ -27,10 +28,16 @@
 		}
 
 		[Route("api/user/login")]
-		[HttpGet]
-		public IHttpActionResult Login([FromUri]UserModel model)
+		[HttpPost]
+		public IHttpActionResult Login([FromBody] UserModel model)
 		{
-			var result = Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
+			if (model?.Id == null || model.Password == null)
+			{
+				return Ok(new {valid = false, error = "Введите логин/пароль"});
+			}
+
+			IEnumerable<UserModel> result =
+				Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
 			if (result.Any())
 			{
 				return Ok(new {valid = true});

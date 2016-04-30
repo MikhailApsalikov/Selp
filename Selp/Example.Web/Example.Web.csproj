@@ -126,6 +126,7 @@
   <ItemGroup>
     <Content Include="AngularApp\app.js" />
     <Content Include="AngularApp\Controllers\ctaController.js" />
+    <Content Include="AngularApp\Controllers\policyCreateController.js" />
     <Content Include="AngularApp\Controllers\policyListController.js" />
     <Content Include="AngularApp\Services\loginService.js" />
     <Content Include="AngularApp\Services\urlService.js" />
@@ -145,6 +146,7 @@
     <Content Include="Pages\CallToAction\loginController.js" />
     <Content Include="Pages\CallToAction\signupTemplate.html" />
     <Content Include="Pages\CallToAction\template.html" />
+    <Content Include="Pages\PolicyCreate\template.html" />
     <Content Include="Pages\PolicyList\template.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />

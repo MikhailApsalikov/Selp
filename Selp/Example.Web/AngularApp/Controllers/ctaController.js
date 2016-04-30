@@ -3,9 +3,9 @@
 
 	angular
       .module('APP')
-      .controller('ctaController', ['$scope', '$mdDialog', ctaController]);
+      .controller('ctaController', ['$scope', '$mdDialog', 'loginService', '$location', ctaController]);
 
-	function ctaController($scope, $mdDialog) {
+	function ctaController($scope, $mdDialog, loginService, $location) {
 		var vm = this;
 		activate();
 
@@ -42,6 +42,11 @@
 		};
 
 		function activate() {
+			if (loginService.isAuthenticated()) {
+				$location.path("/policyList");
+			}
+
+
 			$(document).ready(function () {
 				$('.parallax').parallax();
 			});
