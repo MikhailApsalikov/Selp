@@ -6,6 +6,7 @@
 	using System.Web.Http;
 	using Entities;
 	using Models;
+	using Repositories.Validators;
 	using Selp.Controller;
 	using Selp.Interfaces;
 
@@ -31,9 +32,15 @@
 		[HttpPost]
 		public IHttpActionResult Login([FromBody] UserModel model)
 		{
-			if (model?.Id == null || model.Password == null)
+			var validator = new UserLoginValidator(model);
+			validator.Validate();
+			if (!validator.IsValid)
 			{
-				return Ok(new {valid = false, error = "Введите логин/пароль"});
+				return Ok(new
+				{
+					valid = false,
+					errors = validator.Errors
+				});
 			}
 
 			IEnumerable<UserModel> result =

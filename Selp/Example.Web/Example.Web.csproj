@@ -191,6 +191,9 @@
     <Content Include="scripts\AngularUI\ui-router.min.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
+    <None Include="scripts\linq-vsdoc.js" />
+    <Content Include="scripts\linq.js" />
+    <Content Include="scripts\linq.min.js" />
     <Content Include="scripts\materialize\materialize.js" />
     <Content Include="scripts\materialize\materialize.min.js" />
     <Content Include="Web.config" />
@@ -234,6 +237,10 @@
     <ProjectReference Include="..\Example.Repositories\Example.Repositories.csproj">
       <Project>{9E90C8C6-E1D6-4B4B-8946-632141F96D2E}</Project>
       <Name>Example.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
+      <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
+      <Name>Selp.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
       <Project>{a8e3f885-1d37-4ba4-9b30-d7d539eaf56c}</Project>

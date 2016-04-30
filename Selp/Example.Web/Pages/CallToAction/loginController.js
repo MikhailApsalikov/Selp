@@ -7,24 +7,41 @@
 
 	function loginController($scope, loginService, $location, $mdDialog) {
 		$scope.login = function() {
-			$scope.error = null;
+			$scope.loginErrors = null;
+			$scope.passwordErrors = null;
 			loginService.login($scope.user.id, $scope.user.password)
 				.then(function(data) {
+						var errors;
 						if (data.valid) {
 							$mdDialog.hide();
 							$location.path("/policyCreate");
 							return;
 						}
 
-						$scope.error = data.error;
+						errors = Enumerable.From(data.errors);
+
+						$scope.loginErrors = errors.Where(function(x) {
+								return x.FieldName === "Id";
+							})
+							.Select(function(x) {
+								return x.Text;
+							})
+							.ToArray();
+						$scope.passwordErrors = errors.Where(function(x) {
+								return x.FieldName !== "Id";
+							})
+							.Select(function(x) {
+								return x.Text;
+							})
+							.ToArray();
 					},
 					function(result) {
 						if (result.status === 404) {
-							$scope.error = "Неверный логин/пароль";
+							$scope.passwordErrors = ["Неверный логин/пароль"];
 							return;
 						}
 
-						$scope.error = "Ошибка сервера авторизации, попробуйте зайти позднее.";
+						$scope.passwordErrors = ["Ошибка сервера авторизации, попробуйте зайти позднее."];
 					});
 		};
 
