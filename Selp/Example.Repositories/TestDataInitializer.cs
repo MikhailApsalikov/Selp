@@ -5,14 +5,41 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using Entities;
+	using Entities.Enums;
 
 	public class TestDataInitializer : DropCreateDatabaseIfModelChanges<ExampleDbContext>
 	{
+		private readonly Random random = new Random();
+
 		protected override void Seed(ExampleDbContext context)
 		{
 			InitializeRegions(context);
 			InitializeTestParties(context);
 			InitializeTestUsers(context);
+			InitializeTestPolicies(context);
+		}
+
+		private void InitializeTestPolicies(ExampleDbContext context)
+		{
+			if (context.Policies.Any())
+			{
+				return;
+			}
+
+			var policies = Enumerable.Range(1, 500).Select(i => new Policy()
+			{
+				UserId = "admin",
+				CreatedDate = DateTime.Now,
+				ExpirationDate = DateTime.Now.AddDays(5).AddYears(1).AddSeconds(-1),
+				InsurancePremium = random.Next(200, 500)*10,
+				InsuranceSum = random.Next(5, 20)*100000,
+				RegionId = random.Next(1,80),
+				StartDate = DateTime.Now.AddDays(5),
+				Status = PolicyStatus.Actual,
+			});
+
+			context.Policies.AddRange(policies);
+			context.SaveChanges();
 		}
 
 		private void InitializeTestUsers(ExampleDbContext context)
