@@ -19,11 +19,11 @@
 
 		public string UserId { get; set; }
 
-		public List<PartyModel> InsuredList { get; set; } //insured
+		public List<int> InsuredList { get; set; } //insured
 
 		public int RegionId { get; set; }
 
-		public List<Attachment> Attachments { get; set; }
+		public List<Guid> Attachments { get; set; }
 
 		public int Id { get; set; }
 	}
