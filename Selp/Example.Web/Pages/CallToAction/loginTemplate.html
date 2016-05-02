@@ -1,16 +1,19 @@
 ﻿<div ng-controller="loginController" class="cta-login-modal">
-	<h2 class="md-title">Вход в систему</h2>
-	<md-input-container class="md-block" flex-gt-sm>
-		<label>Имя пользователя</label>
-		<input ng-model="user.id">
-		<div class="form-error" ng-if="loginErrors[0]" ng-bind="loginErrors[0]"></div>
-	</md-input-container>
-	<md-input-container class="md-block" flex-gt-sm>
-		<label>Пароль</label>
-		<input type="password" ng-model="user.password">
-		<div class="form-error" ng-if="passwordErrors[0]" ng-bind="passwordErrors[0]"></div>
-	</md-input-container>
-	<div layout="column">
-		<md-button class="md-raised md-primary" ng-click="login($event)" ng-disabled="isInProgress">Вход</md-button>
-	</div>
+    <h2 class="md-title">Вход в систему</h2>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Имя пользователя</label>
+        <input ng-model="user.id">
+        <div class="form-error" ng-if="loginErrors[0]" ng-bind="loginErrors[0]"></div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Пароль</label>
+        <input type="password" ng-model="user.password">
+        <div class="form-error" ng-if="passwordErrors[0]" ng-bind="passwordErrors[0]"></div>
+    </md-input-container>
+    <div layout="column">
+        <md-progress-circular md-mode="indeterminate" ng-show="isInProgress" class="button-progress-circular"></md-progress-circular>
+        <md-button class="md-raised md-primary" ng-click="login($event)" ng-disabled="isInProgress">
+            <span ng-if="!isInProgress">Вход</span>
+        </md-button>
+    </div>
 </div>

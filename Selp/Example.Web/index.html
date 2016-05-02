@@ -1,46 +1,48 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Тестовая страховая компания</title>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Тестовая страховая компания</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<!--libs-->
-	<link href="Content/materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
-	<link href="Content/angular-material.css" rel="stylesheet" />
+    <!--libs-->
+    <link href="Content/materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
+    <link href="Content/angular-material.css" rel="stylesheet" />
 
-	<!--application-->
-	<link href="Content/common.css" rel="stylesheet" />
-	<link href="Pages/CallToAction/call-to-action.css" rel="stylesheet" />
+    <!--application-->
+    <link href="Content/common.css" rel="stylesheet" />
+    <link href="Pages/CallToAction/call-to-action.css" rel="stylesheet" />
 </head>
-<body ng-app="APP">
-	<ui-view></ui-view>
+<body ng-app="APP" ng-controller="mainController">
+    <header ng-if="isLoggedIn">123</header>
+    <ui-view></ui-view>
 
-	<!--libs-->
-	<script src="scripts/jquery-2.2.3.js"></script>
-	<script src="scripts/materialize/materialize.js"></script>
-	<script src="scripts/linq.js"></script>
+    <!--libs-->
+    <script src="scripts/jquery-2.2.3.js"></script>
+    <script src="scripts/materialize/materialize.js"></script>
+    <script src="scripts/linq.js"></script>
 
-	<!--angular-->
-	<script src="scripts/angular.js"></script>
-	<script src="scripts/AngularUI/ui-router.js"></script>
-	<script src="scripts/angular-animate.js"></script>
-	<script src="scripts/angular-aria.js"></script>
-	<script src="scripts/angular-material.js"></script>
+    <!--angular-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/AngularUI/ui-router.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+    <script src="scripts/angular-aria.js"></script>
+    <script src="scripts/angular-material.js"></script>
 
-	<!--application-->
-	<script src="AngularApp/app.js"></script>
+    <!--application-->
+    <script src="AngularApp/app.js"></script>
 
-	<!--controllers-->
-	<script src="AngularApp/Controllers/ctaController.js"></script>
-	<script src="AngularApp/Controllers/policyListController.js"></script>
-	<script src="AngularApp/Controllers/policyCreateController.js"></script>
-	<script src="Pages/CallToAction/loginController.js"></script>
-	<script src="Pages/CallToAction/signupController.js"></script>
+    <!--controllers-->
+    <script src="AngularApp/Controllers/ctaController.js"></script>
+    <script src="AngularApp/Controllers/policyListController.js"></script>
+    <script src="AngularApp/Controllers/policyCreateController.js"></script>
+    <script src="AngularApp/Controllers/mainController.js"></script>
+    <script src="Pages/CallToAction/loginController.js"></script>
+    <script src="Pages/CallToAction/signupController.js"></script>
 
-	<!--services-->
-	<script src="AngularApp/Services/urlService.js"></script>
-	<script src="AngularApp/Services/loginService.js"></script>
+    <!--services-->
+    <script src="AngularApp/Services/urlService.js"></script>
+    <script src="AngularApp/Services/loginService.js"></script>
 </body>
 </html>

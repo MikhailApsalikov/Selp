@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularApp\app.js" />
+    <Content Include="AngularApp\Controllers\mainController.js" />
     <Content Include="AngularApp\Controllers\ctaController.js" />
     <Content Include="AngularApp\Controllers\policyCreateController.js" />
     <Content Include="AngularApp\Controllers\policyListController.js" />

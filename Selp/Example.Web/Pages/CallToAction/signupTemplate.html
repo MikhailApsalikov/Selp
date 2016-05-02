@@ -15,7 +15,10 @@
 		<input type="password" ng-model="user.passwordConfirmation">
 		<div class="form-error" ng-if="!arePasswordsTheSame()" ng-bind="passwordConfirmationError"></div>
 	</md-input-container>
-	<div layout="column">
-		<md-button class="md-raised md-primary" ng-click="signup($event)" ng-disabled="isInProgress">Регистрация</md-button>
-	</div>
+    <div layout="column">
+        <md-progress-circular md-mode="indeterminate" ng-show="isInProgress" class="button-progress-circular"></md-progress-circular>
+        <md-button class="md-raised md-primary" ng-click="signup($event)" ng-disabled="isInProgress">
+            <span ng-if="!isInProgress">Регистрация</span>
+        </md-button>
+    </div>
 </div>

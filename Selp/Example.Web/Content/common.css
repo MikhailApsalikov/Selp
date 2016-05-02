@@ -14,3 +14,8 @@
 	-o-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 	transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
+
+.button-progress-circular {
+    position: absolute;
+    left: 240px;
+}
