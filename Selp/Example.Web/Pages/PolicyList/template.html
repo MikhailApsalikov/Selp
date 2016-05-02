@@ -1,8 +1,8 @@
 ﻿<div class="policy-list-page">
-    <div class="policy-list-header">
-
+    <div ng-if="!isLoaded" layout="row" layout-align="center">
+        <md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
     </div>
-    <div class="policy-list-body">
+    <div class="policy-list-body" ng-if="isLoaded">
         <div class="header">
             <div class="policy-list-item policy-list-id">Id</div><!--
             --><div class="policy-list-item policy-list-serial">Серия</div><!--

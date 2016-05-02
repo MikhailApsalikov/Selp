@@ -2,7 +2,9 @@
     margin: 15px 0;
 }
 
-
+.policy-list-page .progress-container{
+    zoom: 8;
+}
 
 .policy-list-body {
     width: 94%;

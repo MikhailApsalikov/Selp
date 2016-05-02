@@ -7,15 +7,17 @@
 
     function policyListController($scope, policyService) {
         $scope.refresh = function() {
+            $scope.isLoaded = false;
             policyService.getPolicyList({
                     Page: $scope.page,
                     PageSize: $scope.pageSize
                 })
                 .then(function(data) {
                         $scope.policyList = data.data;
+                        $scope.isLoaded = true;
                     },
                     function(data) {
-
+                        $scope.isLoaded = true;
                     });
         };
 
