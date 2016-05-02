@@ -8,6 +8,9 @@
 
 	public class Policy : ISelpEntity<int>
 	{
+	    public string Serial { get; set; }
+	    public string Number { get; set; }
+
 		public DateTime CreatedDate { get; set; }
 		public DateTime ExpirationDate { get; set; }
 		public DateTime StartDate { get; set; }

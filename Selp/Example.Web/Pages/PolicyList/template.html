@@ -1,1 +1,36 @@
-﻿<div>POLICY LIST MAFAKA</div>
+﻿<div class="policy-list-page">
+    <div class="policy-list-header">
+
+    </div>
+    <div class="policy-list-body">
+        <div class="header">
+            <div class="policy-list-item policy-list-id">Id</div><!--
+            --><div class="policy-list-item policy-list-serial">Серия</div><!--
+            --><div class="policy-list-item policy-list-number">Номер</div><!--
+            --><div class="policy-list-item policy-list-status">Статус</div><!--
+            --><div class="policy-list-item policy-list-user">Пользователь</div><!--
+            --><div class="policy-list-item policy-list-premium">Страховая премия</div><!--
+            --><div class="policy-list-item policy-list-sum">Страховая сумма</div><!--
+            --><div class="policy-list-item policy-list-createdDate">Создан</div><!--
+            --><div class="policy-list-item policy-list-startDate">Начало действия</div><!--
+            --><div class="policy-list-item policy-list-expirationDate">Конец действия</div>
+        </div>
+        <div class="body">
+            <div class="item" ng-repeat="policy in policyList">
+                <div class="policy-list-item policy-list-id" ng-bind="policy.Id"></div><!--
+                --><div class="policy-list-item policy-list-serial" ng-bind="policy.Serial"></div><!--
+                --><div class="policy-list-item policy-list-number" ng-bind="policy.Number"></div><!--
+                --><div class="policy-list-item policy-list-status" ng-bind="policy.Status"></div><!--
+                --><div class="policy-list-item policy-list-user" ng-bind="policy.UserId"></div><!--
+                --><div class="policy-list-item policy-list-premium" ng-bind="policy.InsurancePremium + 'р.'"></div><!--
+                --><div class="policy-list-item policy-list-sum" ng-bind="policy.InsuranceSum + 'р.'"></div><!--
+                --><div class="policy-list-item policy-list-createdDate" ng-bind="policy.CreatedDate"></div><!--
+                --><div class="policy-list-item policy-list-startDate" ng-bind="policy.StartDate"></div><!--
+                --><div class="policy-list-item policy-list-expirationDate" ng-bind="policy.ExpirationDate"></div>
+            </div>
+        </div>
+    </div>
+    <div class="policy-list-footer">
+
+    </div>
+</div>

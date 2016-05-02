@@ -12,7 +12,8 @@
 			signup: "api/user/signup",
 
 			//controllers
-			user: "api/user"
+			user: "api/user",
+            policy: "api/policy"
 		};
 
 		return urls;

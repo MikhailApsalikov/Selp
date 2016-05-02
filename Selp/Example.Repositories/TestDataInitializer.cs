@@ -35,7 +35,9 @@
                 InsuranceSum = random.Next(5, 20)*100000,
                 RegionId = random.Next(1, 80),
                 StartDate = DateTime.Now.AddDays(5),
-                Status = PolicyStatus.Actual
+                Status = PolicyStatus.Actual,
+                Serial = "EEE",
+                Number = i.ToString("0000000000")
             });
 
             context.Policies.AddRange(policies);

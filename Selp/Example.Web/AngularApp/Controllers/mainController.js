@@ -1,22 +1,12 @@
-﻿(function () {
-    'use strict';
+﻿(function() {
+    "use strict";
 
     angular
-      .module('APP')
-      .controller('mainController', ['$scope', '$rootScope', 'loginService', '$location', mainController]);
+        .module("APP")
+        .controller("mainController", ["$scope", "$rootScope", "loginService", "$location", mainController]);
 
     function mainController($scope, $rootScope, loginService, $location) {
-        $scope.isLoggedIn = loginService.isAuthenticated;
-        $rootScope.$on("$stateChangeStart",
-				function (event, next) {
-                    if (!next || !next.mainControllerData) {
-                        return;
-                    }
-
-				    $scope.data = next.mainControllerData;
-				});
         activate();
-
 
         $scope.logout = function() {
             loginService.logout();
@@ -26,6 +16,16 @@
             $location.path($scope.data.backAction);
         };
 
-        function activate() { }
+        function activate() {
+            $scope.isLoggedIn = loginService.isAuthenticated;
+            $rootScope.$on("$stateChangeStart",
+                function(event, next) {
+                    if (!next || !next.mainControllerData) {
+                        return;
+                    }
+
+                    $scope.data = next.mainControllerData;
+                });
+        }
     }
 })();

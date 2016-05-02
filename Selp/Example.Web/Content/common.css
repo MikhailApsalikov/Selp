@@ -1,21 +1,28 @@
-﻿body { background: initial; }
+﻿body {
+    -moz-min-width: 1260px;
+    -ms-min-width: 1260px;
+    -o-min-width: 1260px;
+    -webkit-min-width: 1260px;
+    background: initial;
+    min-width: 1260px;
+}
 
 .form-error {
-	bottom: 17px;
-	color: #dd2c00;
-	font-size: 15px;
-	left: 2px;
-	line-height: 14px;
-	position: absolute;
-	right: auto;
-	-webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-	-moz-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-	-ms-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-	-o-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-	transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    -moz-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    -ms-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    -o-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    bottom: 17px;
+    color: #dd2c00;
+    font-size: 15px;
+    left: 2px;
+    line-height: 14px;
+    position: absolute;
+    right: auto;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
 
 .button-progress-circular {
-    position: absolute;
     left: 240px;
+    position: absolute;
 }

@@ -28,7 +28,9 @@
 				container.Resolve<ISelpConfiguration>()));
 			container.RegisterType<IAttachmentRepository, AttachmentRepository>(new InjectionConstructor(dbContext,
 				container.Resolve<ISelpConfiguration>()));
-			config.DependencyResolver = new UnityResolver(container);
+            container.RegisterType<ISelpRepository<PolicyModel, Policy, int>, PolicyRepository>(new InjectionConstructor(dbContext,
+                container.Resolve<ISelpConfiguration>()));
+            config.DependencyResolver = new UnityResolver(container);
 		}
 	}
 

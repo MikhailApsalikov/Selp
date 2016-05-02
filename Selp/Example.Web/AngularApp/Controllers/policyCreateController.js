@@ -6,10 +6,6 @@
       .controller('policyCreateController', ['$scope', policyCreateController]);
 
 	function policyCreateController($scope) {
-		var vm = this;
-
-		vm.title = '';
-
 		activate();
 
 		function activate() { }

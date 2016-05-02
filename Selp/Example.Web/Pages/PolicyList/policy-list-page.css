@@ -1,0 +1,73 @@
+﻿.policy-list-page {
+    margin: 15px 0;
+}
+
+
+
+.policy-list-body {
+    width: 94%;
+    margin: 0 3%;
+}
+
+.policy-list-page .policy-list-item {
+    text-align: center;
+    display: inline-block;
+    border: 1px #000000 solid;
+    margin: -1px -1px 0 0;
+}
+
+.policy-list-page .header .policy-list-item {
+    font-weight: bold;
+    height: 64px;
+    background-color: #3f51b5;
+    color: #FFFFFF;
+    padding-top: 18px;
+    cursor: default;
+}
+
+.policy-list-page .body .item {
+    cursor: pointer;
+}
+
+.policy-list-page .body .item:hover .policy-list-item {
+    background-color: limegreen;
+}
+
+.policy-list-page .policy-list-id{
+    width: 4%;
+}
+
+.policy-list-page .policy-list-serial{
+    width: 5%;
+}
+
+.policy-list-page .policy-list-number{
+    width: 10%;
+}
+
+.policy-list-page .policy-list-status{
+    width: 12%;
+}
+
+.policy-list-page .policy-list-user{
+    width: 13%;
+}
+
+.policy-list-page .policy-list-premium{
+    width: 12%;
+}
+
+.policy-list-page .policy-list-sum{
+    width: 12%;
+}
+
+.policy-list-page .policy-list-createdDate{
+    width: 10%;
+}
+.policy-list-page .policy-list-startDate{
+    width: 11%;
+}
+
+.policy-list-page .policy-list-expirationDate{
+    width: 11%;
+}
