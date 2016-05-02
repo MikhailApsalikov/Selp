@@ -1,6 +1,7 @@
 ﻿namespace Selp.Common.Entities
 {
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
 	public class EntitiesListResult<T>
 	{
@@ -9,5 +10,7 @@
 		public int Page { get; set; }
 		public int PageSize { get; set; }
 		public int Total { get; set; }
+
+	    public int Pages => (int)Math.Ceiling(Total / (double)PageSize);
 	}
 }
