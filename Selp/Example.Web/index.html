@@ -9,13 +9,29 @@
     <!--libs-->
     <link href="Content/materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
     <link href="Content/angular-material.css" rel="stylesheet" />
+    <link href="Content/google-icons/material-icons.css" rel="stylesheet" />
 
     <!--application-->
     <link href="Content/common.css" rel="stylesheet" />
     <link href="Pages/CallToAction/call-to-action.css" rel="stylesheet" />
 </head>
 <body ng-app="APP" ng-controller="mainController">
-    <header ng-if="isLoggedIn">123</header>
+    <header ng-if="isLoggedIn">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Back" ng-click="back()" ng-disabled="!data.isBackEnabled">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                </md-button>
+                <h2>
+                    <span ng-bind="data.title"></span>
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Logout" ng-click="logout()">
+                    <i class="material-icons">exit_to_app</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </header>
     <ui-view></ui-view>
 
     <!--libs-->

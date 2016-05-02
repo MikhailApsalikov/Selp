@@ -133,6 +133,8 @@
     <Content Include="AngularApp\Services\urlService.js" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\google-icons\material-icons.css" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.svg" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
     <Content Include="Content\materialize\font\material-design-icons\LICENSE.txt" />
@@ -187,6 +189,11 @@
     <Content Include="scripts\angular-aria.min.js.map" />
     <Content Include="scripts\angular-animate.min.js.map" />
     <Content Include="Pages\CallToAction\loginTemplate.html" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.eot" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.ijmap" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.ttf" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.woff" />
+    <Content Include="Content\google-icons\MaterialIcons-Regular.woff2" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\AngularUI\ui-router.js" />
     <Content Include="scripts\AngularUI\ui-router.min.js" />

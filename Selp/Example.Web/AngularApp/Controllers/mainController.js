@@ -3,15 +3,28 @@
 
     angular
       .module('APP')
-      .controller('mainController', ['$scope', 'loginService', mainController]);
+      .controller('mainController', ['$scope', '$rootScope', 'loginService', '$location', mainController]);
 
-    function mainController($scope, loginService) {
-        var vm = this;
+    function mainController($scope, $rootScope, loginService, $location) {
         $scope.isLoggedIn = loginService.isAuthenticated;
+        $rootScope.$on("$stateChangeStart",
+				function (event, next) {
+                    if (!next || !next.mainControllerData) {
+                        return;
+                    }
 
-        vm.title = '';
-
+				    $scope.data = next.mainControllerData;
+				});
         activate();
+
+
+        $scope.logout = function() {
+            loginService.logout();
+        };
+
+        $scope.back = function() {
+            $location.path($scope.data.backAction);
+        };
 
         function activate() { }
     }

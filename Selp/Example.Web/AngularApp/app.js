@@ -18,13 +18,23 @@
 					{
 						url: "/policyList",
 						templateUrl: "/Pages/PolicyList/template.html",
-						controller: "policyListController"
+						controller: "policyListController",
+                        mainControllerData: {
+                            title: "Список полисов",
+                            isBackEnabled: false,
+                            backAction: null
+                        }
 					})
 					.state("policyCreate",
 					{
 						url: "/policyCreate",
 						templateUrl: "/Pages/policyCreate/template.html",
-						controller: "policyCreateController"
+						controller: "policyCreateController",
+						mainControllerData: {
+						    title: "Создание полиса",
+						    isBackEnabled: true,
+						    backAction: '/policyList'
+						}
 					});
 
 				/*.state('tasks.new', {

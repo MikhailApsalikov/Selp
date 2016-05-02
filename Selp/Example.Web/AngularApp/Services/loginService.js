@@ -3,9 +3,9 @@
 
 	angular
 		.module("APP")
-		.service("loginService", ["urlService", "$http", "$rootScope", loginService]);
+		.service("loginService", ["urlService", "$http", "$location", loginService]);
 
-	function loginService(urls, $http, $rootScope) {
+	function loginService(urls, $http, $location) {
 		return {
 			login: function (login, password) {
 				return $http.post(urls.login,
@@ -21,8 +21,8 @@
 				});
 			},
 			logout: function() {
-				window.localStorage['login'] = null;
-				$rootScope.$emit('$stateChangeStart');
+			    window.localStorage.removeItem('login');
+				$location.path('/callToAction');
 			},
 			isAuthenticated: function() {
 				return !!window.localStorage['login'];
