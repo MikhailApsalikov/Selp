@@ -24,15 +24,17 @@
 		public void GetAllShouldReturnAllWhenFakeRemovingIsOff()
 		{
 			InitRepositoryParams(false);
-			Assert.AreEqual(150, repository.GetAll().Count(), "GetAll returned incorrect number of entities");
-		}
+			Assert.AreEqual(150, repository.GetAll().Data.Count(), "GetAll returned incorrect number of entities");
+            Assert.AreEqual(150, repository.GetAll().Total, "GetAll returned incorrect number of entities");
+        }
 
 		[TestMethod]
 		public void GetAllShouldNotReturnAllWhenFakeRemovingIsOn()
 		{
 			InitRepositoryParams(true);
-			Assert.AreEqual(100, repository.GetAll().Count(), "GetAll returned incorrect number of entities");
-		}
+			Assert.AreEqual(100, repository.GetAll().Data.Count(), "GetAll returned incorrect number of entities");
+            Assert.AreEqual(100, repository.GetAll().Total, "GetAll returned incorrect number of entities");
+        }
 
 		[TestMethod]
 		[ExpectedException(typeof(EntityNotFoundException), "Method didn't raise an exception when entity is not found")]
@@ -59,46 +61,39 @@
 		}
 
 		[TestMethod]
-		public void GetByCustomExpression()
-		{
-			InitRepositoryParams(false);
-			FakeEntity entity = repository.GetById(110);
-			Assert.AreEqual("Entity 110", entity.Name, "Method didn't return entity");
-		}
-
-		[TestMethod]
 		[ExpectedException(typeof(ArgumentException), "Method didn't raise an exception when expression is null")]
 		public void GetByCustomExpressionShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
-			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(null);
+			EntitiesListResult<FakeEntity> list = repository.GetByCustomExpression(null);
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionShouldReturnEmptyListWhenNoEntitiesFound()
 		{
 			InitRepositoryParams(false);
-			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(a => false);
+            EntitiesListResult<FakeEntity> list = repository.GetByCustomExpression(a => false);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(0, list.Count(), "Result is not empty");
-		}
+			Assert.AreEqual(0, list.Total, "Total is not empty");
+            Assert.AreEqual(0, list.Data.Count(), "Result is not empty");
+        }
 
 		[TestMethod]
 		public void GetByCustomExpressionShouldWorkWhenFakeRemovingIsOff()
 		{
 			InitRepositoryParams(false);
-			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
+            EntitiesListResult<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(75, list.Count(), "Result count invalid");
+			Assert.AreEqual(75, list.Total, "Result count invalid");
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionShouldWorkWhenFakeRemovingIsOn()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
+            EntitiesListResult<FakeEntity> list = repository.GetByCustomExpression(a => a.Id%2 == 0);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(50, list.Count(), "Result count invalid");
+			Assert.AreEqual(50, list.Total, "Result count invalid");
 		}
 
 		[TestMethod]
@@ -106,52 +101,59 @@
 		public void GetByFilterShouldThrowWhenArgumentIsNull()
 		{
 			InitRepositoryParams(false);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(null);
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(null);
 		}
 
 		[TestMethod]
 		public void GetByFilterShouldReturnEmptyListWhenNoEntitiesFound()
 		{
 			InitRepositoryParams(false);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				Page = 100,
 				PageSize = 200
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(0, list.Count(), "Result is not empty");
-		}
+			Assert.AreEqual(0, list.Data.Count(), "Result is not empty");
+            Assert.AreEqual(150, list.Total, "Total incorrect");
+            Assert.AreEqual(100, list.Page, "Page incorrect");
+            Assert.AreEqual(200, list.PageSize, "PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldHaveCorrectCountWhenPageSizeIsSpecified()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(20, list.Count(), "Result count is wrong");
-		}
+			Assert.AreEqual(20, list.Data.Count(), "Result count is wrong");
+            Assert.AreEqual(100, list.Total, "Result total is wrong");
+            Assert.AreEqual(20, list.PageSize, "PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldHaveCorrectOffsetWhenPageIsSpecified()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20,
 				Page = 2
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(21, list.Min(d => d.Id), "Minimal ID is wrong");
-		}
+			Assert.AreEqual(21, list.Data.Min(d => d.Id), "Minimal ID is wrong");
+            Assert.AreEqual(2, list.Page, "Page incorrect");
+            Assert.AreEqual(20, list.PageSize, "PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecifiedDescending()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20,
 				Page = 3,
@@ -159,14 +161,16 @@
 				SortField = "Id"
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(60, list.ToList()[0].Id, "First item id is wrong");
-		}
+			Assert.AreEqual(60, list.Data.ToList()[0].Id, "First item id is wrong");
+            Assert.AreEqual(3, list.Page, "Page incorrect");
+            Assert.AreEqual(20, list.PageSize, "PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldHaveCorrectOrderWhenItIsSpecified()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				PageSize = 20,
 				Page = 3,
@@ -174,15 +178,17 @@
 				SortField = "Id"
 			});
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(41, list.ToList()[0].Id, "First item id is wrong");
-		}
+			Assert.AreEqual(41, list.Data.ToList()[0].Id, "First item id is wrong");
+            Assert.AreEqual(3, list.Page, "Page incorrect");
+            Assert.AreEqual(20, list.PageSize, "PageSize incorrect");
+        }
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public void GetByFilterShouldThrowIfSortFieldNotFound()
 		{
 			InitRepositoryParams(true);
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter
 			{
 				SortDirection = ListSortDirection.Descending,
 				SortField = "dsadsadsada"
@@ -199,11 +205,13 @@
 			{
 				PageSize = -55
 			};
-			IEnumerable<FakeEntity> list = repository.GetByFilter(filter);
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(11, list.Count(), "Result count is wrong");
+			Assert.AreEqual(11, list.Data.Count(), "Result count is wrong");
 			Assert.AreEqual(11, filter.PageSize, "Filter hasn't been normalized");
-		}
+            Assert.AreEqual(100, list.Total, "Total is incorrect");
+            Assert.AreEqual(11, list.PageSize, "Returned PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldUseFirstPageIfItIsIncorrect()
@@ -211,13 +219,16 @@
 			InitRepositoryParams(true);
 			var filter = new BaseFilter
 			{
+                Page = -5,
 				PageSize = 20
 			};
-			IEnumerable<FakeEntity> list = repository.GetByFilter(filter);
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(1, list.Min(d => d.Id), "Minimal ID is incorrect");
+			Assert.AreEqual(1, list.Data.Min(d => d.Id), "Minimal ID is incorrect");
 			Assert.AreEqual(1, filter.Page, "Filter hasn't been normalized");
-		}
+            Assert.AreEqual(1, list.Page, "Returned Page incorrect");
+            Assert.AreEqual(20, list.PageSize, "Returned PageSize incorrect");
+        }
 
 		[TestMethod]
 		public void GetByFilterShouldFilterEntitiesByName()
@@ -227,9 +238,9 @@
 			{
 				Search = "Entity 10"
 			};
-			IEnumerable<FakeEntity> list = repository.GetByFilter(filter);
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(11, list.Count(), "Count is incorrect");
+			Assert.AreEqual(11, list.Total, "Count is incorrect");
 		}
 
 		[TestMethod]
@@ -240,9 +251,9 @@
 			{
 				Search = "125"
 			};
-			IEnumerable<FakeEntity> list = repository.GetByFilter(filter);
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(filter);
 			Assert.IsNotNull(list, "Result is null");
-			Assert.AreEqual(0, list.Count(), "Count is incorrect");
+			Assert.AreEqual(0, list.Total, "Count is incorrect");
 		}
 
 

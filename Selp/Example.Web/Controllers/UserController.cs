@@ -52,9 +52,9 @@
 				});
 			}
 
-			IEnumerable<UserModel> result =
+            EntitiesListResult<UserModel> result =
 				Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
-			if (result.Any())
+			if (result.Total == 1)
 			{
 				return Ok(new {valid = true});
 			}

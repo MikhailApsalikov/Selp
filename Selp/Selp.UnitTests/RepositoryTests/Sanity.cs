@@ -42,8 +42,8 @@
 		[TestMethod]
 		public void GetAllWorks()
 		{
-			IEnumerable<FakeEntity> list = repository.GetAll();
-			Assert.AreEqual(4, list.Count(), "GetAll doesn't work");
+            EntitiesListResult<FakeEntity> list = repository.GetAll();
+			Assert.AreEqual(4, list.Total, "GetAll doesn't work");
 		}
 
 		[TestMethod]
@@ -56,15 +56,15 @@
 		[TestMethod]
 		public void GetByFilterWorks()
 		{
-			IEnumerable<FakeEntity> list = repository.GetByFilter(new BaseFilter());
-			Assert.AreEqual(4, list.Count(), "GetByFilter doesn't work");
+            EntitiesListResult<FakeEntity> list = repository.GetByFilter(new BaseFilter());
+			Assert.AreEqual(4, list.Total, "GetByFilter doesn't work");
 		}
 
 		[TestMethod]
 		public void GetByCustomExpressionWorks()
 		{
-			IEnumerable<FakeEntity> list = repository.GetByCustomExpression(d => true);
-			Assert.AreEqual(4, list.Count(), "GetByCustomExpression doesn't work");
+            EntitiesListResult<FakeEntity> list = repository.GetByCustomExpression(d => true);
+			Assert.AreEqual(4, list.Total, "GetByIdShouldReturnRemovedEntityIfFakeRemovingIsOff doesn't work");
 		}
 
 		[TestMethod]
