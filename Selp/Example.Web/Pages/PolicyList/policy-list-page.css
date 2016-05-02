@@ -6,9 +6,9 @@
     zoom: 8;
 }
 
-.policy-list-body {
+.policy-list-page .policy-list-body {
     width: 94%;
-    margin: 0 3%;
+    margin: 0 3% 50px;
 }
 
 .policy-list-page .policy-list-item {
@@ -72,4 +72,8 @@
 
 .policy-list-page .policy-list-expirationDate{
     width: 11%;
+}
+
+.policy-list-page .policy-list-pagesize, .policy-list-page .policy-list-pagination {
+    margin: 15px 20%;
 }

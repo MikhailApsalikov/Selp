@@ -23,6 +23,17 @@
 
         activate();
 
+        $scope.$watch("page",
+           function () {
+               $scope.refresh();
+           });
+
+        $scope.$watch("pageSize",
+            function () {
+                $scope.page = 1;
+                $scope.refresh();
+            });
+
         function activate() {
             $scope.page = 1;
             $scope.pageSize = 25;

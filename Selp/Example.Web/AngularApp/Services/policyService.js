@@ -8,7 +8,11 @@
 	function policyService(urls, $http) {
 		return {
 		    getPolicyList: function (params) {
-		        return $http.get(urls.policy, params);
+		        return $http({
+		            url: urls.policy, 
+		            method: "GET",
+		            params: params
+		        });
 			}
 		};
 	}
