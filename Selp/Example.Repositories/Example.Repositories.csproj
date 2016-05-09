@@ -70,10 +70,6 @@
       <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
       <Name>Selp.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Selp.Configuration\Selp.Configuration.csproj">
-      <Project>{A8E3F885-1D37-4BA4-9B30-D7D539EAF56C}</Project>
-      <Name>Selp.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
       <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
       <Name>Selp.Interfaces</Name>
