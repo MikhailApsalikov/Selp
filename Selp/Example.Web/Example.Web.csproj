@@ -250,6 +250,10 @@
       <Project>{9E90C8C6-E1D6-4B4B-8946-632141F96D2E}</Project>
       <Name>Example.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Example.Validators\Example.Validators.csproj">
+      <Project>{982adbbc-2558-4f82-9ab1-88e1beb40a84}</Project>
+      <Name>Example.Validators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
       <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
       <Name>Selp.Common</Name>
@@ -269,6 +273,10 @@
     <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
       <Project>{78cee587-c390-47a7-a95a-d0798c29abc4}</Project>
       <Name>Selp.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
+      <Project>{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B}</Project>
+      <Name>Selp.Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

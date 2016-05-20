@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78CEE587-C390-47A7-A95A-D0798C29ABC4}</ProjectGuid>
+    <ProjectGuid>{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Selp.Repository</RootNamespace>
-    <AssemblyName>Selp.Repository</AssemblyName>
+    <RootNamespace>Example.Validators</RootNamespace>
+    <AssemblyName>Example.Validators</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,30 +29,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExpressionConstructor\FakeRemovingExpressionContainer.cs" />
-    <Compile Include="Helpers\EntityFrameworkValidationConverter.cs" />
-    <Compile Include="Helpers\Pagination.cs" />
-    <Compile Include="InternalEntities\SortKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelpRepository.cs" />
+    <Compile Include="UserLoginValidator.cs" />
+    <Compile Include="UserSignupValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
+      <Project>{755aa3cf-2314-4312-b9dc-6e05b7a8eec7}</Project>
+      <Name>Example.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Example.Models\Example.Models.csproj">
+      <Project>{01d442e9-2363-4462-ab59-d6b5c09fdafc}</Project>
+      <Name>Example.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
       <Project>{15fb9881-2db0-4477-aa6b-c4cb18a12a01}</Project>
       <Name>Selp.Common</Name>
@@ -62,10 +62,10 @@
       <Project>{d5e497b6-5cc0-45de-a68a-a3f0eaf79de3}</Project>
       <Name>Selp.Interfaces</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
+      <Project>{3fa7eac9-bdc4-45e7-a36a-39812fbd0f5b}</Project>
+      <Name>Selp.Validator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

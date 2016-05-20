@@ -1,11 +1,12 @@
-﻿namespace Selp.Repository.Validator
+﻿namespace Selp.Validator
 {
 	using System.Collections.Generic;
 	using System.Linq;
 	using Common.Entities;
 	using Common.Exceptions;
+	using Interfaces;
 
-	public abstract class SelpValidator
+	public abstract class SelpValidator : ISelpValidator
 	{
 		private readonly List<ValidatorError> errors;
 
@@ -27,7 +28,7 @@
 
 		public abstract string EntityName { get; }
 
-		protected SelpValidator ParentValidator { get; private set; }
+		public SelpValidator ParentValidator { get; set; }
 
 		public bool IsValid
 		{
@@ -61,6 +62,22 @@
 
 				return result;
 			}
+		}
+
+		public void Validate()
+		{
+			if (status != ValidatorStatus.Created)
+			{
+				throw new WorkflowException(
+					$"Validator {EntityName} has already been executed. You cannot use validators more than one time.");
+			}
+			status = ValidatorStatus.InProgress;
+			ValidateLogic();
+			foreach (SelpValidator nestedValidator in NestedValidators)
+			{
+				nestedValidator.Validate();
+			}
+			status = ValidatorStatus.Validated;
 		}
 
 		public void AddNestedValidator(SelpValidator validator)
@@ -104,22 +121,6 @@
 			List<string> result = InitParentEntitiesList(parentValidator.ParentValidator);
 			result.Add(parentValidator.EntityName);
 			return result;
-		}
-
-		public void Validate()
-		{
-			if (status != ValidatorStatus.Created)
-			{
-				throw new WorkflowException(
-					$"Validator {EntityName} has already been executed. You cannot use validators more than one time.");
-			}
-			status = ValidatorStatus.InProgress;
-			ValidateLogic();
-			foreach (SelpValidator nestedValidator in NestedValidators)
-			{
-				nestedValidator.Validate();
-			}
-			status = ValidatorStatus.Validated;
 		}
 
 		protected abstract void ValidateLogic();

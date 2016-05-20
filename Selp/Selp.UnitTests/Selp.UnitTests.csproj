@@ -98,9 +98,9 @@
     <Compile Include="RepositoryTests\GettersTests.cs" />
     <Compile Include="RepositoryTests\Sanity.cs" />
     <Compile Include="RepositoryTests\ValidatorCallingTests.cs" />
-    <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
-    <Compile Include="RepositoryTests\ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
-    <Compile Include="RepositoryTests\ValidatorTests\ValidatorWorkflowTests.cs" />
+    <Compile Include="ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
+    <Compile Include="ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
+    <Compile Include="ValidatorTests\ValidatorWorkflowTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -127,6 +127,10 @@
     <ProjectReference Include="..\Selp.Semantic\Selp.Semantic.csproj">
       <Project>{705057c3-f4c0-429e-9743-284bb0e1b8ab}</Project>
       <Name>Selp.Semantic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
+      <Project>{3fa7eac9-bdc4-45e7-a36a-39812fbd0f5b}</Project>
+      <Name>Selp.Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

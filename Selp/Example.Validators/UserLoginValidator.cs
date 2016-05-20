@@ -1,7 +1,7 @@
-﻿namespace Example.Repositories.Validators
+﻿namespace Example.Validators
 {
 	using Models;
-	using Selp.Repository.Validator;
+	using Selp.Validator;
 
 	public class UserLoginValidator : SelpValidator
 	{

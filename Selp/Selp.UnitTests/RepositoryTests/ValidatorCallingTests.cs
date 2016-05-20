@@ -4,9 +4,10 @@
 	using System.Data.Entity;
 	using Configuration;
 	using Fake;
+	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
-	using Repository.Validator;
+	using Validator;
 	using ValidatorTests.ValidatorsMocks;
 
 	[TestClass]
@@ -39,87 +40,33 @@
 		}
 
 		[TestMethod]
-		public void CreateCanPassWithValidator()
+		public void CreateRaiseValidator()
 		{
-			var mock = new Mock<SelpValidator>();
+			var flag = false;
+			var mock = new Mock<ISelpValidator>();
+			mock.Setup(s => s.Validate()).Callback(() => flag = true);
 			repository.CreateValidator = mock.Object;
 			repository.Create(new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
 			});
-			Assert.AreEqual(true, mock.Object.IsValid);
+			Assert.AreEqual(true, flag);
 		}
 
 		[TestMethod]
-		public void CreateEntityCanBeFailedByValidator()
+		public void UpdateRaiseValidator()
 		{
-			var mock = new FailedValidator();
-			repository.CreateValidator = mock;
-			repository.Create(new FakeEntity
-			{
-				Name = "Pass",
-				Description = null
-			});
-			Assert.AreEqual(false, mock.IsValid);
-			Assert.AreEqual(1, mock.Errors.Count);
-		}
-
-		[TestMethod]
-		public void CreateEntityCanBeFailedByNestedValidator()
-		{
-			var mock = new Mock<SelpValidator>();
-			mock.Object.AddNestedValidator(new FailedValidator());
-			repository.CreateValidator = mock.Object;
-			repository.Create(new FakeEntity
-			{
-				Name = "Pass",
-				Description = null
-			});
-			Assert.AreEqual(false, mock.Object.IsValid);
-			Assert.AreEqual(1, mock.Object.Errors.Count);
-		}
-
-		[TestMethod]
-		public void UpdateCanPassWithValidator()
-		{
-			var mock = new Mock<SelpValidator>();
+			var flag = false;
+			var mock = new Mock<ISelpValidator>();
+			mock.Setup(s => s.Validate()).Callback(() => flag = true);
 			repository.UpdateValidator = mock.Object;
 			repository.Update(1, new FakeEntity
 			{
 				Name = "Pass",
 				Description = null
 			});
-			Assert.AreEqual(true, mock.Object.IsValid);
-		}
-
-		[TestMethod]
-		public void UpdateEntityCanBeFailedByValidator()
-		{
-			var mock = new FailedValidator();
-			repository.UpdateValidator = mock;
-			repository.Update(1, new FakeEntity
-			{
-				Name = "Pass",
-				Description = null
-			});
-			Assert.AreEqual(false, mock.IsValid);
-			Assert.AreEqual(1, mock.Errors.Count);
-		}
-
-		[TestMethod]
-		public void UpdateEntityCanBeFailedByNestedValidator()
-		{
-			var mock = new Mock<SelpValidator>();
-			mock.Object.AddNestedValidator(new FailedValidator());
-			repository.UpdateValidator = mock.Object;
-			repository.Update(1, new FakeEntity
-			{
-				Name = "Pass",
-				Description = null
-			});
-			Assert.AreEqual(false, mock.Object.IsValid);
-			Assert.AreEqual(1, mock.Object.Errors.Count);
+			Assert.AreEqual(true, flag);
 		}
 	}
 }

@@ -58,6 +58,7 @@
     <Compile Include="ISelpEntity.cs" />
     <Compile Include="ISelpRepository.cs" />
     <Compile Include="ISelpSemanticController.cs" />
+    <Compile Include="ISelpValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

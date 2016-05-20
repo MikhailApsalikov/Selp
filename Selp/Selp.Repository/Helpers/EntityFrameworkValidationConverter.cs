@@ -4,7 +4,7 @@
 	using System.Data.Entity.Validation;
 	using Common.Entities;
 
-	public static class EntityFrameworkValidationConverter
+	internal static class EntityFrameworkValidationConverter
 	{
 		public static IEnumerable<ValidatorError> ConvertToValidatorErrorList(DbEntityValidationException exception)
 		{

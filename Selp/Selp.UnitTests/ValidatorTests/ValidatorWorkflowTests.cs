@@ -1,11 +1,11 @@
-﻿namespace Selp.UnitTests.RepositoryTests.ValidatorTests
+﻿namespace Selp.UnitTests.ValidatorTests
 {
 	using System.Collections.Generic;
 	using Common.Entities;
 	using Common.Exceptions;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
-	using Repository.Validator;
+	using Validator;
 	using ValidatorsMocks;
 
 	[TestClass]

@@ -1,10 +1,10 @@
-﻿namespace Example.Repositories.Validators
+﻿namespace Example.Validators
 {
 	using Entities;
 	using Models;
 	using Selp.Common.Exceptions;
 	using Selp.Interfaces;
-	using Selp.Repository.Validator;
+	using Selp.Validator;
 
 	public class UserSignupValidator : SelpValidator
 	{

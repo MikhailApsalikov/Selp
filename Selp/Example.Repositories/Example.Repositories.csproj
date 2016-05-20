@@ -50,8 +50,6 @@
     <Compile Include="RegionRepository.cs" />
     <Compile Include="TestDataInitializer.cs" />
     <Compile Include="UserRepository.cs" />
-    <Compile Include="Validators\UserSignupValidator.cs" />
-    <Compile Include="Validators\UserLoginValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -66,6 +64,10 @@
       <Project>{01D442E9-2363-4462-AB59-D6B5C09FDAFC}</Project>
       <Name>Example.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Example.Validators\Example.Validators.csproj">
+      <Project>{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}</Project>
+      <Name>Example.Validators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
       <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
       <Name>Selp.Common</Name>
@@ -77,6 +79,10 @@
     <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
       <Project>{78CEE587-C390-47A7-A95A-D0798C29ABC4}</Project>
       <Name>Selp.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
+      <Project>{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B}</Project>
+      <Name>Selp.Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

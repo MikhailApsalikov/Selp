@@ -1,15 +1,13 @@
 ﻿namespace Example.Web.Controllers
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
 	using System.Web.Http;
 	using Entities;
 	using Models;
-	using Repositories.Validators;
 	using Selp.Common.Entities;
 	using Selp.Controller;
 	using Selp.Interfaces;
+	using Validators;
 
 	public class UserController : SelpController<UserModel, User, string>
 	{
@@ -52,7 +50,7 @@
 				});
 			}
 
-            EntitiesListResult<UserModel> result =
+			EntitiesListResult<UserModel> result =
 				Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
 			if (result.Total == 1)
 			{

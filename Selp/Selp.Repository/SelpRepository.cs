@@ -11,7 +11,6 @@
     using ExpressionConstructor;
     using Helpers;
     using Interfaces;
-    using Validator;
 
     public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
         where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
@@ -35,9 +34,9 @@
 
         public abstract IDbSet<TEntity> DbSet { get; }
 
-        public SelpValidator CreateValidator { get; set; }
+        public ISelpValidator CreateValidator { get; set; }
 
-        public SelpValidator UpdateValidator { get; set; }
+        public ISelpValidator UpdateValidator { get; set; }
 
 
         public virtual EntitiesListResult<TModel> GetAll()

@@ -1,6 +1,6 @@
-﻿namespace Selp.UnitTests.RepositoryTests.ValidatorTests.ValidatorsMocks
+﻿namespace Selp.UnitTests.ValidatorTests.ValidatorsMocks
 {
-	using Repository.Validator;
+	using Validator;
 
 	internal class FailedValidatorLevel2 : SelpValidator
 	{
