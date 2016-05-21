@@ -1,22 +1,22 @@
 ﻿namespace Selp.Interfaces
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq.Expressions;
     using Common.Entities;
 
-    public interface ISelpRepository<TModel, TEntity, in TKey> where TModel : ISelpEntity<TKey>
-        where TEntity : ISelpEntity<TKey>
+    public interface ISelpRepository<TEntity, in TKey> where TEntity : ISelpEntity<TKey>
     {
-        EntitiesListResult<TModel> GetAll();
-        TModel GetById(TKey id);
+        List<TEntity> GetAll();
+		TEntity GetById(TKey id);
 
-        EntitiesListResult<TModel> GetByFilter(BaseFilter filter);
+		List<TEntity> GetByFilter(BaseFilter filter, out int total);
 
-        EntitiesListResult<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression);
+		List<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression);
 
-        RepositoryModifyResult<TModel> Create(TModel model);
+        RepositoryModifyResult<TEntity> Create(TEntity entity);
 
-        RepositoryModifyResult<TModel> Update(TKey id, TModel model);
+        RepositoryModifyResult<TEntity> Update(TKey id, TEntity entity);
 
         void Remove(TKey id);
     }

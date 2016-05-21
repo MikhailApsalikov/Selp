@@ -1,12 +1,8 @@
 ﻿namespace Selp.UnitTests.RepositoryTests
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Data.Entity;
-	using System.Data.Entity.Infrastructure;
 	using System.Data.Entity.Validation;
-	using System.Linq;
-	using System.Reflection;
 	using Common.Entities;
 	using Configuration;
 	using Fake;

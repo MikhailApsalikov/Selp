@@ -3,11 +3,10 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using Common.Entities;
-	using Configuration;
 	using Interfaces;
 	using Repository;
 
-	public class FakeRepositoryReferenceKey : SelpRepository<FakeEntityReferenceKey, FakeEntityReferenceKey, string>
+	public class FakeRepositoryReferenceKey : SelpRepository<FakeEntityReferenceKey, string>
 	{
 		public FakeRepositoryReferenceKey(DbContext dbContext,
 			IDbSet<FakeEntityReferenceKey> dbSet, ISelpConfiguration configuration) : base(dbContext, configuration)
@@ -27,17 +26,7 @@
 		{
 		}
 
-		protected override FakeEntityReferenceKey MapEntityToModel(FakeEntityReferenceKey entity)
-		{
-			return entity;
-		}
-
-		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey model)
-		{
-			return model;
-		}
-
-		protected override FakeEntityReferenceKey MapModelToEntity(FakeEntityReferenceKey source,
+		protected override FakeEntityReferenceKey Merge(FakeEntityReferenceKey source,
 			FakeEntityReferenceKey destination)
 		{
 			destination.Name = source.Name;

@@ -1,6 +1,8 @@
 ﻿namespace Selp.Controller
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 	using System.Net;
 	using System.Web.Http;
 	using Common.Entities;
@@ -8,15 +10,15 @@
 	using Entities;
 	using Interfaces;
 
-	public abstract class SelpController<TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TKey>
-		where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>
+	public abstract class SelpController<TShortModel, TModel, TEntity, TKey> : ApiController, ISelpController<TModel, TKey>
+		where TShortModel : ISelpEntity<TKey> where TModel : ISelpEntity<TKey> where TEntity : ISelpEntity<TKey>
 	{
-		protected SelpController(ISelpRepository<TModel, TEntity, TKey> repository)
+		protected SelpController(ISelpRepository<TEntity, TKey> repository)
 		{
 			Repository = repository;
 		}
 
-		protected ISelpRepository<TModel, TEntity, TKey> Repository { get; }
+		protected ISelpRepository<TEntity, TKey> Repository { get; }
 
 		public abstract string ControllerName { get; }
 
@@ -39,7 +41,7 @@
 		{
 			try
 			{
-				return Ok(Repository.GetById(id));
+				return Ok(MapEntityToModel(Repository.GetById(id)));
 			}
 			catch (Exception e)
 			{
@@ -52,7 +54,16 @@
 		{
 			try
 			{
-				return Ok(Repository.GetByFilter(query));
+				int total;
+				List<TShortModel> data = Repository.GetByFilter(query, out total).Select(MapEntityToShortModel).ToList();
+
+				return Ok(new EntitiesListResult<TShortModel>()
+				{
+					Data = data,
+					Page = query.Page ?? -1,
+					PageSize = query.PageSize ?? -1,
+					Total = total
+				});
 			}
 			catch (Exception e)
 			{
@@ -65,11 +76,11 @@
 		{
 			try
 			{
-				RepositoryModifyResult<TModel> result = Repository.Create(value);
+				RepositoryModifyResult<TEntity> result = Repository.Create(MapModelToEntity(value));
 				if (result.ModifiedEntity != null)
 				{
 					return Created(new Uri($"{ControllerName}/{result.ModifiedEntity.Id}", UriKind.Relative),
-						result.ModifiedEntity);
+						MapEntityToShortModel(result.ModifiedEntity));
 				}
 
 				return Content(HttpStatusCode.InternalServerError, new ErrorList(result.Errors));
@@ -86,10 +97,10 @@
 			try
 			{
 				value.Id = id;
-				RepositoryModifyResult<TModel> result = Repository.Update(id, value);
+				RepositoryModifyResult<TEntity> result = Repository.Update(id, MapModelToEntity(value));
 				if (result.ModifiedEntity != null)
 				{
-					return Ok(result.ModifiedEntity);
+					return Ok(MapEntityToShortModel(result.ModifiedEntity));
 				}
 
 				return Content(HttpStatusCode.InternalServerError, new ErrorList(result.Errors));
@@ -99,6 +110,12 @@
 				return HandleException(e);
 			}
 		}
+
+		protected abstract TModel MapEntityToModel(TEntity entity);
+
+		protected abstract TEntity MapModelToEntity(TModel model);
+
+		protected abstract TShortModel MapEntityToShortModel(TEntity entity);
 
 		protected virtual IHttpActionResult HandleException(Exception e)
 		{

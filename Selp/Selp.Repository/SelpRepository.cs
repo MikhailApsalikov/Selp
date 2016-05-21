@@ -1,6 +1,7 @@
 ﻿namespace Selp.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Validation;
     using System.Linq;
@@ -12,8 +13,8 @@
     using Helpers;
     using Interfaces;
 
-    public abstract class SelpRepository<TModel, TEntity, TKey> : ISelpRepository<TModel, TEntity, TKey>
-        where TModel : class, ISelpEntity<TKey> where TEntity : class, ISelpEntity<TKey>
+    public abstract class SelpRepository<TEntity, TKey> : ISelpRepository<TEntity, TKey>
+        where TEntity : class, ISelpEntity<TKey>
     {
         private readonly ISelpConfiguration configuration;
 
@@ -39,54 +40,40 @@
         public ISelpValidator UpdateValidator { get; set; }
 
 
-        public virtual EntitiesListResult<TModel> GetAll()
+        public virtual List<TEntity> GetAll()
         {
-            var result = new EntitiesListResult<TModel>
-            {
-                Data = FilterDeleted(DbSet).AsEnumerable().Select(MapEntityToModel)
-            };
-
-            result.Total = result.Data.Count();
-            return result;
+            return FilterDeleted(DbSet).ToList();
         }
 
-        public virtual TModel GetById(TKey id)
+        public virtual TEntity GetById(TKey id)
         {
             id.ThrowIfNull("ID cannot be null");
-            TEntity entity = FindById(id);
-            return MapEntityToModel(entity);
+            return FindById(id);
         }
 
-        public virtual EntitiesListResult<TModel> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
+        public virtual List<TEntity> GetByCustomExpression(Expression<Func<TEntity, bool>> customExpression)
         {
             customExpression.ThrowIfNull("Custom expression cannot be null");
-            var result = new EntitiesListResult<TModel>
-            {
-                Data = FilterDeleted(DbSet).Where(customExpression).AsEnumerable().Select(MapEntityToModel)
-            };
-
-            result.Total = result.Data.Count();
-            return result;
+            return FilterDeleted(DbSet).Where(customExpression).ToList();
         }
 
-        public virtual EntitiesListResult<TModel> GetByFilter(BaseFilter filter)
+        public virtual List<TEntity> GetByFilter(BaseFilter filter, out int total)
         {
             filter.ThrowIfNull("Filter cannot be null");
             return ApplyFilters(FilterDeleted(DbSet), filter)
-                .ApplyPaginationAndSorting(filter, configuration.DefaultPageSize, MapEntityToModel);
+                .ApplyPaginationAndSorting(filter, configuration.DefaultPageSize, out total);
         }
 
-        public virtual RepositoryModifyResult<TModel> Create(TModel model)
+        public virtual RepositoryModifyResult<TEntity> Create(TEntity entity)
         {
-            model.ThrowIfNull("Model cannot be null");
-            TEntity entity = MapModelToEntity(model);
+			entity.ThrowIfNull("Entity cannot be null");
             OnCreating(entity);
             if (CreateValidator != null)
             {
                 CreateValidator.Validate();
                 if (!CreateValidator.IsValid)
                 {
-                    return new RepositoryModifyResult<TModel>(CreateValidator.Errors);
+                    return new RepositoryModifyResult<TEntity>(CreateValidator.Errors);
                 }
             }
 
@@ -98,32 +85,32 @@
             catch (DbEntityValidationException ex)
             {
                 return
-                    new RepositoryModifyResult<TModel>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
+                    new RepositoryModifyResult<TEntity>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
             }
 
 
             OnCreated(entity);
-            return new RepositoryModifyResult<TModel>(MapEntityToModel(result));
+            return new RepositoryModifyResult<TEntity>(result);
         }
 
-        public virtual RepositoryModifyResult<TModel> Update(TKey id, TModel model)
+        public virtual RepositoryModifyResult<TEntity> Update(TKey id, TEntity entity)
         {
             id.ThrowIfNull("ID cannot be null");
-            model.ThrowIfNull("Model cannot be null");
-            TEntity entity = FindById(id);
-            OnUpdating(id, entity);
-            MapModelToEntity(model, entity);
+            entity.ThrowIfNull("Entity cannot be null");
+            TEntity entityInBase = FindById(id);
+            OnUpdating(id, entityInBase);
+            Merge(entity, entityInBase);
             if (UpdateValidator != null)
             {
                 UpdateValidator.Validate();
                 if (!UpdateValidator.IsValid)
                 {
-                    return new RepositoryModifyResult<TModel>(UpdateValidator.Errors);
+                    return new RepositoryModifyResult<TEntity>(UpdateValidator.Errors);
                 }
             }
 
 
-            MarkAsModified(entity);
+            MarkAsModified(entityInBase);
             try
             {
                 DbContext.SaveChanges();
@@ -131,10 +118,10 @@
             catch (DbEntityValidationException ex)
             {
                 return
-                    new RepositoryModifyResult<TModel>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
+                    new RepositoryModifyResult<TEntity>(EntityFrameworkValidationConverter.ConvertToValidatorErrorList(ex));
             }
-            OnUpdated(id, entity);
-            return new RepositoryModifyResult<TModel>(MapEntityToModel(entity));
+            OnUpdated(id, entityInBase);
+            return new RepositoryModifyResult<TEntity>(entityInBase);
         }
 
         public virtual void Remove(TKey id)
@@ -172,11 +159,7 @@
             return entity;
         }
 
-        protected abstract TModel MapEntityToModel(TEntity entity);
-
-        protected abstract TEntity MapModelToEntity(TModel model);
-
-        protected abstract TEntity MapModelToEntity(TModel source, TEntity destination);
+        protected abstract TEntity Merge(TEntity source, TEntity destination);
 
         protected abstract IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> entities, BaseFilter filter);
 

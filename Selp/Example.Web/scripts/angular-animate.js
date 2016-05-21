@@ -453,8 +453,8 @@ var $$rAFSchedulerFactory = ['$$rAF', function($$rAF) {
  * <example module="ngAnimateChildren" name="ngAnimateChildren" deps="angular-animate.js" animations="true">
      <file name="index.html">
        <div ng-controller="mainController as main">
-         <label>Show container? <input type="checkbox" ng-model="main.enterElement" /></label>
-         <label>Animate children? <input type="checkbox" ng-model="main.animateChildren" /></label>
+         <label>Show container? <input type="checkbox" ng-entity="main.enterElement" /></label>
+         <label>Animate children? <input type="checkbox" ng-entity="main.animateChildren" /></label>
          <hr>
          <div ng-animate-children="{{main.animateChildren}}">
            <div ng-if="main.enterElement" class="container">

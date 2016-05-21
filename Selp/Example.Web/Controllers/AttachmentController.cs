@@ -7,7 +7,8 @@
 	using Repositories.AdditionalInterfaces;
 	using Selp.Controller;
 
-	public class AttachmentController : SelpController<AttachmentModel, Attachment, Guid>
+	//NYI
+	public class AttachmentController : SelpController<AttachmentModel, AttachmentModel, Attachment, Guid>
 	{
 		public AttachmentController(IAttachmentRepository repository) : base(repository)
 		{
@@ -20,6 +21,35 @@
 		public override IHttpActionResult Post(AttachmentModel value)
 		{
 			return base.Post(value);
+		}
+
+		protected override AttachmentModel MapEntityToModel(Attachment entity)
+		{
+			return new AttachmentModel
+			{
+				Id = entity.Id,
+				Description = entity.Description,
+				FileName = entity.FileName,
+				FileSize = entity.FileSize,
+				Uploaded = entity.Uploaded
+			};
+		}
+
+		protected override Attachment MapModelToEntity(AttachmentModel model)
+		{
+			return new Attachment
+			{
+				Id = model.Id,
+				Description = model.Description,
+				FileName = model.FileName,
+				FileSize = model.FileSize,
+				Uploaded = model.Uploaded
+			};
+		}
+
+		protected override AttachmentModel MapEntityToShortModel(Attachment entity)
+		{
+			throw new NotImplementedException();
 		}
 
 		//download

@@ -11,7 +11,7 @@
     using Selp.Interfaces;
     using Selp.Repository;
 
-    public class PolicyRepository : SelpRepository<PolicyModel, Policy, int>
+    public class PolicyRepository : SelpRepository<Policy, int>
     {
         public PolicyRepository(DbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
         {
@@ -21,49 +21,13 @@
         public override string FakeRemovingPropertyName => null;
         public override IDbSet<Policy> DbSet => ((ExampleDbContext) DbContext).Policies;
 
-        protected override PolicyModel MapEntityToModel(Policy entity)
+        protected override Policy Merge(Policy source, Policy destination)
         {
-            return new PolicyModel
-            {
-                Id = entity.Id,
-                InsuranceSum = entity.InsuranceSum,
-                RegionId = entity.RegionId,
-                ExpirationDate = entity.ExpirationDate.ToString("dd.MM.yyyy"),
-                StartDate = entity.StartDate.ToString("dd.MM.yyyy"),
-                InsurancePremium = entity.InsurancePremium,
-                Attachments = entity.Attachments?.Select(s => s.Id).ToList(),
-                Status = ConvertStatus(entity.Status),
-                CreatedDate = entity.CreatedDate.ToString("dd.MM.yyyy"),
-                UserId = entity.UserId,
-                InsuredList = entity.Parties?.Select(p => p.Id).ToList(),
-                Serial = entity.Serial,
-                Number = entity.Number
-            };
-        }
-
-        protected override Policy MapModelToEntity(PolicyModel model)
-        {
-            return new Policy
-            {
-                ExpirationDate = DateTime.Parse(model.ExpirationDate, new CultureInfo("ru-RU")),
-                CreatedDate = DateTime.Parse(model.CreatedDate, new CultureInfo("ru-RU")),
-                InsurancePremium = model.InsurancePremium,
-                InsuranceSum = model.InsuranceSum,
-                RegionId = model.RegionId,
-                StartDate = DateTime.Parse(model.StartDate, new CultureInfo("ru-RU")),
-                Status = ConvertStatus(model.Status),
-                Serial = model.Serial,
-                Number = model.Number
-            };
-        }
-
-        protected override Policy MapModelToEntity(PolicyModel source, Policy destination)
-        {
-            destination.ExpirationDate = DateTime.Parse(source.ExpirationDate, new CultureInfo("ru-RU"));
+            destination.ExpirationDate = source.ExpirationDate;
             destination.InsurancePremium = source.InsurancePremium;
             destination.RegionId = source.RegionId;
-            destination.StartDate = DateTime.Parse(source.StartDate, new CultureInfo("ru-RU"));
-            destination.Status = ConvertStatus(source.Status);
+            destination.StartDate = source.StartDate;
+            destination.Status = source.Status;
             destination.InsuranceSum = source.InsuranceSum;
             destination.Serial = source.Serial;
             destination.Number = source.Number;
@@ -81,36 +45,6 @@
             item.UserId = "ds"; // вытащить UserId
             item.CreatedDate = DateTime.Now;
             item.Status = PolicyStatus.Project;
-        }
-
-        private string ConvertStatus(PolicyStatus status)
-        {
-            switch (status)
-            {
-                case PolicyStatus.Actual:
-                    return "Действующий";
-                case PolicyStatus.Annulated:
-                    return "Аннулирован";
-                case PolicyStatus.Project:
-                    return "Проект";
-                default:
-                    throw new ArgumentException();
-            }
-        }
-
-        private PolicyStatus ConvertStatus(string status)
-        {
-            switch (status)
-            {
-                case "Действующий":
-                    return PolicyStatus.Actual;
-                case "Аннулирован":
-                    return PolicyStatus.Annulated;
-                case "Проект":
-                    return PolicyStatus.Project;
-                default:
-                    throw new ArgumentException();
-            }
         }
     }
 }

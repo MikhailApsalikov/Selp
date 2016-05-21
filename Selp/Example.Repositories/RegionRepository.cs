@@ -8,7 +8,7 @@
 	using Selp.Interfaces;
 	using Selp.Repository;
 
-	public class RegionRepository : SelpRepository<RegionModel, Region, int>
+	public class RegionRepository : SelpRepository<Region, int>
 	{
 		public RegionRepository(DbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{
@@ -18,25 +18,7 @@
 		public override string FakeRemovingPropertyName => null;
 		public override IDbSet<Region> DbSet => ((ExampleDbContext) DbContext).Regions;
 
-		protected override RegionModel MapEntityToModel(Region entity)
-		{
-			return new RegionModel
-			{
-				Id = entity.Id,
-				Name = entity.Name
-			};
-		}
-
-		protected override Region MapModelToEntity(RegionModel model)
-		{
-			return new Region
-			{
-				Id = model.Id,
-				Name = model.Name
-			};
-		}
-
-		protected override Region MapModelToEntity(RegionModel source, Region destination)
+		protected override Region Merge(Region source, Region destination)
 		{
 			destination.Name = source.Name;
 			return destination;

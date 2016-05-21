@@ -8,7 +8,7 @@
 
 	public class UserSignupValidator : SelpValidator
 	{
-		public UserSignupValidator(User user, ISelpRepository<UserModel, User, string> repository)
+		public UserSignupValidator(User user, ISelpRepository<User, string> repository)
 		{
 			User = user;
 			Repository = repository;
@@ -16,7 +16,7 @@
 
 		public User User { get; set; }
 
-		public ISelpRepository<UserModel, User, string> Repository { get; set; }
+		public ISelpRepository<User, string> Repository { get; set; }
 
 		public override string EntityName => "UserModel";
 

@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
@@ -186,7 +186,7 @@ angular.module('material.core')
  *       <md-input-container>
  *         <label for="testInput">Test input</label>
  *         <input id="testInput" type="text"
- *                ng-model="data" md-autofocus>
+ *                ng-entity="data" md-autofocus>
  *       </md-input-container>
  *     </form>
  *   </md-sidenav>
@@ -6689,7 +6689,7 @@ angular
  * the checkbox is in the accent color by default. The primary color palette may be used with
  * the `md-primary` class.
  *
- * @param {string} ng-model Assignable angular expression to data-bind to.
+ * @param {string} ng-entity Assignable angular expression to data-bind to.
  * @param {string=} name Property name of the form under which the control is published.
  * @param {expression=} ng-true-value The value to which the expression should be set when selected.
  * @param {expression=} ng-false-value The value to which the expression should be set when not selected.
@@ -6700,15 +6700,15 @@ angular
  *
  * @usage
  * <hljs lang="html">
- * <md-checkbox ng-model="isChecked" aria-label="Finished?">
+ * <md-checkbox ng-entity="isChecked" aria-label="Finished?">
  *   Finished ?
  * </md-checkbox>
  *
- * <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+ * <md-checkbox md-no-ink ng-entity="hasInk" aria-label="No Ink Effects">
  *   No Ink Effects
  * </md-checkbox>
  *
- * <md-checkbox ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+ * <md-checkbox ng-disabled="true" ng-entity="isDisabled" aria-label="Disabled">
  *   Disabled
  * </md-checkbox>
  *
@@ -6971,7 +6971,7 @@ angular.module('material.components.chips', [
   // TODO(jelbourn): Minimum and maximum date
   // TODO(jelbourn): Refactor month element creation to use cloneNode (performance).
   // TODO(jelbourn): Define virtual scrolling constants (compactness) users can override.
-  // TODO(jelbourn): Animated month transition on ng-model change (virtual-repeat)
+  // TODO(jelbourn): Animated month transition on ng-entity change (virtual-repeat)
   // TODO(jelbourn): Scroll snapping (virtual repeat)
   // TODO(jelbourn): Remove superfluous row from short months (virtual-repeat)
   // TODO(jelbourn): Month headers stick to top when scrolling.
@@ -7116,8 +7116,8 @@ angular.module('material.components.chips', [
     this.ngModelCtrl = null;
 
     /**
-     * The selected date. Keep track of this separately from the ng-model value so that we
-     * can know, when the ng-model value changes, what the previous value was before it's updated
+     * The selected date. Keep track of this separately from the ng-entity value so that we
+     * can know, when the ng-entity value changes, what the previous value was before it's updated
      * in the component's UI.
      *
      * @type {Date}
@@ -7126,7 +7126,7 @@ angular.module('material.components.chips', [
 
     /**
      * The date that is currently focused or showing in the calendar. This will initially be set
-     * to the ng-model value if set, otherwise to today. It will be updated as the user navigates
+     * to the ng-entity value if set, otherwise to today. It will be updated as the user navigates
      * to other months. The cell corresponding to the displayDate does not necesarily always have
      * focus in the document (such as for cases when the user is scrolling the calendar).
      * @type {Date}
@@ -7146,7 +7146,7 @@ angular.module('material.components.chips', [
     this.isMonthTransitionInProgress = false;
 
     // Unless the user specifies so, the calendar should not be a tab stop.
-    // This is necessary because ngAria might add a tabindex to anything with an ng-model
+    // This is necessary because ngAria might add a tabindex to anything with an ng-entity
     // (based on whether or not the user has turned that particular feature on/off).
     if (!$attrs['tabindex']) {
       $element.attr('tabindex', '-1');
@@ -7326,7 +7326,7 @@ angular.module('material.components.chips', [
   };
 
   /**
-   * Sets the ng-model value for the calendar and emits a change event.
+   * Sets the ng-entity value for the calendar and emits a change event.
    * @param {Date} date
    */
   CalendarCtrl.prototype.setNgModelValue = function(date) {
@@ -8085,8 +8085,8 @@ angular.module('material.components.chips', [
    * @name mdDatepicker
    * @module material.components.datepicker
    *
-   * @param {Date} ng-model The component's model. Expects a JavaScript Date object.
-   * @param {expression=} ng-change Expression evaluated when the model value changes.
+   * @param {Date} ng-entity The component's entity. Expects a JavaScript Date object.
+   * @param {expression=} ng-change Expression evaluated when the entity value changes.
    * @param {Date=} md-min-date Expression representing a min date (inclusive).
    * @param {Date=} md-max-date Expression representing a max date (inclusive).
    * @param {(function(Date): boolean)=} md-date-filter Function expecting a date and returning a boolean whether it can be selected or not.
@@ -8107,7 +8107,7 @@ angular.module('material.components.chips', [
    *
    * @usage
    * <hljs lang="html">
-   *   <md-datepicker ng-model="birthday"></md-datepicker>
+   *   <md-datepicker ng-entity="birthday"></md-datepicker>
    * </hljs>
    *
    */
@@ -8143,7 +8143,7 @@ angular.module('material.components.chips', [
               '<md-calendar role="dialog" aria-label="{{::ctrl.dateLocale.msgCalendar}}" ' +
                   'md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"' +
                   'md-date-filter="ctrl.dateFilter"' +
-                  'ng-model="ctrl.date" ng-if="ctrl.isCalendarOpen">' +
+                  'ng-entity="ctrl.date" ng-if="ctrl.isCalendarOpen">' +
               '</md-calendar>' +
             '</div>' +
           '</div>',
@@ -8304,7 +8304,7 @@ angular.module('material.components.chips', [
     this.windowResizeHandler = $mdUtil.debounce(angular.bind(this, this.closeCalendarPane), 100);
 
     // Unless the user specifies so, the datepicker should not be a tab stop.
-    // This is necessary because ngAria might add a tabindex to anything with an ng-model
+    // This is necessary because ngAria might add a tabindex to anything with an ng-entity
     // (based on whether or not the user has turned that particular feature on/off).
     if (!$attrs['tabindex']) {
       $element.attr('tabindex', '-1');
@@ -8333,8 +8333,8 @@ angular.module('material.components.chips', [
       var value = self.ngModelCtrl.$viewValue;
 
       if (value && !(value instanceof Date)) {
-        throw Error('The ng-model for md-datepicker must be a Date instance. ' +
-            'Currently the model is a: ' + (typeof value));
+        throw Error('The ng-entity for md-datepicker must be a Date instance. ' +
+            'Currently the entity is a: ' + (typeof value));
       }
 
       self.date = value;
@@ -8346,7 +8346,7 @@ angular.module('material.components.chips', [
 
   /**
    * Attach event listeners for both the text input and the md-calendar.
-   * Events are used instead of ng-model so that updates don't infinitely update the other
+   * Events are used instead of ng-entity so that updates don't infinitely update the other
    * on a change. This should also be more performant than using a $watch.
    */
   DatePickerCtrl.prototype.attachChangeListeners = function() {
@@ -8430,7 +8430,7 @@ angular.module('material.components.chips', [
    *
    * The 'required' flag is handled automatically by ngModel.
    *
-   * @param {Date=} opt_date Date to check. If not given, defaults to the datepicker's model value.
+   * @param {Date=} opt_date Date to check. If not given, defaults to the datepicker's entity value.
    */
   DatePickerCtrl.prototype.updateErrorState = function(opt_date) {
     var date = opt_date || this.date;
@@ -8483,7 +8483,7 @@ angular.module('material.components.chips', [
   };
 
   /**
-   * Sets the model value if the user input is a valid date.
+   * Sets the entity value if the user input is a valid date.
    * Adds an invalid class to the input element if not.
    */
   DatePickerCtrl.prototype.handleInputEvent = function() {
@@ -8499,7 +8499,7 @@ angular.module('material.components.chips', [
       this.isDateEnabled(parsedDate)
     );
 
-    // The datepicker's model is only updated when there is a valid input.
+    // The datepicker's entity is only updated when there is a valid input.
     if (isValidInput) {
       this.ngModelCtrl.$setViewValue(parsedDate);
       this.date = parsedDate;
@@ -9468,7 +9468,7 @@ function MdDialogProvider($$interimElementProvider) {
         '      <p>{{::dialog.mdTextContent}}</p>',
         '    </div>',
         '    <md-input-container md-no-float ng-if="::dialog.$type == \'prompt\'" class="md-prompt-input-container">',
-        '      <input ng-keypress="dialog.keypress($event)" md-autofocus ng-model="dialog.result" placeholder="{{::dialog.placeholder}}">',
+        '      <input ng-keypress="dialog.keypress($event)" md-autofocus ng-entity="dialog.result" placeholder="{{::dialog.placeholder}}">',
         '    </md-input-container>',
         '  </md-dialog-content>',
         '  <md-dialog-actions>',
@@ -11750,12 +11750,12 @@ angular.module('material.components.input', [
  *
  * <md-input-container>
  *   <label>Username</label>
- *   <input type="text" ng-model="user.name">
+ *   <input type="text" ng-entity="user.name">
  * </md-input-container>
  *
  * <md-input-container>
  *   <label>Description</label>
- *   <textarea ng-model="user.description"></textarea>
+ *   <textarea ng-entity="user.description"></textarea>
  * </md-input-container>
  *
  * </hljs>
@@ -11861,7 +11861,7 @@ function labelDirective() {
  * <hljs lang="html">
  * <md-input-container>
  *   <label>Color</label>
- *   <input type="text" ng-model="color" required md-maxlength="10">
+ *   <input type="text" ng-entity="color" required md-maxlength="10">
  * </md-input-container>
  * </hljs>
  *
@@ -11879,7 +11879,7 @@ function labelDirective() {
  * <form name="colorForm">
  *   <md-input-container>
  *     <label>Favorite Color</label>
- *     <input name="favoriteColor" ng-model="favoriteColor" required>
+ *     <input name="favoriteColor" ng-entity="favoriteColor" required>
  *     <div ng-messages="userForm.lastName.$error">
  *       <div ng-message="required">This is required!</div>
  *     </div>
@@ -11905,7 +11905,7 @@ function labelDirective() {
  * <form name="userForm">
  *   <md-input-container>
  *     <label>Last Name</label>
- *     <input name="lastName" ng-model="lastName" required md-maxlength="10" minlength="4">
+ *     <input name="lastName" ng-entity="lastName" required md-maxlength="10" minlength="4">
  *     <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
  *       <div ng-message="required">This is required!</div>
  *       <div ng-message="md-maxlength">That's too long!</div>
@@ -11914,17 +11914,17 @@ function labelDirective() {
  *   </md-input-container>
  *   <md-input-container>
  *     <label>Biography</label>
- *     <textarea name="bio" ng-model="biography" required md-maxlength="150"></textarea>
+ *     <textarea name="bio" ng-entity="biography" required md-maxlength="150"></textarea>
  *     <div ng-messages="userForm.bio.$error" ng-show="userForm.bio.$dirty">
  *       <div ng-message="required">This is required!</div>
  *       <div ng-message="md-maxlength">That's too long!</div>
  *     </div>
  *   </md-input-container>
  *   <md-input-container>
- *     <input aria-label='title' ng-model='title'>
+ *     <input aria-label='title' ng-entity='title'>
  *   </md-input-container>
  *   <md-input-container>
- *     <input placeholder='title' ng-model='title'>
+ *     <input placeholder='title' ng-entity='title'>
  *   </md-input-container>
  * </form>
  * </hljs>
@@ -12183,7 +12183,7 @@ function mdMaxlengthDirective($animate, $mdUtil) {
       // Append our character counter inside the errors spacer
       errorsSpacer.append(charCountEl);
 
-      // Stop model from trimming. This makes it so whitespace
+      // Stop entity from trimming. This makes it so whitespace
       // over the maxlength still counts as invalid.
       attr.$set('ngTrim', 'false');
 
@@ -12559,7 +12559,7 @@ angular.module('material.components.list', [
  * <hljs lang="html">
  * <md-list>
  *   <md-list-item class="md-2-line" ng-repeat="item in todos">
- *     <md-checkbox ng-model="item.done"></md-checkbox>
+ *     <md-checkbox ng-entity="item.done"></md-checkbox>
  *     <div class="md-list-item-text">
  *       <h3>{{item.title}}</h3>
  *       <p>{{item.description}}</p>
@@ -13349,12 +13349,12 @@ angular.module('material.components.radioButton', [
  * force the user to tab through all the radio buttons, `<md-radio-group>`
  * is focusable, and by default the `<md-radio-button>`s are not.
  *
- * @param {string} ng-model Assignable angular expression to data-bind to.
+ * @param {string} ng-entity Assignable angular expression to data-bind to.
  * @param {boolean=} md-no-ink Use of attribute indicates flag to disable ink ripple effects.
  *
  * @usage
  * <hljs lang="html">
- * <md-radio-group ng-model="selected">
+ * <md-radio-group ng-entity="selected">
  *
  *   <md-radio-button
  *        ng-repeat="d in colorOptions"
@@ -13531,7 +13531,7 @@ mdRadioGroupDirective.$inject = ["$mdUtil", "$mdConstant", "$mdTheming", "$timeo
  * @description
  * The `<md-radio-button>`directive is the child directive required to be used within `<md-radio-group>` elements.
  *
- * While similar to the `<input type="radio" ng-model="" value="">` directive,
+ * While similar to the `<input type="radio" ng-entity="" value="">` directive,
  * the `<md-radio-button>` directive provides ink effects, ARIA support, and
  * supports use within named radio groups.
  *
@@ -13552,7 +13552,7 @@ mdRadioGroupDirective.$inject = ["$mdUtil", "$mdConstant", "$mdTheming", "$timeo
  *   Label 1
  * </md-radio-button>
  *
- * <md-radio-button ng-model="color" ng-value="specialValue" aria-label="Green">
+ * <md-radio-button ng-entity="color" ng-value="specialValue" aria-label="Green">
  *   Green
  * </md-radio-button>
  *
@@ -13752,9 +13752,9 @@ angular.module('material.components.select', [
  * @restrict E
  * @module material.components.select
  *
- * @description Displays a select box, bound to an ng-model.
+ * @description Displays a select box, bound to an ng-entity.
  *
- * @param {expression} ng-model The model!
+ * @param {expression} ng-entity The entity!
  * @param {boolean=} multiple Whether it's multiple.
  * @param {expression=} md-on-close Expression to be evaluated when the select is closed.
  * @param {expression=} md-on-open Expression to be evaluated when opening the select.
@@ -13770,7 +13770,7 @@ angular.module('material.components.select', [
  * <hljs lang="html">
  *   <md-input-container>
  *     <md-select
- *       ng-model="someModel"
+ *       ng-entity="someModel"
  *       placeholder="Select a state">
  *       <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
  *     </md-select>
@@ -13782,7 +13782,7 @@ angular.module('material.components.select', [
  *   <md-input-container>
  *     <label>State</label>
  *     <md-select
- *       ng-model="someModel">
+ *       ng-entity="someModel">
  *       <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
  *     </md-select>
  *   </md-input-container>
@@ -13803,7 +13803,7 @@ angular.module('material.components.select', [
  * </hljs>
  * <hljs lang="html">
  * <div ng-controller="MyCtrl">
- *   <md-select ng-model="selectedUser">
+ *   <md-select ng-entity="selectedUser">
  *     <md-option ng-value="user" ng-repeat="user in users">{{ user.name }}</md-option>
  *   </md-select>
  * </div>
@@ -13820,7 +13820,7 @@ angular.module('material.components.select', [
  *
  * To get around this, `ngModelController` provides a `track by` option that allows us to specify a different
  * expression which will be used for the equality operator. As such, we can update our `html` to
- * make use of this by specifying the `ng-model-options="{trackBy: '$value.id'}"` on the `md-select`
+ * make use of this by specifying the `ng-entity-options="{trackBy: '$value.id'}"` on the `md-select`
  * element. This converts our equality expression to be
  * `$scope.selectedUser.id == (any id in $scope.users.map(function(u) { return u.id; }));`
  * which results in Bob being selected as desired.
@@ -13828,7 +13828,7 @@ angular.module('material.components.select', [
  * Working HTML:
  * <hljs lang="html">
  * <div ng-controller="MyCtrl">
- *   <md-select ng-model="selectedUser" ng-model-options="{trackBy: '$value.id'}">
+ *   <md-select ng-entity="selectedUser" ng-entity-options="{trackBy: '$value.id'}">
  *     <md-option ng-value="user" ng-repeat="user in users">{{ user.name }}</md-option>
  *   </md-select>
  * </div>
@@ -14299,7 +14299,7 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
         ngModel.$validators['md-multiple'] = validateArray;
         ngModel.$render = renderMultiple;
 
-        // watchCollection on the model because by default ngModel only watches the model's
+        // watchCollection on the entity because by default ngModel only watches the entity's
         // reference. This allowed the developer to also push and pop from their array.
         $scope.$watchCollection(self.modelBinding, function(value) {
           if (validateArray(value)) renderMultiple(value);
@@ -14352,8 +14352,8 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
       self.ngModel = ngModel;
       self.modelBinding = binding;
 
-      // Allow users to provide `ng-model="foo" ng-model-options="{trackBy: 'foo.id'}"` so
-      // that we can properly compare objects set on the model to the available options
+      // Allow users to provide `ng-entity="foo" ng-entity-options="{trackBy: 'foo.id'}"` so
+      // that we can properly compare objects set on the entity to the available options
       if (ngModel.$options && ngModel.$options.trackBy) {
         var trackByLocals = {};
         var trackByParsed = $parse(ngModel.$options.trackBy);
@@ -14433,14 +14433,14 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
       var values = [];
       var option;
       for (var hashKey in self.selected) {
-        // If this hashKey has an associated option, push that option's value to the model.
+        // If this hashKey has an associated option, push that option's value to the entity.
         if ((option = self.options[hashKey])) {
           values.push(option.value);
         } else {
           // Otherwise, the given hashKey has no associated option, and we got it
           // from an ngModel value at an earlier time. Push the unhashed value of
-          // this hashKey to the model.
-          // This allows the developer to put a value in the model that doesn't yet have
+          // this hashKey to the entity.
+          // This allows the developer to put a value in the entity that doesn't yet have
           // an associated option.
           values.push(self.selected[hashKey]);
         }
@@ -15390,7 +15390,7 @@ function SidenavFocusDirective() {
  *       <md-input-container>
  *         <label for="testInput">Test input</label>
  *         <input id="testInput" type="text"
- *                ng-model="data" md-autofocus>
+ *                ng-entity="data" md-autofocus>
  *       </md-input-container>
  *     </form>
  *   </md-sidenav>
@@ -15406,7 +15406,7 @@ function SidenavFocusDirective() {
  * });
  * </hljs>
  *
- * @param {expression=} md-is-open A model bound to whether the sidenav is opened.
+ * @param {expression=} md-is-open A entity bound to whether the sidenav is opened.
  * @param {string=} md-component-id componentId to use with $mdSidenav service.
  * @param {expression=} md-is-locked-open When this expression evalutes to true,
  * the sidenav 'locks open': it falls into the content's flow instead
@@ -15663,12 +15663,12 @@ SidenavController.$inject = ["$scope", "$element", "$attrs", "$mdComponentRegist
  * @usage
  * <h4>Normal Mode</h4>
  * <hljs lang="html">
- * <md-slider ng-model="myValue" min="5" max="500">
+ * <md-slider ng-entity="myValue" min="5" max="500">
  * </md-slider>
  * </hljs>
  * <h4>Discrete Mode</h4>
  * <hljs lang="html">
- * <md-slider md-discrete ng-model="myDiscreteValue" step="10" min="10" max="130">
+ * <md-slider md-discrete ng-entity="myDiscreteValue" step="10" min="10" max="130">
  * </md-slider>
  * </hljs>
  *
@@ -15976,13 +15976,13 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
 
     function setSliderFromEvent(ev) {
       // While panning discrete, update only the
-      // visual positioning but not the model value.
+      // visual positioning but not the entity value.
       if ( isDiscrete ) adjustThumbPosition( ev.pointer.x );
       else              doSlide( ev.pointer.x );
     }
 
     /**
-     * Slide the UI by changing the model value
+     * Slide the UI by changing the entity value
      * @param x
      */
     function doSlide( x ) {
@@ -15992,7 +15992,7 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     }
 
     /**
-     * Slide the UI without changing the model (while dragging/panning)
+     * Slide the UI without changing the entity (while dragging/panning)
      * @param x
      */
     function adjustThumbPosition( x ) {
@@ -16021,7 +16021,7 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     }
 
     /**
-     * Convert percentage offset on slide to equivalent model value
+     * Convert percentage offset on slide to equivalent entity value
      * @param percent
      * @returns {*}
      */
@@ -16074,7 +16074,7 @@ angular
  *   angular.module('myModule')
  *     .directive('stickySelect', function($mdSticky, $compile) {
  *       var SELECT_TEMPLATE =
- *         '<md-select ng-model="selected">' +
+ *         '<md-select ng-entity="selected">' +
  *           '<md-option>Option 1</md-option>' +
  *         '</md-select>';
  *
@@ -16635,7 +16635,7 @@ angular.module('material.components.switch', [
  * the switch is in the accent color by default. The primary color palette may be used with
  * the `md-primary` class.
  *
- * @param {string} ng-model Assignable angular expression to data-bind to.
+ * @param {string} ng-entity Assignable angular expression to data-bind to.
  * @param {string=} name Property name of the form under which the control is published.
  * @param {expression=} ng-true-value The value to which the expression should be set when selected.
  * @param {expression=} ng-false-value The value to which the expression should be set when not selected.
@@ -16646,15 +16646,15 @@ angular.module('material.components.switch', [
  *
  * @usage
  * <hljs lang="html">
- * <md-switch ng-model="isActive" aria-label="Finished?">
+ * <md-switch ng-entity="isActive" aria-label="Finished?">
  *   Finished ?
  * </md-switch>
  *
- * <md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+ * <md-switch md-no-ink ng-entity="hasInk" aria-label="No Ink Effects">
  *   No Ink Effects
  * </md-switch>
  *
- * <md-switch ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+ * <md-switch ng-disabled="true" ng-entity="isDisabled" aria-label="Disabled">
  *   Disabled
  * </md-switch>
  *
@@ -19530,8 +19530,8 @@ angular
  *     selected
  * @param {expression=} md-search-text-change An expression to be run each time the search text
  *     updates
- * @param {expression=} md-search-text A model to bind the search query text to
- * @param {object=} md-selected-item A model to bind the selected item to
+ * @param {expression=} md-search-text A entity to bind the search query text to
+ * @param {object=} md-selected-item A entity to bind the selected item to
  * @param {expression=} md-item-text An expression that will convert your object to a single string.
  * @param {string=} placeholder Placeholder text that will be forwarded to the input.
  * @param {boolean=} md-no-cache Disables the internal caching that happens in autocomplete
@@ -19733,7 +19733,7 @@ function MdAutocomplete () {
                   ng-minlength="inputMinlength"\
                   ng-maxlength="inputMaxlength"\
                   ng-disabled="$mdAutocompleteCtrl.isDisabled"\
-                  ng-model="$mdAutocompleteCtrl.scope.searchText"\
+                  ng-entity="$mdAutocompleteCtrl.scope.searchText"\
                   ng-keydown="$mdAutocompleteCtrl.keydown($event)"\
                   ng-blur="$mdAutocompleteCtrl.blur()"\
                   ' + (attr.mdNoAsterisk != null ? 'md-no-asterisk="' + attr.mdNoAsterisk + '"' : '') + '\
@@ -19758,7 +19758,7 @@ function MdAutocomplete () {
                 ng-required="$mdAutocompleteCtrl.isRequired"\
                 ng-disabled="$mdAutocompleteCtrl.isDisabled"\
                 ng-readonly="$mdAutocompleteCtrl.isReadonly"\
-                ng-model="$mdAutocompleteCtrl.scope.searchText"\
+                ng-entity="$mdAutocompleteCtrl.scope.searchText"\
                 ng-keydown="$mdAutocompleteCtrl.keydown($event)"\
                 ng-blur="$mdAutocompleteCtrl.blur()"\
                 ng-focus="$mdAutocompleteCtrl.focus()"\
@@ -19930,7 +19930,7 @@ angular
  *     an element.  Highlighted text will be wrapped in `<span class="highlight"></span>` which can
  *     be styled through CSS.  Please note that child elements may not be used with this directive.
  *
- * @param {string} md-highlight-text A model to be searched for
+ * @param {string} md-highlight-text A entity to be searched for
  * @param {string=} md-highlight-flags A list of flags (loosely based on JavaScript RexExp flags).
  * #### **Supported flags**:
  * - `g`: Find all matches within the provided text
@@ -19940,7 +19940,7 @@ angular
  *
  * @usage
  * <hljs lang="html">
- * <input placeholder="Enter a search term..." ng-model="searchTerm" type="text" />
+ * <input placeholder="Enter a search term..." ng-entity="searchTerm" type="text" />
  * <ul>
  *   <li ng-repeat="result in results" md-highlight-text="searchTerm">
  *     {{result.text}}
@@ -20410,7 +20410,7 @@ MdChipsCtrl.prototype.appendChip = function(newChip) {
   // Append the new chip onto our list
   var index = this.items.push(newChip);
 
-  // Update model validation
+  // Update entity validation
   this.ngModelCtrl.$setDirty();
   this.validateModel();
 
@@ -20484,9 +20484,9 @@ MdChipsCtrl.prototype.useOnSelectExpression = function() {
 };
 
 /**
- * Gets the input buffer. The input buffer can be the model bound to the
+ * Gets the input buffer. The input buffer can be the entity bound to the
  * default input item {@code this.chipBuffer}, the {@code selectedItem}
- * model of an {@code md-autocomplete}, or, through some magic, the model
+ * entity of an {@code md-autocomplete}, or, through some magic, the entity
  * bound to any inpput or text area element found within a
  * {@code md-input-container} element.
  * @return {Object|string}
@@ -20533,7 +20533,7 @@ MdChipsCtrl.prototype.validateModel = function() {
 MdChipsCtrl.prototype.removeChip = function(index) {
   var removed = this.items.splice(index, 1);
 
-  // Update model validation
+  // Update entity validation
   this.ngModelCtrl.$setDirty();
   this.validateModel();
 
@@ -20608,7 +20608,7 @@ MdChipsCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
   var self = this;
   ngModelCtrl.$render = function() {
-    // model is updated. do something.
+    // entity is updated. do something.
     self.items = self.ngModelCtrl.$viewValue;
   };
 };
@@ -20749,7 +20749,7 @@ MdChipsCtrl.prototype.hasFocus = function () {
    *    it will probably break on you in the future.
    *  </span>
    *
-   * @param {string=|object=} ng-model A model to bind the list of items to
+   * @param {string=|object=} ng-entity A entity to bind the list of items to
    * @param {string=} placeholder Placeholder text that will be forwarded to the input.
    * @param {string=} secondary-placeholder Placeholder text that will be forwarded to the input,
    *    displayed when there is at least one item in the list
@@ -20779,7 +20779,7 @@ MdChipsCtrl.prototype.hasFocus = function () {
    * @usage
    * <hljs lang="html">
    *   <md-chips
-   *       ng-model="myItems"
+   *       ng-entity="myItems"
    *       placeholder="Add an item"
    *       readonly="isReadOnly">
    *   </md-chips>
@@ -20792,7 +20792,7 @@ MdChipsCtrl.prototype.hasFocus = function () {
    *   <form name="userForm">
    *     <md-chips
    *       name="fruits"
-   *       ng-model="myItems"
+   *       ng-entity="myItems"
    *       placeholder="Add an item"
    *       md-max-chips="5">
    *     </md-chips>
@@ -20836,7 +20836,7 @@ MdChipsCtrl.prototype.hasFocus = function () {
             tabindex="0"\
             placeholder="{{$mdChipsCtrl.getPlaceholder()}}"\
             aria-label="{{$mdChipsCtrl.getPlaceholder()}}"\
-            ng-model="$mdChipsCtrl.chipBuffer"\
+            ng-entity="$mdChipsCtrl.chipBuffer"\
             ng-focus="$mdChipsCtrl.onInputFocus()"\
             ng-blur="$mdChipsCtrl.onInputBlur()"\
             ng-trim="false"\
@@ -20906,7 +20906,7 @@ MdChipsCtrl.prototype.hasFocus = function () {
      * chip template
      * input control
      *
-     * If no `ng-model` is provided, only the static chip work needs to be done.
+     * If no `ng-entity` is provided, only the static chip work needs to be done.
      *
      * If no user-passed `md-chip-template` exists, the default template is used. This resulting
      * template is appended to the chip content element.
@@ -21101,7 +21101,7 @@ angular
  * You may also use the `md-highlight-text` directive along with its parameters to control the
  * appearance of the matched text inside of the contacts' autocomplete popup.
  *
- * @param {string=|object=} ng-model A model to bind the list of items to
+ * @param {string=|object=} ng-entity A entity to bind the list of items to
  * @param {string=} placeholder Placeholder text that will be forwarded to the input.
  * @param {string=} secondary-placeholder Placeholder text that will be forwarded to the input,
  *    displayed when there is at least on item in the list
@@ -21124,7 +21124,7 @@ angular
  * @usage
  * <hljs lang="html">
  *   <md-contact-chips
- *       ng-model="ctrl.contacts"
+ *       ng-entity="ctrl.contacts"
  *       md-contacts="ctrl.querySearch($query)"
  *       md-contact-name="name"
  *       md-contact-image="image"
@@ -21138,7 +21138,7 @@ angular
 
 var MD_CONTACT_CHIPS_TEMPLATE = '\
       <md-chips class="md-contact-chips"\
-          ng-model="$mdContactChipsCtrl.contacts"\
+          ng-entity="$mdContactChipsCtrl.contacts"\
           md-require-match="$mdContactChipsCtrl.requireMatch"\
           md-autocomplete-snap>\
           <md-autocomplete\
@@ -23357,7 +23357,7 @@ MenuBarController.prototype.getOpenMenuIndex = function() {
  *
  * You may place `md-menu-items` that function as controls within menu bars.
  * There are two modes that are exposed via the `type` attribute of the `md-menu-item`.
- * `type="checkbox"` will function as a boolean control for the `ng-model` attribute of the
+ * `type="checkbox"` will function as a boolean control for the `ng-entity` attribute of the
  * `md-menu-item`. `type="radio"` will function like a radio button, setting the `ngModel`
  * to the `string` value of the `value` attribute. If you need non-string values, you can use
  * `ng-value` to provide an expression (this is similar to how angular's native `input[type=radio]` works.
@@ -23369,11 +23369,11 @@ MenuBarController.prototype.getOpenMenuIndex = function() {
  *      Sample Menu
  *    </button>
  *    <md-menu-content>
- *      <md-menu-item type="checkbox" ng-model="settings.allowChanges">Allow changes</md-menu-item>
+ *      <md-menu-item type="checkbox" ng-entity="settings.allowChanges">Allow changes</md-menu-item>
  *      <md-menu-divider></md-menu-divider>
- *      <md-menu-item type="radio" ng-model="settings.mode" ng-value="1">Mode 1</md-menu-item>
- *      <md-menu-item type="radio" ng-model="settings.mode" ng-value="1">Mode 2</md-menu-item>
- *      <md-menu-item type="radio" ng-model="settings.mode" ng-value="1">Mode 3</md-menu-item>
+ *      <md-menu-item type="radio" ng-entity="settings.mode" ng-value="1">Mode 1</md-menu-item>
+ *      <md-menu-item type="radio" ng-entity="settings.mode" ng-value="1">Mode 2</md-menu-item>
+ *      <md-menu-item type="radio" ng-entity="settings.mode" ng-value="1">Mode 3</md-menu-item>
  *    </md-menu-content>
  *  </md-menu>
  * </md-menu-bar>

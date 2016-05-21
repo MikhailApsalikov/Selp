@@ -2,7 +2,7 @@
 
 namespace Selp.Interfaces
 {
-    internal interface ISelpSemanticController<in TModel, in TKey> where TModel : ISelpEntity<TKey>
+    public interface ISelpSemanticController<in TModel, in TKey> where TModel : ISelpEntity<TKey>
     {
         IHttpActionResult Get();
 

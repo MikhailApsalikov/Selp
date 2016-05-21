@@ -3,11 +3,10 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using Common.Entities;
-	using Configuration;
 	using Interfaces;
 	using Repository;
 
-	public class FakeRepository : SelpRepository<FakeEntity, FakeEntity, int>
+	public class FakeRepository : SelpRepository<FakeEntity, int>
 	{
 		public FakeRepository(bool isRemovingFake, DbContext dbContext,
 			IDbSet<FakeEntity> dbSet, ISelpConfiguration configuration) : base(dbContext, configuration)
@@ -27,21 +26,10 @@
 		{
 		}
 
-		protected override FakeEntity MapEntityToModel(FakeEntity entity)
-		{
-			return entity;
-		}
-
-		protected override FakeEntity MapModelToEntity(FakeEntity model)
-		{
-			return model;
-		}
-
-		protected override FakeEntity MapModelToEntity(FakeEntity source, FakeEntity destination)
+		protected override FakeEntity Merge(FakeEntity source, FakeEntity destination)
 		{
 			destination.Name = source.Name;
 			destination.Description = source.Description;
-
 			return destination;
 		}
 

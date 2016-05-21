@@ -1,6 +1,7 @@
 ﻿namespace Example.Web.Controllers
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Web.Http;
 	using Entities;
 	using Models;
@@ -9,9 +10,9 @@
 	using Selp.Interfaces;
 	using Validators;
 
-	public class UserController : SelpController<UserModel, User, string>
+	public class UserController : SelpController<UserModel, UserModel, User, string>
 	{
-		public UserController(ISelpRepository<UserModel, User, string> repository) : base(repository)
+		public UserController(ISelpRepository<User, string> repository) : base(repository)
 		{
 		}
 
@@ -50,9 +51,9 @@
 				});
 			}
 
-			EntitiesListResult<UserModel> result =
+			List<User> result =
 				Repository.GetByCustomExpression(d => d.Id == model.Id && d.Password == model.Password);
-			if (result.Total == 1)
+			if (result.Count == 1)
 			{
 				return Ok(new {valid = true});
 			}
@@ -64,7 +65,7 @@
 		[HttpPost]
 		public IHttpActionResult Signup([FromBody] UserModel model)
 		{
-			RepositoryModifyResult<UserModel> result = Repository.Create(model);
+			RepositoryModifyResult<User> result = Repository.Create(MapModelToEntity(model));
 			if (result.IsValid)
 			{
 				return Ok(new {valid = true});
@@ -74,6 +75,28 @@
 				valid = false,
 				errors = result.Errors
 			});
+		}
+
+		protected override UserModel MapEntityToModel(User entity)
+		{
+			return new UserModel
+			{
+				Id = entity.Id
+			};
+		}
+
+		protected override User MapModelToEntity(UserModel model)
+		{
+			return new User
+			{
+				Id = model.Id,
+				Password = model.Password
+			};
+		}
+
+		protected override UserModel MapEntityToShortModel(User entity)
+		{
+			return MapEntityToModel(entity);
 		}
 	}
 }

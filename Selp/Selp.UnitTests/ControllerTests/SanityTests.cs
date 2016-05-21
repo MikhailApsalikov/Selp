@@ -14,7 +14,7 @@
 		[TestInitialize]
 		public void Initialise()
 		{
-			Controller = new FakeController(Mock.Of<ISelpRepository<FakeEntity, FakeEntity, int>>());
+			Controller = new FakeController(Mock.Of<ISelpRepository<FakeEntity, int>>());
 		}
 
 		[TestMethod]

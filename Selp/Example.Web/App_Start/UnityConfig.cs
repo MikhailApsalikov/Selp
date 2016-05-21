@@ -22,13 +22,13 @@
 			var dbContext = new ExampleDbContext();
 			var container = new UnityContainer();
 			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
-			container.RegisterType<ISelpRepository<UserModel, User, string>, UserRepository>(new InjectionConstructor(dbContext,
+			container.RegisterType<ISelpRepository<User, string>, UserRepository>(new InjectionConstructor(dbContext,
 				container.Resolve<ISelpConfiguration>()));
-			container.RegisterType<ISelpRepository<RegionModel, Region, int>, RegionRepository>(new InjectionConstructor(dbContext,
+			container.RegisterType<ISelpRepository<Region, int>, RegionRepository>(new InjectionConstructor(dbContext,
 				container.Resolve<ISelpConfiguration>()));
 			container.RegisterType<IAttachmentRepository, AttachmentRepository>(new InjectionConstructor(dbContext,
 				container.Resolve<ISelpConfiguration>()));
-            container.RegisterType<ISelpRepository<PolicyModel, Policy, int>, PolicyRepository>(new InjectionConstructor(dbContext,
+            container.RegisterType<ISelpRepository<Policy, int>, PolicyRepository>(new InjectionConstructor(dbContext,
                 container.Resolve<ISelpConfiguration>()));
             config.DependencyResolver = new UnityResolver(container);
 		}

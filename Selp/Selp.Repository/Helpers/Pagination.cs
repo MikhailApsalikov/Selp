@@ -30,11 +30,9 @@
 			                                                 && m.GetParameters().Length == 2);
 		}
 
-		internal static EntitiesListResult<TResult> ApplyPaginationAndSorting<TSource, TResult>(
-			this IQueryable<TSource> source, BaseFilter filter, int defaultPageSize, Func<TSource, TResult> translator)
+		internal static List<T> ApplyPaginationAndSorting<T>(this IQueryable<T> source, BaseFilter filter, int defaultPageSize, out int total)
 		{
 			source.ThrowIfNull("Pagination error: source is null");
-			translator.ThrowIfNull("Pagination error: translator cannot be null");
 			if (!filter.Page.HasValue || filter.Page < 1)
 			{
 				filter.Page = 1;
@@ -55,16 +53,9 @@
 				filter.SortField = "Id";
 			}
 
-			IEnumerable<TSource> items;
-			int count = GetPartition(source, filter, out items);
-
-			return new EntitiesListResult<TResult>
-			{
-				Data = items.Select(translator).ToList(),
-				Page = filter.Page.Value,
-				PageSize = filter.PageSize.Value,
-				Total = count
-			};
+			IEnumerable<T> items;
+			total = GetPartition(source, filter, out items);
+			return items.ToList();
 		}
 
 		[SuppressMessage("ReSharper", "PossibleInvalidOperationException")]

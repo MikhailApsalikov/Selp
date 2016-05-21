@@ -7,9 +7,9 @@
 	using Selp.Controller;
 	using Selp.Interfaces;
 
-	public class RegionController : SelpController<RegionModel, Region, int>
+	public class RegionController : SelpController<RegionModel, RegionModel, Region, int>
 	{
-		public RegionController(ISelpRepository<RegionModel, Region, int> repository) : base(repository)
+		public RegionController(ISelpRepository<Region, int> repository) : base(repository)
 		{
 		}
 
@@ -30,6 +30,29 @@
 		public override IHttpActionResult Delete(int id)
 		{
 			throw new NotSupportedException();
+		}
+
+		protected override RegionModel MapEntityToModel(Region entity)
+		{
+			return new RegionModel
+			{
+				Id = entity.Id,
+				Name = entity.Name
+			};
+		}
+
+		protected override Region MapModelToEntity(RegionModel model)
+		{
+			return new Region
+			{
+				Id = model.Id,
+				Name = model.Name
+			};
+		}
+
+		protected override RegionModel MapEntityToShortModel(Region entity)
+		{
+			return MapEntityToModel(entity);
 		}
 	}
 }

@@ -5,13 +5,12 @@
 	using System.Linq;
 	using AdditionalInterfaces;
 	using Entities;
-	using Models;
 	using Selp.Common;
 	using Selp.Common.Entities;
 	using Selp.Interfaces;
 	using Selp.Repository;
 
-	public class AttachmentRepository : SelpRepository<AttachmentModel, Attachment, Guid>, IAttachmentRepository
+	public class AttachmentRepository : SelpRepository<Attachment, Guid>, IAttachmentRepository
 	{
 		public AttachmentRepository(DbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{
@@ -35,31 +34,7 @@
 			return FindById(id).Content;
 		}
 
-		protected override AttachmentModel MapEntityToModel(Attachment entity)
-		{
-			return new AttachmentModel
-			{
-				Id = entity.Id,
-				Description = entity.Description,
-				FileName = entity.FileName,
-				FileSize = entity.FileSize,
-				Uploaded = entity.Uploaded
-			};
-		}
-
-		protected override Attachment MapModelToEntity(AttachmentModel model)
-		{
-			return new Attachment
-			{
-				Id = model.Id,
-				Description = model.Description,
-				FileName = model.FileName,
-				FileSize = model.FileSize,
-				Uploaded = model.Uploaded
-			};
-		}
-
-		protected override Attachment MapModelToEntity(AttachmentModel source, Attachment destination)
+		protected override Attachment Merge(Attachment source, Attachment destination)
 		{
 			destination.Description = source.Description;
 			destination.FileName = source.FileName;
