@@ -1,4 +1,4 @@
-﻿namespace Example.Web.Controllers
+﻿namespace Example.Web.api
 {
 	using System;
 	using System.Web.Http;

@@ -1,6 +1,7 @@
 ﻿namespace Example.Web
 {
 	using System.Web.Http;
+	using System.Web.Http.Dispatcher;
 
 	public static class WebApiConfig
 	{
@@ -10,12 +11,12 @@
 
 			// Web API routes
 			config.MapHttpAttributeRoutes();
-
 			config.Routes.MapHttpRoute(
 				"DefaultApi",
-				"api/{controller}/{id}",
+				"{namespace}/{controller}/{id}",
 				new {id = RouteParameter.Optional}
 				);
+			config.Services.Replace(typeof (IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
 		}
 	}
 }

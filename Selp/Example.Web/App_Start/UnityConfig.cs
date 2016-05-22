@@ -1,4 +1,4 @@
-﻿namespace SampleApplication.App_Start
+﻿namespace Example.Web
 {
 	using System;
 	using System.Collections.Generic;

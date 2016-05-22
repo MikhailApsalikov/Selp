@@ -209,16 +209,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NamespaceHttpControllerSelector.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AttachmentController.cs" />
-    <Compile Include="Controllers\PolicyController.cs" />
-    <Compile Include="Controllers\RegionController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="api\AttachmentController.cs" />
+    <Compile Include="api\PolicyController.cs" />
+    <Compile Include="api\RegionController.cs" />
+    <Compile Include="api\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="semantic\RegionController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -277,6 +279,10 @@
     <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
       <Project>{78cee587-c390-47a7-a95a-d0798c29abc4}</Project>
       <Name>Selp.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selp.Semantic\Selp.Semantic.csproj">
+      <Project>{705057c3-f4c0-429e-9743-284bb0e1b8ab}</Project>
+      <Name>Selp.Semantic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
       <Project>{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B}</Project>
