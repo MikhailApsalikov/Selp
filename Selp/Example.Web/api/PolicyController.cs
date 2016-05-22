@@ -9,7 +9,7 @@
 	using Models;
 	using Selp.Controller;
 
-	public class PolicyController : SelpController<PolicyModel, PolicyModel, Policy, int>
+	public class PolicyController : SelpController<PolicyShortModel, PolicyModel, Policy, int>
 	{
 		public PolicyController(IPolicyRepository repository) : base(repository)
 		{
@@ -19,21 +19,9 @@
 
 		protected override PolicyModel MapEntityToModel(Policy entity)
 		{
-			return new PolicyModel
+			return new PolicyModel()
 			{
-				Id = entity.Id,
-				InsuranceSum = entity.InsuranceSum,
-				RegionId = entity.RegionId,
-				ExpirationDate = entity.ExpirationDate.ToString("dd.MM.yyyy"),
-				StartDate = entity.StartDate.ToString("dd.MM.yyyy"),
-				InsurancePremium = entity.InsurancePremium,
-				Attachments = entity.Attachments?.Select(s => s.Id).ToList(),
-				Status = ConvertStatus(entity.Status),
-				CreatedDate = entity.CreatedDate.ToString("dd.MM.yyyy"),
-				UserId = entity.UserId,
-				InsuredList = entity.Parties?.Select(p => p.Id).ToList(),
-				Serial = entity.Serial,
-				Number = entity.Number
+				Id = entity.Id
 			};
 		}
 
@@ -41,21 +29,25 @@
 		{
 			return new Policy
 			{
-				ExpirationDate = DateTime.Parse(model.ExpirationDate, new CultureInfo("ru-RU")),
-				CreatedDate = DateTime.Parse(model.CreatedDate, new CultureInfo("ru-RU")),
-				InsurancePremium = model.InsurancePremium,
-				InsuranceSum = model.InsuranceSum,
-				RegionId = model.RegionId,
-				StartDate = DateTime.Parse(model.StartDate, new CultureInfo("ru-RU")),
-				Status = ConvertStatus(model.Status),
-				Serial = model.Serial,
-				Number = model.Number
+				Id = model.Id
 			};
 		}
 
-		protected override PolicyModel MapEntityToShortModel(Policy entity)
+		protected override PolicyShortModel MapEntityToShortModel(Policy entity)
 		{
-			return MapEntityToModel(entity);
+			return new PolicyShortModel
+			{
+				Id = entity.Id,
+				InsuranceSum = entity.InsuranceSum,
+				ExpirationDate = entity.ExpirationDate.ToString("dd.MM.yyyy"),
+				StartDate = entity.StartDate.ToString("dd.MM.yyyy"),
+				InsurancePremium = entity.InsurancePremium,
+				Status = ConvertStatus(entity.Status),
+				CreatedDate = entity.CreatedDate.ToString("dd.MM.yyyy"),
+				UserId = entity.UserId,
+				Serial = entity.Serial,
+				Number = entity.Number
+			};
 		}
 
 		private string ConvertStatus(PolicyStatus status)
