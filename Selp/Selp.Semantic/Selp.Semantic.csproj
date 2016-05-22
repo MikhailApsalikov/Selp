@@ -56,13 +56,16 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="VDS.Common, Version=1.6.0.0, Culture=neutral, PublicKeyToken=ab5f4eb908061bf0, processorArchitecture=MSIL">
       <HintPath>..\packages\VDS.Common.1.6.0\lib\net40-client\VDS.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\SemanticCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelpSemanticController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
