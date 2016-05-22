@@ -38,12 +38,20 @@
     <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotNetRDF, Version=1.0.9.3683, Culture=neutral, PublicKeyToken=6055ffe4c97cc780, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotNetRDF.1.0.9.3683\lib\net40\dotNetRDF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -57,12 +65,17 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="VDS.Common, Version=1.6.0.0, Culture=neutral, PublicKeyToken=ab5f4eb908061bf0, processorArchitecture=MSIL">
+      <HintPath>..\packages\VDS.Common.1.6.0\lib\net40-client\VDS.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -88,6 +101,7 @@
     <Compile Include="Fake\FakeEntityReferenceKey.cs" />
     <Compile Include="Fake\FakeRepositoryReferenceKey.cs" />
     <Compile Include="Fake\FakeRepository.cs" />
+    <Compile Include="Fake\FakeSemanticController.cs" />
     <Compile Include="Fake\TestsMockFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\SanityTests.cs" />
@@ -98,6 +112,7 @@
     <Compile Include="RepositoryTests\GettersTests.cs" />
     <Compile Include="RepositoryTests\Sanity.cs" />
     <Compile Include="RepositoryTests\ValidatorCallingTests.cs" />
+    <Compile Include="SemanticTests\SanityTests.cs" />
     <Compile Include="ValidatorTests\ValidatorsMocks\FailedValidatorLevel2.cs" />
     <Compile Include="ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
     <Compile Include="ValidatorTests\ValidatorWorkflowTests.cs" />
