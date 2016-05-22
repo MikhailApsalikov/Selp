@@ -9,8 +9,10 @@
 	using Microsoft.Practices.Unity;
 	using Selp.Configuration;
 	using Selp.Interfaces;
+	using VDS.RDF;
+	using VDS.RDF.Writing;
 
-	/// <summary>
+    /// <summary>
 	///     Bootstrapper for the application.
 	/// </summary>
 	public static class UnityConfig
@@ -19,11 +21,13 @@
 		{
 			var dbContext = new ExampleDbContext();
 			var container = new UnityContainer();
-			
-			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
+
+		    container.RegisterType<IRdfWriter, RdfXmlWriter>(new InjectionConstructor());
+
+            container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
 			var efConstructorParameter = new InjectionConstructor(dbContext, container.Resolve<ISelpConfiguration>());
 
-			container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
+            container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
 			container.RegisterType<IRegionRepository, RegionRepository>(efConstructorParameter);
 			container.RegisterType<IAttachmentRepository, AttachmentRepository>(efConstructorParameter);
 			container.RegisterType<IPolicyRepository, PolicyRepository>(efConstructorParameter);

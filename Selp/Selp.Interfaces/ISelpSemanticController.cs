@@ -1,14 +1,10 @@
 ﻿namespace Selp.Interfaces
 {
-	using System.Web.Http;
+    using System.Net.Http;
 
-	public interface ISelpSemanticController<in TKey>
-	{
-		IHttpActionResult Get(TKey id);
-		IHttpActionResult Get();
-
-		IHttpActionResult GetPredicate();
-
-		IHttpActionResult GetSubject();
-	}
+    public interface ISelpSemanticController<in TKey>
+    {
+        HttpResponseMessage Get(TKey id);
+        HttpResponseMessage Get();
+    }
 }
