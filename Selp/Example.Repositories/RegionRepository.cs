@@ -3,12 +3,12 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using Entities;
-	using Models;
+	using Interfaces.Repositories;
 	using Selp.Common.Entities;
 	using Selp.Interfaces;
 	using Selp.Repository;
 
-	public class RegionRepository : SelpRepository<Region, int>
+	public class RegionRepository : SelpRepository<Region, int>, IRegionRepository
 	{
 		public RegionRepository(DbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{

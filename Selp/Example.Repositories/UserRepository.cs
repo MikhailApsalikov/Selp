@@ -3,12 +3,13 @@
 	using System.Data.Entity;
 	using System.Linq;
 	using Entities;
+	using Interfaces.Repositories;
 	using Selp.Common.Entities;
 	using Selp.Interfaces;
 	using Selp.Repository;
 	using Validators;
 
-	public class UserRepository : SelpRepository<User, string>
+	public class UserRepository : SelpRepository<User, string>, IUserRepository
 	{
 		public UserRepository(ExampleDbContext dbContext, ISelpConfiguration configuration) : base(dbContext, configuration)
 		{

@@ -3,13 +3,13 @@
 	using System;
 	using System.Web.Http;
 	using Entities;
+	using Interfaces.Repositories;
 	using Models;
 	using Selp.Controller;
-	using Selp.Interfaces;
 
 	public class RegionController : SelpController<RegionModel, RegionModel, Region, int>
 	{
-		public RegionController(ISelpRepository<Region, int> repository) : base(repository)
+		public RegionController(IRegionRepository repository) : base(repository)
 		{
 		}
 

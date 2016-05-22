@@ -4,18 +4,18 @@
 	using System.Globalization;
 	using System.Linq;
 	using Entities;
-    using Entities.Enums;
-    using Models;
-    using Selp.Controller;
-    using Selp.Interfaces;
+	using Entities.Enums;
+	using Interfaces.Repositories;
+	using Models;
+	using Selp.Controller;
 
-    public class PolicyController : SelpController<PolicyModel, PolicyModel, Policy, int>
-    {
-        public PolicyController(ISelpRepository<Policy, int> repository) : base(repository)
-        {
-        }
+	public class PolicyController : SelpController<PolicyModel, PolicyModel, Policy, int>
+	{
+		public PolicyController(IPolicyRepository repository) : base(repository)
+		{
+		}
 
-        public override string ControllerName => "Policy";
+		public override string ControllerName => "Policy";
 
 		protected override PolicyModel MapEntityToModel(Policy entity)
 		{
@@ -53,12 +53,12 @@
 			};
 		}
 
-	    protected override PolicyModel MapEntityToShortModel(Policy entity)
-	    {
-		    return MapEntityToModel(entity);
-	    }
+		protected override PolicyModel MapEntityToShortModel(Policy entity)
+		{
+			return MapEntityToModel(entity);
+		}
 
-	    private string ConvertStatus(PolicyStatus status)
+		private string ConvertStatus(PolicyStatus status)
 		{
 			switch (status)
 			{

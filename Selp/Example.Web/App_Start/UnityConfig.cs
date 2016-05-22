@@ -4,10 +4,8 @@
 	using System.Collections.Generic;
 	using System.Web.Http;
 	using System.Web.Http.Dependencies;
-	using Example.Entities;
-	using Example.Models;
+	using Example.Interfaces.Repositories;
 	using Example.Repositories;
-	using Example.Repositories.AdditionalInterfaces;
 	using Microsoft.Practices.Unity;
 	using Selp.Configuration;
 	using Selp.Interfaces;
@@ -21,16 +19,15 @@
 		{
 			var dbContext = new ExampleDbContext();
 			var container = new UnityContainer();
+			
 			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
-			container.RegisterType<ISelpRepository<User, string>, UserRepository>(new InjectionConstructor(dbContext,
-				container.Resolve<ISelpConfiguration>()));
-			container.RegisterType<ISelpRepository<Region, int>, RegionRepository>(new InjectionConstructor(dbContext,
-				container.Resolve<ISelpConfiguration>()));
-			container.RegisterType<IAttachmentRepository, AttachmentRepository>(new InjectionConstructor(dbContext,
-				container.Resolve<ISelpConfiguration>()));
-            container.RegisterType<ISelpRepository<Policy, int>, PolicyRepository>(new InjectionConstructor(dbContext,
-                container.Resolve<ISelpConfiguration>()));
-            config.DependencyResolver = new UnityResolver(container);
+			var efConstructorParameter = new InjectionConstructor(dbContext, container.Resolve<ISelpConfiguration>());
+
+			container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
+			container.RegisterType<IRegionRepository, RegionRepository>(efConstructorParameter);
+			container.RegisterType<IAttachmentRepository, AttachmentRepository>(efConstructorParameter);
+			container.RegisterType<IPolicyRepository, PolicyRepository>(efConstructorParameter);
+			config.DependencyResolver = new UnityResolver(container);
 		}
 	}
 
@@ -73,7 +70,7 @@
 
 		public IDependencyScope BeginScope()
 		{
-			var child = container.CreateChildContainer();
+			IUnityContainer child = container.CreateChildContainer();
 			return new UnityResolver(child);
 		}
 

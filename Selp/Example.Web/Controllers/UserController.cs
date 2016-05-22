@@ -4,15 +4,15 @@
 	using System.Collections.Generic;
 	using System.Web.Http;
 	using Entities;
+	using Interfaces.Repositories;
 	using Models;
 	using Selp.Common.Entities;
 	using Selp.Controller;
-	using Selp.Interfaces;
 	using Validators;
 
 	public class UserController : SelpController<UserModel, UserModel, User, string>
 	{
-		public UserController(ISelpRepository<User, string> repository) : base(repository)
+		public UserController(IUserRepository repository) : base(repository)
 		{
 		}
 

@@ -242,6 +242,10 @@
       <Project>{755AA3CF-2314-4312-B9DC-6E05B7A8EEC7}</Project>
       <Name>Example.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Example.Interfaces\Example.Interfaces.csproj">
+      <Project>{594a4dcf-aa06-4219-bf83-6f7a1bf7a418}</Project>
+      <Name>Example.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Example.Models\Example.Models.csproj">
       <Project>{01D442E9-2363-4462-AB59-D6B5C09FDAFC}</Project>
       <Name>Example.Models</Name>

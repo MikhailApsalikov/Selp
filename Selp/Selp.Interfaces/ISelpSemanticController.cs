@@ -1,13 +1,14 @@
-﻿using System.Web.Http;
-
-namespace Selp.Interfaces
+﻿namespace Selp.Interfaces
 {
-    public interface ISelpSemanticController<in TModel, in TKey> where TModel : ISelpEntity<TKey>
-    {
-        IHttpActionResult Get();
+	using System.Web.Http;
 
-        IHttpActionResult GetPredicate();
+	public interface ISelpSemanticController<in TKey>
+	{
+		IHttpActionResult Get(TKey id);
+		IHttpActionResult Get();
 
-        IHttpActionResult GetSubject();
-    }
+		IHttpActionResult GetPredicate();
+
+		IHttpActionResult GetSubject();
+	}
 }

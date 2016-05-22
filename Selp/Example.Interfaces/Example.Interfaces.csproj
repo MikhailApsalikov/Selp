@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E90C8C6-E1D6-4B4B-8946-632141F96D2E}</ProjectGuid>
+    <ProjectGuid>{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Example.Repositories</RootNamespace>
-    <AssemblyName>Example.Repositories</AssemblyName>
+    <RootNamespace>Example.Interfaces</RootNamespace>
+    <AssemblyName>Example.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,63 +31,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachmentRepository.cs" />
-    <Compile Include="ExampleDbContext.cs" />
-    <Compile Include="PolicyRepository.cs" />
+    <Compile Include="IExampleDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegionRepository.cs" />
-    <Compile Include="TestDataInitializer.cs" />
-    <Compile Include="UserRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="Repositories\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\IPartyRepository.cs" />
+    <Compile Include="Repositories\IPassportRepository.cs" />
+    <Compile Include="Repositories\IPolicyRepository.cs" />
+    <Compile Include="Repositories\IRegionRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
-      <Project>{755AA3CF-2314-4312-B9DC-6E05B7A8EEC7}</Project>
+      <Project>{755aa3cf-2314-4312-b9dc-6e05b7a8eec7}</Project>
       <Name>Example.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Example.Interfaces\Example.Interfaces.csproj">
-      <Project>{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}</Project>
-      <Name>Example.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Example.Models\Example.Models.csproj">
-      <Project>{01D442E9-2363-4462-AB59-D6B5C09FDAFC}</Project>
+      <Project>{01d442e9-2363-4462-ab59-d6b5c09fdafc}</Project>
       <Name>Example.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Example.Validators\Example.Validators.csproj">
-      <Project>{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}</Project>
-      <Name>Example.Validators</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
-      <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
-      <Name>Selp.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
-      <Project>{D5E497B6-5CC0-45DE-A68A-A3F0EAF79DE3}</Project>
+      <Project>{d5e497b6-5cc0-45de-a68a-a3f0eaf79de3}</Project>
       <Name>Selp.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Selp.Repository\Selp.Repository.csproj">
-      <Project>{78CEE587-C390-47A7-A95A-D0798C29ABC4}</Project>
-      <Name>Selp.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Selp.Validator\Selp.Validator.csproj">
-      <Project>{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B}</Project>
-      <Name>Selp.Validator</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="SemanticControllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

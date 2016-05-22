@@ -3,8 +3,8 @@
 	using System;
 	using System.Data.Entity;
 	using System.Linq;
-	using AdditionalInterfaces;
 	using Entities;
+	using Interfaces.Repositories;
 	using Selp.Common;
 	using Selp.Common.Entities;
 	using Selp.Interfaces;

@@ -1,4 +1,4 @@
-﻿namespace Example.Repositories.AdditionalInterfaces
+﻿namespace Example.Interfaces.Repositories
 {
 	using System;
 	using Entities;

@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selp.Validator", "Selp.Vali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Validators", "Example.Validators\Example.Validators.csproj", "{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Interfaces", "Example.Interfaces\Example.Interfaces.csproj", "{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982ADBBC-2558-4F82-9AB1-88E1BEB40A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +115,6 @@ Global
 		{01D442E9-2363-4462-AB59-D6B5C09FDAFC} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
 		{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B} = {46E8DE63-E635-4E63-A9D9-DDF5E267CFA2}
 		{982ADBBC-2558-4F82-9AB1-88E1BEB40A84} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
+		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
 	EndGlobalSection
 EndGlobal
