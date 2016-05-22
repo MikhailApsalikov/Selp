@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgumentGuard.cs" />
+    <Compile Include="Attributes\PredicateAttribute.cs" />
     <Compile Include="Entities\BaseFilter.cs" />
     <Compile Include="Entities\EntitiesListResult.cs" />
     <Compile Include="Entities\RepositoryModifyResult.cs" />

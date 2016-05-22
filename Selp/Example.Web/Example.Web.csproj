@@ -223,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NamespaceHttpControllerSelector.cs" />
+    <Compile Include="App_Start\SemanticInitializer.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="api\AttachmentController.cs" />
@@ -234,6 +235,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="semantic\RegionController.cs" />
+    <Compile Include="semantic\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

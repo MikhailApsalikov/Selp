@@ -29,7 +29,7 @@
         {
             TEntity entity = Repository.GetById(id);
             TModel model = MapEntityToModel(entity);
-            IGraph graph = SemanticCore<TModel>.GenerateGraph(model);
+            IGraph graph = SemanticCore<TModel, TKey>.GenerateGraph(model);
             return new HttpResponseMessage
             {
                 Content = new StringContent(
@@ -44,7 +44,7 @@
         {
             List<TEntity> entities = Repository.GetAll();
             List<TShortModel> model = entities.Select(MapEntityToShortModel).ToList();
-            IGraph graph = SemanticCore<TShortModel>.GenerateGraph(model);
+            IGraph graph = SemanticCore<TShortModel, TKey>.GenerateGraph(model);
             return new HttpResponseMessage
             {
                 Content = new StringContent(

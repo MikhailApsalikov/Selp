@@ -2,6 +2,7 @@
 {
 	using System.Web.Http;
 	using System.Web.Http.Dispatcher;
+	using App_Start;
 
 	public static class WebApiConfig
 	{
@@ -17,6 +18,7 @@
 				new {id = RouteParameter.Optional}
 				);
 			config.Services.Replace(typeof (IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
+			SemanticInitializer.SemanticInitialize();
 		}
 	}
 }
