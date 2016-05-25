@@ -117,7 +117,9 @@
     <Compile Include="ValidatorTests\ValidatorsMocks\FailedValidator.cs" />
     <Compile Include="ValidatorTests\ValidatorWorkflowTests.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PerformanceTests\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
       <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>

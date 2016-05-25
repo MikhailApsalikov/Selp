@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Validators", "Examp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Interfaces", "Example.Interfaces\Example.Interfaces.csproj", "{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.E2eTests", "Example.E2eTests\Example.E2eTests.csproj", "{042ECFBB-2B36-4E81-B8B2-61FB2A370540}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042ECFBB-2B36-4E81-B8B2-61FB2A370540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042ECFBB-2B36-4E81-B8B2-61FB2A370540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042ECFBB-2B36-4E81-B8B2-61FB2A370540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042ECFBB-2B36-4E81-B8B2-61FB2A370540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,5 +122,6 @@ Global
 		{3FA7EAC9-BDC4-45E7-A36A-39812FBD0F5B} = {46E8DE63-E635-4E63-A9D9-DDF5E267CFA2}
 		{982ADBBC-2558-4F82-9AB1-88E1BEB40A84} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
 		{594A4DCF-AA06-4219-BF83-6F7A1BF7A418} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
+		{042ECFBB-2B36-4E81-B8B2-61FB2A370540} = {FBB532B9-E28F-44B8-8B93-F0B07458F8F6}
 	EndGlobalSection
 EndGlobal
