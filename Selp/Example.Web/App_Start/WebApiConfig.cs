@@ -17,7 +17,7 @@
 				"{namespace}/{controller}/{id}",
 				new {id = RouteParameter.Optional}
 				);
-			config.Services.Replace(typeof (IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
+			config.Services.Replace(typeof (IHttpControllerSelector), new NamespaceHttpControllerSelector(config, config.Services.GetHttpControllerSelector()));
 			SemanticInitializer.SemanticInitialize();
 		}
 	}

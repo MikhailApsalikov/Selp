@@ -4,15 +4,15 @@
 	using System.Collections.Generic;
 	using System.Web.Http;
 	using System.Web.Http.Dependencies;
-	using Example.Interfaces.Repositories;
-	using Example.Repositories;
+	using Interfaces.Repositories;
 	using Microsoft.Practices.Unity;
+	using Repositories;
 	using Selp.Configuration;
 	using Selp.Interfaces;
 	using VDS.RDF;
 	using VDS.RDF.Writing;
 
-    /// <summary>
+	/// <summary>
 	///     Bootstrapper for the application.
 	/// </summary>
 	public static class UnityConfig
@@ -22,12 +22,12 @@
 			var dbContext = new ExampleDbContext();
 			var container = new UnityContainer();
 
-		    container.RegisterType<IRdfWriter, RdfXmlWriter>(new InjectionConstructor());
+			container.RegisterType<IRdfWriter, RdfXmlWriter>(new InjectionConstructor());
 
-            container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
+			container.RegisterType<ISelpConfiguration, InMemoryConfiguration>();
 			var efConstructorParameter = new InjectionConstructor(dbContext, container.Resolve<ISelpConfiguration>());
 
-            container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
+			container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
 			container.RegisterType<IRegionRepository, RegionRepository>(efConstructorParameter);
 			container.RegisterType<IAttachmentRepository, AttachmentRepository>(efConstructorParameter);
 			container.RegisterType<IPolicyRepository, PolicyRepository>(efConstructorParameter);

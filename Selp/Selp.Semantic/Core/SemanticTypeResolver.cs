@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
+    using Common.Helpers;
 
-    public class SemanticTypeResolver
+	public class SemanticTypeResolver
     {
         private readonly Dictionary<Type, string> uriDictionary = new Dictionary<Type, string>();
 
@@ -15,7 +17,7 @@
 
         public string Resolve(Type type)
         {
-            return uriDictionary.ContainsKey(type) ? uriDictionary[type] : null;
+            return uriDictionary.ContainsKey(type) ? UriHelper.UrlCombine(HttpContext.Current.Request.GetApplicationPath(), uriDictionary[type]) : null;
         }
 
         public string Resolve<T>()

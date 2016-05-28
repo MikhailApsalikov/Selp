@@ -7,12 +7,12 @@
 	{
 		public static void SemanticInitialize()
 		{
-			SemanticTypeResolver.Instance.Register<RegionModel>("http://localhost:33332/semantic/Region");
-			SemanticTypeResolver.Instance.Register<UserModel>("http://localhost:33332/semantic/User");
-			SemanticTypeResolver.Instance.Register<PolicyShortModel>("http://localhost:33332/semantic/Policy");
-			SemanticTypeResolver.Instance.Register<AttachmentModel>("http://localhost:33332/semantic/Attachment");
-			SemanticTypeResolver.Instance.Register<DocumentModel>("http://localhost:33332/semantic/Document");
-			SemanticTypeResolver.Instance.Register<PartyModel>("http://localhost:33332/semantic/Party");
+			SemanticTypeResolver.Instance.Register<RegionModel>("semantic/Region");
+			SemanticTypeResolver.Instance.Register<UserModel>("semantic/User");
+			SemanticTypeResolver.Instance.Register<PolicyShortModel>("semantic/Policy");
+			SemanticTypeResolver.Instance.Register<AttachmentModel>("semantic/Attachment");
+			SemanticTypeResolver.Instance.Register<DocumentModel>("semantic/Document");
+			SemanticTypeResolver.Instance.Register<PartyModel>("semantic/Party");
 		}
 	}
 }
