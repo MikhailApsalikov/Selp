@@ -15,9 +15,10 @@
     <link href="Content/common.css" rel="stylesheet" />
     <link href="Pages/CallToAction/call-to-action.css" rel="stylesheet" />
     <link href="Pages/PolicyList/policy-list-page.css" rel="stylesheet" />
+	<link href="Pages/PolicyCreate/policy-create-page.css" rel="stylesheet" />
 </head>
 <body ng-app="APP" ng-controller="mainController">
-    <header ng-if="isLoggedIn">
+    <header ng-if="isLoggedIn()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <md-button class="md-icon-button" aria-label="Back" ng-click="back()" ng-disabled="!data.isBackEnabled">

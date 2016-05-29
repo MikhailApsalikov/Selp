@@ -31,7 +31,7 @@
 						templateUrl: "/Pages/policyCreate/template.html",
 						controller: "policyCreateController",
 						mainControllerData: {
-						    title: "Создание полиса",
+						    title: "Создание/изменение полиса",
 						    isBackEnabled: true,
 						    backAction: '/policyList'
 						}

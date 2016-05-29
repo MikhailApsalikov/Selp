@@ -1,1 +1,11 @@
-﻿<div>POLICY CREATE MAFAKA ХЕЩЕЛЬБЕ</div>
+﻿<div class="policy-create-page">
+	<div ng-if="!isLoaded" layout="row" layout-align="center">
+		<md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
+	</div>
+	<div class="header">
+		<div class="policy-id">
+			<span>Полис №</span>
+			<span ng-bind="$scope.policy.Id"></span>
+		</div>
+	</div>
+</div>
