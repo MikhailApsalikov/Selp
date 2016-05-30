@@ -6,14 +6,21 @@
 		.service("policyService", ["urlService", "$http", policyService]);
 
 	function policyService(urls, $http) {
-		return {
+	    var template = {
+	        
+	    };
+
+	    return {
 		    getPolicyList: function (params) {
 		        return $http({
 		            url: urls.policy, 
 		            method: "GET",
 		            params: params
 		        });
-			}
+		    },
+            createEmptyPolicy: function() {
+                return angular.copy(template);
+            }
 		};
 	}
 })();

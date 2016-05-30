@@ -1,7 +1,31 @@
 ﻿.policy-create-page {
-    margin: 15px 0;
+    padding: 30px 50px;
 }
 
 .policy-create-page .progress-container{
     zoom: 8;
+}
+
+.policy-create-page .action-buttons {
+    float: right;
+}
+
+.policy-create-page  .policy-info {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: right;
+    width: 100%;
+}
+
+.policy-create-page .serial-item {
+   width: 200px;
+   display: inline-block;
+ }
+
+.policy-create-page .policy-serial-number .key {
+    font-weight: bold;
+}
+
+.policy-create-page .policy-serial-number .serial-not-generated {
+    color: red;
 }

@@ -1,11 +1,55 @@
 ﻿<div class="policy-create-page">
-	<div ng-if="!isLoaded" layout="row" layout-align="center">
-		<md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
-	</div>
-	<div class="header">
-		<div class="policy-id">
-			<span>Полис №</span>
-			<span ng-bind="$scope.policy.Id"></span>
-		</div>
-	</div>
+    <div ng-if="!isLoaded" layout="row" layout-align="center">
+        <md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <md-card class="action-buttons" md-theme="'dark-purple'" md-theme-watch>
+        <md-card-title layout="column">
+            <div class="policy-info">
+                <span>Статус:</span>
+                <span ng-bind="policy.PolicyStatus"></span>
+            </div>
+            <div class="policy-info">
+                <span>Создан:</span>
+                <span ng-bind="policy.CreatedDate"></span>
+            </div>
+            <div class="policy-info">
+                <span>Создатель:</span>
+                <span ng-bind="policy.UserId"></span>
+            </div>
+            
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-default" ng-click="save($event)" ng-disabled="!isProject()">
+                <span>Сохранить</span>
+            </md-button>
+            <md-button class="md-raised md-default" ng-click="changeStatus($event)" ng-disabled="isAnnulated()">
+                <span ng-if="isProject()">В действующий</span>
+                <span ng-if="!isProject()">Аннулировать</span>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+    <h4 class="header">
+        <div class="policy-id" ng-if="isEdit()">
+            <span>Полис №</span><span ng-bind="policy.Id"></span>
+        </div>
+	    <div class="policy-id" ng-if="!isEdit()">
+	        <span>Создание нового полиса</span>
+	    </div>
+
+    </h4>
+    <div class="policy-serial-number">
+        <div class="serial-item">
+            <span class="key">Серия:</span>
+            <span ng-bind="policy.Serial" ng-if="policy.Serial"></span>
+            <span class="serial-not-generated" ng-if="!policy.Serial">Не сгенерирована!</span>
+        </div>
+        <div class="serial-item">
+            <span class="key">Номер:</span>
+            <span ng-bind="policy.Number" ng-if="policy.Number"></span>
+            <span class="serial-not-generated" ng-if="!policy.Number">Не сгенерирован!</span>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="generateNumber($event)"">
+            <span>Запросить номер полиса</span>
+        </md-button>
+    </div>
 </div>
