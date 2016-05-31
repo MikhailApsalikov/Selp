@@ -58,10 +58,6 @@
       <Project>{755aa3cf-2314-4312-b9dc-6e05b7a8eec7}</Project>
       <Name>Example.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Example.Models\Example.Models.csproj">
-      <Project>{01d442e9-2363-4462-ab59-d6b5c09fdafc}</Project>
-      <Name>Example.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Selp.Interfaces\Selp.Interfaces.csproj">
       <Project>{d5e497b6-5cc0-45de-a68a-a3f0eaf79de3}</Project>
       <Name>Selp.Interfaces</Name>
