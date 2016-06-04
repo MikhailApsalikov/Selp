@@ -36,8 +36,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachmentModel.cs" />
-    <Compile Include="DocumentModel.cs" />
     <Compile Include="PartyModel.cs" />
     <Compile Include="PolicyModel.cs" />
     <Compile Include="PolicyShortModel.cs" />
@@ -46,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Example.Entities\Example.Entities.csproj">
-      <Project>{755AA3CF-2314-4312-B9DC-6E05B7A8EEC7}</Project>
-      <Name>Example.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Selp.Common\Selp.Common.csproj">
       <Project>{15FB9881-2DB0-4477-AA6B-C4CB18A12A01}</Project>
       <Name>Selp.Common</Name>

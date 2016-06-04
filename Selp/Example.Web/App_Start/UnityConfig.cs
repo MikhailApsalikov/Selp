@@ -29,7 +29,6 @@
 
 			container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
 			container.RegisterType<IRegionRepository, RegionRepository>(efConstructorParameter);
-			container.RegisterType<IAttachmentRepository, AttachmentRepository>(efConstructorParameter);
 			container.RegisterType<IPolicyRepository, PolicyRepository>(efConstructorParameter);
 			config.DependencyResolver = new UnityResolver(container);
 		}

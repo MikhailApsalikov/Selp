@@ -33,8 +33,6 @@
 
 		public DateTime BirthDate { get; set; }
 
-		public virtual ICollection<Passport> Documents { get; set; }
-
 		[InverseProperty("Parties")]
 		public virtual ICollection<Policy> Policies { get; set; }
 

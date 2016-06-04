@@ -227,7 +227,6 @@
     <Compile Include="App_Start\SemanticInitializer.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="api\AttachmentController.cs" />
     <Compile Include="api\PolicyController.cs" />
     <Compile Include="api\RegionController.cs" />
     <Compile Include="api\UserController.cs" />

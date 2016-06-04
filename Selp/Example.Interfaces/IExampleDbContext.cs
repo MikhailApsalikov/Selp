@@ -9,9 +9,6 @@
 		DbSet<Policy> Policies { get; set; }
 
 		DbSet<Party> Parties { get; set; }
-
-		DbSet<Passport> Documents { get; set; }
 		DbSet<Region> Regions { get; set; }
-		DbSet<Attachment> Attachments { get; set; }
 	}
 }

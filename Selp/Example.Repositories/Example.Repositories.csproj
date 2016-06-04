@@ -42,7 +42,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachmentRepository.cs" />
     <Compile Include="ExampleDbContext.cs" />
     <Compile Include="PolicyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

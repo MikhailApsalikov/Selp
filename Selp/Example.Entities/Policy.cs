@@ -30,8 +30,6 @@
 
 		public virtual Region Region { get; set; }
 
-		public ICollection<Attachment> Attachments { get; set; }
-
 		public int Id { get; set; }
 	}
 }

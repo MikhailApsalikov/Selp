@@ -46,9 +46,7 @@
   <ItemGroup>
     <Compile Include="IExampleDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IAttachmentRepository.cs" />
     <Compile Include="Repositories\IPartyRepository.cs" />
-    <Compile Include="Repositories\IPassportRepository.cs" />
     <Compile Include="Repositories\IPolicyRepository.cs" />
     <Compile Include="Repositories\IRegionRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

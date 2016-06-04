@@ -91,17 +91,7 @@
                     FirstName = "Антон",
                     LastName = "Зеленцов",
                     MiddleName = "Петрович",
-                    Phone = "+7915468741",
-                    Documents = new List<Passport>
-                    {
-                        new Passport
-                        {
-                            Seria = "6983",
-                            Number = "123567",
-                            IssuedDate = new DateTime(2005, 12, 31),
-                            IssuedBy = "Отделом УФМС России"
-                        }
-                    }
+                    Phone = "+7915468741"
                 },
                 new Party
                 {
@@ -111,17 +101,7 @@
                     FirstName = "Борис",
                     LastName = "Иванов",
                     MiddleName = "Романович",
-                    Phone = "+7123546678",
-                    Documents = new List<Passport>
-                    {
-                        new Passport
-                        {
-                            Seria = "3123",
-                            Number = "947857",
-                            IssuedDate = new DateTime(2006, 12, 31),
-                            IssuedBy = "Отделом УФМС России"
-                        }
-                    }
+                    Phone = "+7123546678"
                 },
                 new Party
                 {
