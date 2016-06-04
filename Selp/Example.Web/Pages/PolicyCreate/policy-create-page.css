@@ -1,4 +1,8 @@
-﻿.policy-create-page {
+﻿.md-datepicker-calendar *, .md-datepicker-calendar *:before, .md-datepicker-calendar *:after {
+  box-sizing: content-box;
+}
+
+.policy-create-page {
     padding: 30px 50px;
 }
 
@@ -17,15 +21,28 @@
     width: 100%;
 }
 
-.policy-create-page .serial-item {
-   width: 200px;
-   display: inline-block;
+.policy-create-page .policy-serial-number {
+   margin-right: 800px;
  }
 
-.policy-create-page .policy-serial-number .key {
+.policy-create-page .item {
+   margin: 25px 0;
+   position: relative;
+ }
+
+.policy-create-page .key {
     font-weight: bold;
+    width: 200px;
+    display: inline-block;
 }
 
 .policy-create-page .policy-serial-number .serial-not-generated {
     color: red;
+}
+
+.policy-create-page .value-date {
+    display: inline-block;
+    width: 225px;
+    position: absolute;
+    top: -12px;
 }

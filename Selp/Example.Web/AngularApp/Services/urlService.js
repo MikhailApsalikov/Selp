@@ -10,6 +10,7 @@
 			//uncommon
 			login: "api/user/login",
 			signup: "api/user/signup",
+			generatePolicyNumber: "api/policy/generateNumber",
 
 			//controllers
 			user: "api/user",

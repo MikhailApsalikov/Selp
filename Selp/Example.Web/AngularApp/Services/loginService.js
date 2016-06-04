@@ -39,7 +39,10 @@
 
 					return result.data;
 				});
-			}
+			},
+			getCurrentUserName: function () {
+                return window.localStorage['login'];
+            }
 		};
 	}
 })();

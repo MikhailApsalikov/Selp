@@ -140,8 +140,10 @@
     <Content Include="AngularApp\app.js" />
     <Content Include="AngularApp\Controllers\mainController.js" />
     <Content Include="AngularApp\Controllers\ctaController.js" />
+    <Content Include="AngularApp\Controllers\policyUpdateController.js" />
     <Content Include="AngularApp\Controllers\policyCreateController.js" />
     <Content Include="AngularApp\Controllers\policyListController.js" />
+    <Content Include="AngularApp\Services\dateService.js" />
     <Content Include="AngularApp\Services\policyService.js" />
     <Content Include="AngularApp\Services\loginService.js" />
     <Content Include="AngularApp\Services\urlService.js" />
@@ -252,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AngularApp\Directives\" />
+    <Folder Include="AngularApp\Filters\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
     <div ng-if="!isLoaded" layout="row" layout-align="center">
         <md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
     </div>
-    <md-card class="action-buttons" md-theme="'dark-purple'" md-theme-watch>
+    <md-card class="action-buttons">
         <md-card-title layout="column">
             <div class="policy-info">
                 <span>Статус:</span>
@@ -16,7 +16,7 @@
                 <span>Создатель:</span>
                 <span ng-bind="policy.UserId"></span>
             </div>
-            
+
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
             <md-button class="md-raised md-default" ng-click="save($event)" ng-disabled="!isProject()">
@@ -29,27 +29,48 @@
         </md-card-actions>
     </md-card>
     <h4 class="header">
-        <div class="policy-id" ng-if="isEdit()">
-            <span>Полис №</span><span ng-bind="policy.Id"></span>
+        <div class="policy-id">
+            <span ng-bind="title"></span>
         </div>
-	    <div class="policy-id" ng-if="!isEdit()">
-	        <span>Создание нового полиса</span>
-	    </div>
 
     </h4>
     <div class="policy-serial-number">
-        <div class="serial-item">
+        <div class="item">
             <span class="key">Серия:</span>
             <span ng-bind="policy.Serial" ng-if="policy.Serial"></span>
             <span class="serial-not-generated" ng-if="!policy.Serial">Не сгенерирована!</span>
         </div>
-        <div class="serial-item">
+        <div class="item">
             <span class="key">Номер:</span>
             <span ng-bind="policy.Number" ng-if="policy.Number"></span>
             <span class="serial-not-generated" ng-if="!policy.Number">Не сгенерирован!</span>
         </div>
-        <md-button class="md-raised md-primary" ng-click="generateNumber($event)"">
+        <md-button class="md-raised md-primary" ng-click="generateNumber($event)" ng-disabled="!!policy.Serial">
             <span>Запросить номер полиса</span>
         </md-button>
     </div>
+    <div class="policy-params">
+        <div class="item">
+            <span class="key">Дата начала действия:</span>
+            <md-content class="value-date">
+                <md-datepicker ng-model="policy.StartDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="!isProject()"></md-datepicker>
+            </md-content>
+        </div>
+        <div class="item">
+            <span class="key">Дата окончания действия:</span>
+            <md-content class="value-date">
+                <md-datepicker ng-model="policy.ExpirationDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="true"></md-datepicker>
+            </md-content>
+        </div>
+        <div class="item">
+            <span class="key">Регион действия полиса:</span>
+        </div>
+        <div class="item">
+            <span class="key">Страховая сумма:</span>
+        </div>
+        <div class="item">
+            <span class="key">Страховая премия:</span>
+        </div>
+    </div>
+    <div class="insured-list"></div>
 </div>

@@ -20,7 +20,7 @@
 
 						if (data.valid) {
 							$mdDialog.hide();
-							$location.path("/policyCreate");
+							$location.path("/policy");
 							return;
 						}
 

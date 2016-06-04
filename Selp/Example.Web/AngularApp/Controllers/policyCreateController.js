@@ -3,50 +3,47 @@
 
 	angular
       .module('APP')
-      .controller('policyCreateController', ['$scope', policyCreateController]);
+      .controller('policyCreateController', ['$scope', 'policyService', policyCreateController]);
 
-	function policyCreateController($scope) {
-	    $scope.isEdit = function() {
-	        return !!$scope.policy.Id;
-	    };
-
+	function policyCreateController($scope, policyService) {
 	    $scope.isProject = function() {
-	        return $scope.policy.PolicyStatus === "Проект";
+	        return true;
 	    };
 
 	    $scope.isActual = function () {
-	        return $scope.policy.PolicyStatus === "Действующий";
+	        return false;
 	    };
 
 	    $scope.isAnnulated = function() {
-	        return $scope.policy.PolicyStatus === "Аннулированный";
+	        return false;
 	    };
+
+	    $scope.generateNumber = function() {
+	        policyService.generatePolicyNumber().then(function(data) {
+	            $scope.policy.Serial = data.Serial;
+	            $scope.policy.Number = data.Number;
+	        });
+	    };
+
+	    $scope.$watch("policy.StartDate", function (newValue) {
+            if (!newValue) {
+                return;
+            }
+	        $scope.policy.ExpirationDate = addDays(newValue, 364);
+	    });
 
 	    activate();
 
-		function activate() {
-			$scope.isLoaded = true;
-			$scope.policy = {
-                Id: 15,
-				//Serial: "XXY",
-				//Number: "9876543210",
-				CreatedDate: "01.01.2000",
-				StartDate: "01.01.2016",
-				ExpirationDate: "01.01.2017",
-				InsurancePremium: 1000,
-				InsuranceSum: 500000,
-				PolicyStatus: "Проект",
-				UserId: "admin",
-				Region: {
-					Id: "5",
-					Name: "Какая-то область"
-				}
+        function activate() {
+            $scope.title = "Создание нового полиса";
+            $scope.policy = policyService.createNew();
+            $scope.isLoaded = true;
+        }
 
-		};
-			/*setTimeout(function() {
-				$scope.isLoaded = true;
-				$scope.$apply();
-			}, 1500);*/
-		}
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
+        }
 	}
 })();
