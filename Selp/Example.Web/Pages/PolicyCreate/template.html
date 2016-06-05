@@ -65,6 +65,14 @@
             </div>
             <div class="item">
                 <span class="key">Регион действия полиса:</span>
+                <md-input-container>
+                    <label>Регион</label>
+                    <md-select ng-model="policy.RegionId" ng-disabled="!isProject()">
+                        <md-option ng-repeat="region in regions" value="{{region.Id}}">
+                            {{region.Name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div class="item">
                 <span class="key">Страховая премия:</span>

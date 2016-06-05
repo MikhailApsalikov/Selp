@@ -25,6 +25,11 @@
 	            $scope.policy = policy;
 	            $scope.title = "Полис №" + $scope.policy.Id;
 	            $scope.isLoaded = true;
+	            $scope.regions = [
+	            {
+	                Id: $scope.policy.RegionId,
+	                Name: $scope.policy.Region
+	            }];
 	        });
 		}
 	}

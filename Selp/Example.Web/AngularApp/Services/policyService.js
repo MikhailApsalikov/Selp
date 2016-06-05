@@ -40,6 +40,14 @@
                 return $http.get(urls.generatePolicyNumber).then(function (result) {
 				    return result.data;
 				});
+            },
+            getRegions: function() {
+                return $http({
+                    url: urls.region,
+                    method: "GET"
+                }).then(function(result) {
+                    return result.data;
+                });
             }
 		};
 	}

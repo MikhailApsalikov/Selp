@@ -1,10 +1,13 @@
 ﻿namespace Example.Web.api
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 	using System.Web.Http;
 	using Entities;
 	using Interfaces.Repositories;
 	using Models;
+	using Selp.Common.Entities;
 	using Selp.Controller;
 
 	public class RegionController : SelpController<RegionModel, RegionModel, Region, int>
@@ -32,7 +35,20 @@
 			throw new NotSupportedException();
 		}
 
-		protected override RegionModel MapEntityToModel(Region entity)
+	    public override IHttpActionResult Get(BaseFilter filter)
+	    {
+            try
+            {
+                List<RegionModel> data = Repository.GetAll().Select(MapEntityToShortModel).ToList();
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+	    protected override RegionModel MapEntityToModel(Region entity)
 		{
 			return new RegionModel
 			{

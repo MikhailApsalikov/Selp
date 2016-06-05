@@ -6,7 +6,10 @@
         .controller("policyListController", ["$scope", "policyService", "$location", policyListController]);
 
     function policyListController($scope, policyService, $location) {
-        $scope.refresh = function() {
+        $scope.refresh = function () {
+            if ($scope.isLoaded === false) {
+                return;
+            }
             $scope.isLoaded = false;
             policyService.getPolicyList({
                     Page: $scope.page,

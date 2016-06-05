@@ -14,7 +14,9 @@
 
 			//controllers
 			user: "api/user",
-            policy: "api/policy"
+			policy: "api/policy",
+			region: "api/region",
+            party: "api/party"
 		};
 
 		return urls;
