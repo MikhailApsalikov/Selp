@@ -3,9 +3,9 @@
 
 	angular
       .module('APP')
-      .controller('policyUpdateController', ['$scope', 'policyService', policyCreateController]);
+      .controller('policyUpdateController', ['$scope', 'policyService', '$stateParams', policyCreateController]);
 
-	function policyCreateController($scope, policyService) {
+	function policyCreateController($scope, policyService, $stateParams) {
 	    $scope.isProject = function() {
 	        return $scope.policy.PolicyStatus === "Проект";
 	    };
@@ -20,10 +20,12 @@
 
 	    activate();
 
-        function activate() {
-            $scope.title = "Создание нового полиса";
-            //$scope.policy = policyService.createNew();
-			//$scope.isLoaded = true;
+	    function activate() {
+	        policyService.getPolicyById($stateParams.id).then(function (policy) {
+	            $scope.policy = policy;
+	            $scope.title = "Полис №" + $scope.policy.Id;
+	            $scope.isLoaded = true;
+	        });
 		}
 	}
 })();

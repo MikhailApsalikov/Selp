@@ -30,7 +30,8 @@
 			container.RegisterType<IUserRepository, UserRepository>(efConstructorParameter);
 			container.RegisterType<IRegionRepository, RegionRepository>(efConstructorParameter);
 			container.RegisterType<IPolicyRepository, PolicyRepository>(efConstructorParameter);
-			config.DependencyResolver = new UnityResolver(container);
+            container.RegisterType<IPartyRepository, PartyRepository>(efConstructorParameter);
+            config.DependencyResolver = new UnityResolver(container);
 		}
 	}
 

@@ -1,6 +1,7 @@
 ﻿namespace Example.Web.api
 {
     using System;
+    using System.Linq;
     using System.Web.Http;
     using Entities;
     using Entities.Enums;
@@ -10,8 +11,13 @@
 
     public class PolicyController : SelpController<PolicyShortModel, PolicyModel, Policy, int>
     {
-        public PolicyController(IPolicyRepository repository) : base(repository)
+        private readonly IPartyRepository partyRepository;
+        private readonly IRegionRepository regionRepository;
+
+        public PolicyController(IPolicyRepository repository, IPartyRepository partyRepository, IRegionRepository regionRepository) : base(repository)
         {
+            this.partyRepository = partyRepository;
+            this.regionRepository = regionRepository;
         }
 
         public override string ControllerName => "Policy";
@@ -31,7 +37,19 @@
         {
             return new PolicyModel
             {
-                Id = entity.Id
+                Id = entity.Id,
+                InsuranceSum = entity.InsuranceSum,
+                ExpirationDate = entity.ExpirationDate.ToString("dd.MM.yyyy"),
+                StartDate = entity.StartDate.ToString("dd.MM.yyyy"),
+                InsurancePremium = entity.InsurancePremium,
+                Status = ConvertStatus(entity.Status),
+                CreatedDate = entity.CreatedDate.ToString("dd.MM.yyyy"),
+                UserId = entity.UserId,
+                Serial = entity.Serial,
+                Number = entity.Number,
+                Insured = entity.Parties?.Select(p=>p.Id).ToList(),
+                RegionId = entity.RegionId,
+                Region = entity.Region.Name
             };
         }
 

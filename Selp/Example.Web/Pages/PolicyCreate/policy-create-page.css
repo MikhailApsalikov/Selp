@@ -46,3 +46,14 @@
     position: absolute;
     top: -12px;
 }
+
+.policy-create-page .input-value {
+    display: inline-block;
+    width: 125px;
+    position: absolute;
+    top: -30px;
+}
+
+.policy-create-page .after-input-value {
+    margin-left: 125px;
+}

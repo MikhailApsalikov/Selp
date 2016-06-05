@@ -19,6 +19,19 @@
 		            params: params
 		        });
 		    },
+            getPolicyById: function(id) {
+                return $http({
+                    url: urls.policy,
+                    method: "GET",
+                    params: {
+                        id: id
+                    }
+                }).then(function(data) {
+                    data.data.StartDate = dateService.toDate(data.data.StartDate);
+                    data.data.ExpirationDate = dateService.toDate(data.data.ExpirationDate);
+                    return data.data;
+                });
+            },
 		    createNew: function () {
 		        template.UserId = loginService.getCurrentUserName();
                 return angular.copy(template);

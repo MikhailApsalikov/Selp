@@ -13,7 +13,7 @@
 	    $scope.isActual = function () {
 	        return false;
 	    };
-
+         
 	    $scope.isAnnulated = function() {
 	        return false;
 	    };
@@ -30,6 +30,13 @@
                 return;
             }
 	        $scope.policy.ExpirationDate = addDays(newValue, 364);
+	    });
+
+	    $scope.$watch("policy.InsurancePremium", function (newValue) {
+	        if (!newValue) {
+	            return;
+	        }
+	        $scope.policy.InsuranceSum = newValue*500;
 	    });
 
 	    activate();

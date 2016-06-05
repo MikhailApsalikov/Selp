@@ -2,75 +2,83 @@
     <div ng-if="!isLoaded" layout="row" layout-align="center">
         <md-progress-circular class="progress-container" md-mode="indeterminate"></md-progress-circular>
     </div>
-    <md-card class="action-buttons">
-        <md-card-title layout="column">
-            <div class="policy-info">
-                <span>Статус:</span>
-                <span ng-bind="policy.PolicyStatus"></span>
-            </div>
-            <div class="policy-info">
-                <span>Создан:</span>
-                <span ng-bind="policy.CreatedDate"></span>
-            </div>
-            <div class="policy-info">
-                <span>Создатель:</span>
-                <span ng-bind="policy.UserId"></span>
+    <div ng-if="isLoaded">
+        <md-card class="action-buttons">
+            <md-card-title layout="column">
+                <div class="policy-info">
+                    <span>Статус:</span>
+                    <span ng-bind="policy.PolicyStatus"></span>
+                </div>
+                <div class="policy-info">
+                    <span>Создан:</span>
+                    <span ng-bind="policy.CreatedDate"></span>
+                </div>
+                <div class="policy-info">
+                    <span>Создатель:</span>
+                    <span ng-bind="policy.UserId"></span>
+                </div>
+
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-default" ng-click="save($event)" ng-disabled="!isProject()">
+                    <span>Сохранить</span>
+                </md-button>
+                <md-button class="md-raised md-default" ng-click="changeStatus($event)" ng-disabled="isAnnulated()">
+                    <span ng-if="isProject()">В действующий</span>
+                    <span ng-if="!isProject()">Аннулировать</span>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+        <h4 class="header">
+            <div class="policy-id">
+                <span ng-bind="title"></span>
             </div>
 
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-default" ng-click="save($event)" ng-disabled="!isProject()">
-                <span>Сохранить</span>
+        </h4>
+        <div class="policy-serial-number">
+            <div class="item">
+                <span class="key">Серия:</span>
+                <span ng-bind="policy.Serial" ng-if="policy.Serial"></span>
+                <span class="serial-not-generated" ng-if="!policy.Serial">Не сгенерирована!</span>
+            </div>
+            <div class="item">
+                <span class="key">Номер:</span>
+                <span ng-bind="policy.Number" ng-if="policy.Number"></span>
+                <span class="serial-not-generated" ng-if="!policy.Number">Не сгенерирован!</span>
+            </div>
+            <md-button class="md-raised md-primary" ng-click="generateNumber($event)" ng-disabled="!!policy.Serial">
+                <span>Запросить номер полиса</span>
             </md-button>
-            <md-button class="md-raised md-default" ng-click="changeStatus($event)" ng-disabled="isAnnulated()">
-                <span ng-if="isProject()">В действующий</span>
-                <span ng-if="!isProject()">Аннулировать</span>
-            </md-button>
-        </md-card-actions>
-    </md-card>
-    <h4 class="header">
-        <div class="policy-id">
-            <span ng-bind="title"></span>
         </div>
-
-    </h4>
-    <div class="policy-serial-number">
-        <div class="item">
-            <span class="key">Серия:</span>
-            <span ng-bind="policy.Serial" ng-if="policy.Serial"></span>
-            <span class="serial-not-generated" ng-if="!policy.Serial">Не сгенерирована!</span>
+        <div class="policy-params">
+            <div class="item">
+                <span class="key">Дата начала действия:</span>
+                <md-content class="value-date">
+                    <md-datepicker ng-model="policy.StartDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="!isProject()"></md-datepicker>
+                </md-content>
+            </div>
+            <div class="item">
+                <span class="key">Дата окончания действия:</span>
+                <md-content class="value-date">
+                    <md-datepicker ng-model="policy.ExpirationDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="true"></md-datepicker>
+                </md-content>
+            </div>
+            <div class="item">
+                <span class="key">Регион действия полиса:</span>
+            </div>
+            <div class="item">
+                <span class="key">Страховая премия:</span>
+                <md-input-container class="input-value">
+                    <input class="inline-input" ng-model="policy.InsurancePremium" type="number" step="0" ng-disabled="!isProject()">
+                </md-input-container>
+                <span class="after-input-value">руб.</span>
+            </div>
+            <div class="item">
+                <span class="key">Страховая сумма:</span>
+                <span ng-bind="policy.InsuranceSum"></span>
+                <span>руб.</span>
+            </div>
         </div>
-        <div class="item">
-            <span class="key">Номер:</span>
-            <span ng-bind="policy.Number" ng-if="policy.Number"></span>
-            <span class="serial-not-generated" ng-if="!policy.Number">Не сгенерирован!</span>
-        </div>
-        <md-button class="md-raised md-primary" ng-click="generateNumber($event)" ng-disabled="!!policy.Serial">
-            <span>Запросить номер полиса</span>
-        </md-button>
+        <div class="insured-list"></div>
     </div>
-    <div class="policy-params">
-        <div class="item">
-            <span class="key">Дата начала действия:</span>
-            <md-content class="value-date">
-                <md-datepicker ng-model="policy.StartDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="!isProject()"></md-datepicker>
-            </md-content>
-        </div>
-        <div class="item">
-            <span class="key">Дата окончания действия:</span>
-            <md-content class="value-date">
-                <md-datepicker ng-model="policy.ExpirationDate" md-placeholder="Enter date" md-open-on-focus ng-disabled="true"></md-datepicker>
-            </md-content>
-        </div>
-        <div class="item">
-            <span class="key">Регион действия полиса:</span>
-        </div>
-        <div class="item">
-            <span class="key">Страховая сумма:</span>
-        </div>
-        <div class="item">
-            <span class="key">Страховая премия:</span>
-        </div>
-    </div>
-    <div class="insured-list"></div>
 </div>

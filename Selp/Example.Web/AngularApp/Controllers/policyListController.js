@@ -3,9 +3,9 @@
 
     angular
         .module("APP")
-        .controller("policyListController", ["$scope", "policyService", policyListController]);
+        .controller("policyListController", ["$scope", "policyService", "$location", policyListController]);
 
-    function policyListController($scope, policyService) {
+    function policyListController($scope, policyService, $location) {
         $scope.refresh = function() {
             $scope.isLoaded = false;
             policyService.getPolicyList({
@@ -19,6 +19,10 @@
                     function(data) {
                         $scope.isLoaded = true;
                     });
+        };
+
+        $scope.open = function(policyId) {
+            $location.path("/policy/" + policyId);
         };
 
         activate();
