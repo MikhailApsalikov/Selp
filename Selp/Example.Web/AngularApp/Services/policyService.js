@@ -8,8 +8,13 @@
 	function policyService(urls, $http, loginService, dateService) {
 	    var template = {
 	        CreatedDate: dateService.toString(new Date()),
-	        PolicyStatus: "Проект"
+	        Status: "Проект"
 	    };
+
+        function fixDates(policy) {
+            policy.StartDate = dateService.toString(policy.StartDate);
+            policy.ExpirationDate = dateService.toString(policy.ExpirationDate);
+        }
 
 	    return {
 		    getPolicyList: function (params) {
@@ -47,6 +52,31 @@
                     method: "GET"
                 }).then(function(result) {
                     return result.data;
+                });
+            },
+            createPolicy: function (policy) {
+                policy = angular.copy(policy);
+                fixDates(policy);
+                return $http({
+                    url: urls.policy,
+                    method: "POST",
+                    data: policy
+                }).then(function (data) {
+                    return data.data.Id;
+                });
+            },
+            updatePolicy: function (id, policy) {
+                policy = angular.copy(policy);
+                fixDates(policy);
+                return $http({
+                    url: urls.policy,
+                    method: "PUT",
+                    data: policy,
+                    params: {
+                        id: id
+                    }
+                }).then(function (data) {
+                    return data.data;
                 });
             }
 		};

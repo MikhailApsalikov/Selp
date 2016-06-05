@@ -3,9 +3,18 @@
 
 	angular
       .module('APP')
-      .controller('policyCreateController', ['$scope', 'policyService', policyCreateController]);
+      .controller('policyCreateController', ['$scope', 'policyService', '$location', policyCreateController]);
 
-	function policyCreateController($scope, policyService) {
+	function policyCreateController($scope, policyService, $location) {
+	    $scope.save = function () {
+	        save();
+	    };
+
+	    $scope.changeStatus = function () {
+	        $scope.policy.Status = "Действующий";
+	        save();
+	    };
+
 	    $scope.isProject = function() {
 	        return true;
 	    };
@@ -59,5 +68,13 @@
                 $scope.regions = loadRegions;
             });
         }
+
+        function save() {
+            $scope.isLoaded = false;
+            policyService.createPolicy($scope.policy).then(function(id) {
+                $location.path("/policy/" + id);
+                $scope.isLoaded = true;
+            });
+        };
 	}
 })();
