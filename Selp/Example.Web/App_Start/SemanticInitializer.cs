@@ -10,6 +10,7 @@
 			SemanticTypeResolver.Instance.Register<RegionModel>("semantic/Region");
 			SemanticTypeResolver.Instance.Register<UserModel>("semantic/User");
 			SemanticTypeResolver.Instance.Register<PolicyShortModel>("semantic/Policy");
+			SemanticTypeResolver.Instance.Register<PolicyModel>("semantic/Policy");
 			SemanticTypeResolver.Instance.Register<PartyModel>("semantic/Party");
 		}
 	}
