@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Selp.Repository</id>
+        <version>1.0.0.0</version>
+        <title>Selp.Repository</title>
+        <authors>Mikhail Apsalikov</authors>
+        <owners>Mikhail Apsalikov</owners>
+        <projectUrl>https://github.com/MikhailApsalikov/Selp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Sematic Web Framework Selp</description>
+        <summary>Repositories of Sematic Web Framework Selp.</summary>
+        <copyright>Copyright ©  2016</copyright>
+        <tags>Semantic Web</tags>
+        <dependencies>
+            <dependency id="EntityFramework" version="6.1.3" />
+            <dependency id="Selp.Interfaces" version="1.0.0.0" />
+            <dependency id="Selp.Common" version="1.0.0.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net461\Selp.Repository.dll" target="lib\net461\Selp.Repository.dll" />
+    </files>
+</package>
