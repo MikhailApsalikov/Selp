@@ -2,6 +2,7 @@
 {
 	using System.Collections.Generic;
 	using System.Data.Entity;
+	using Common.Entities;
 	using Configuration;
 	using Fake;
 	using Interfaces;
@@ -45,6 +46,7 @@
 			var flag = false;
 			var mock = new Mock<ISelpValidator>();
 			mock.Setup(s => s.Validate()).Callback(() => flag = true);
+			mock.Setup(s => s.Errors).Returns(new List<ValidatorError>());
 			repository.CreateValidator = mock.Object;
 			repository.Create(new FakeEntity
 			{
@@ -60,6 +62,7 @@
 			var flag = false;
 			var mock = new Mock<ISelpValidator>();
 			mock.Setup(s => s.Validate()).Callback(() => flag = true);
+			mock.Setup(s => s.Errors).Returns(new List<ValidatorError>());
 			repository.UpdateValidator = mock.Object;
 			repository.Update(1, new FakeEntity
 			{

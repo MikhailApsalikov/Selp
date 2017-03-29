@@ -6,11 +6,13 @@
 	{
 		public RepositoryModifyResult(IEnumerable<ValidatorError> errors)
 		{
+			errors.ThrowIfNull("RepositoryModifyResult: errors cannot be null");
 			Errors = errors;
 		}
 
 		public RepositoryModifyResult(TEntity entity)
 		{
+			entity.ThrowIfNull("RepositoryModifyResult: entity cannot be null");
 			ModifiedEntity = entity;
 		}
 
