@@ -17,7 +17,7 @@
 
         public string Resolve(Type type)
         {
-            return uriDictionary.ContainsKey(type) ? UriHelper.UrlCombine(HttpContext.Current.Request.GetApplicationPath(), uriDictionary[type]) : null;
+            return uriDictionary.ContainsKey(type) ? UriHelper.UrlCombine(HttpContext.Current?.Request.GetApplicationPath()??string.Empty, uriDictionary[type]) : null;
         }
 
         public string Resolve<T>()

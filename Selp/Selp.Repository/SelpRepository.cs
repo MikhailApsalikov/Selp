@@ -99,7 +99,6 @@
             entity.ThrowIfNull("Entity cannot be null");
             TEntity entityInBase = FindById(id);
             OnUpdating(id, entityInBase);
-            Merge(entity, entityInBase);
             if (UpdateValidator != null)
             {
                 UpdateValidator.Validate();
@@ -108,9 +107,8 @@
                     return new RepositoryModifyResult<TEntity>(UpdateValidator.Errors);
                 }
             }
-
-
-            MarkAsModified(entityInBase);
+			Merge(entity, entityInBase);
+			MarkAsModified(entityInBase);
             try
             {
                 DbContext.SaveChanges();
