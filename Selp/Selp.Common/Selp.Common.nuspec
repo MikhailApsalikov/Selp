@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Selp.Common</id>
-        <version>1.0.0.1</version>
+        <version>1.0.0.3</version>
         <title>Selp.Common</title>
         <authors>Mikhail Apsalikov</authors>
         <owners>Mikhail Apsalikov</owners>
@@ -10,10 +10,11 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Sematic Web Framework Selp</description>
         <summary>Common part of Sematic Web Framework Selp.</summary>
+        <releaseNotes>Repository Modify Result is no longer supports null</releaseNotes>
         <copyright>Copyright ©  2016</copyright>
         <tags>Semantic Web</tags>
     </metadata>
     <files>
-        <file src="lib\net461\Selp.Common.dll" target="lib\net461\Selp.Common.dll" />
+        <file src="bin\Debug\Selp.Common.dll" target="lib\net461\Selp.Common.dll" />
     </files>
 </package>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Selp.Interfaces</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.3</version>
         <title>Selp.Interfaces</title>
         <authors>Mikhail Apsalikov</authors>
         <owners>Mikhail Apsalikov</owners>
@@ -14,10 +14,10 @@
         <tags>Semantic Web</tags>
         <dependencies>
             <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
-            <dependency id="Selp.Common" version="1.0.0.1" />
+            <dependency id="Selp.Common" version="1.0.0.3" />
         </dependencies>
     </metadata>
     <files>
-        <file src="lib\net461\Selp.Interfaces.dll" target="lib\net461\Selp.Interfaces.dll" />
+        <file src="bin\Debug\Selp.Interfaces.dll" target="lib\net461\Selp.Interfaces.dll" />
     </files>
 </package>

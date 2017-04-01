@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Selp.Configuration</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.3</version>
         <title>Selp.Configuration</title>
         <authors>Mikhail Apsalikov</authors>
         <owners>Mikhail Apsalikov</owners>
@@ -14,10 +14,10 @@
         <copyright>Copyright ©  2016</copyright>
         <tags>Semantic Web</tags>
         <dependencies>
-            <dependency id="Selp.Interfaces" version="1.0.0.0" />
+            <dependency id="Selp.Interfaces" version="1.0.0.3" />
         </dependencies>
     </metadata>
     <files>
-        <file src="lib\net461\Selp.Configuration.dll" target="lib\net461\Selp.Configuration.dll" />
+        <file src="bin\Debug\Selp.Configuration.dll" target="lib\net461\Selp.Configuration.dll" />
     </files>
 </package>
