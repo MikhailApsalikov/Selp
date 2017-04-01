@@ -5,6 +5,7 @@
 	using Common.Entities;
 	using Interfaces;
 	using Repository;
+	using VDS.Common.Tries;
 
 	public class FakeRepository : SelpRepository<FakeEntity, int>
 	{
@@ -13,9 +14,12 @@
 		{
 			IsRemovingFake = isRemovingFake;
 			DbSet = dbSet;
+			IsMergeCalled = false;
 		}
 
 		public override bool IsRemovingFake { get; }
+
+		public bool IsMergeCalled { get; set; }
 		public override string FakeRemovingPropertyName => "IsDeleted";
 		public override IDbSet<FakeEntity> DbSet { get; }
 
@@ -30,6 +34,7 @@
 		{
 			destination.Name = source.Name;
 			destination.Description = source.Description;
+			IsMergeCalled = true;
 			return destination;
 		}
 

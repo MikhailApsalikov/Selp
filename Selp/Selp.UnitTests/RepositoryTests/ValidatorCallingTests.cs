@@ -71,5 +71,26 @@
 			});
 			Assert.AreEqual(true, flag);
 		}
+
+		[TestMethod]
+		public void UpdateValidatorFailed()
+		{
+			var validator = new FailedValidator();
+			repository.UpdateValidator = validator;
+			try
+			{
+				repository.Update(1, new FakeEntity
+				{
+					Name = "Entity Updated",
+					Description = null
+				});
+			}
+			catch
+			{
+				//ignored
+			}
+			Assert.AreNotEqual(repository.GetById(1).Name, "Entity Updated");
+			Assert.AreEqual(repository.IsMergeCalled, false);
+		}
 	}
 }
