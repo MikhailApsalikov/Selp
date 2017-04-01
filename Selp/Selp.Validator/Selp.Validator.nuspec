@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Selp.Validator</id>
-        <version>1.0.0.3</version>
+        <version>1.0.0.4</version>
         <title>Selp.Validator</title>
         <authors>Mikhail Apsalikov</authors>
         <owners>Mikhail Apsalikov</owners>
@@ -18,6 +18,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Debug\Selp.Validator.dll" target="bin\Debug\Selp.Validator.dll" />
+        <file src="bin\Debug\Selp.Validator.dll" target="lib\net461\Selp.Validator.dll" />
     </files>
 </package>
